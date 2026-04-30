@@ -1,0 +1,596 @@
+/* =============================================================
+   components.css
+   Purpose: Reusable UI components — buttons, cards, flip-cards,
+   quiz blocks, badges, info-boxes, and progress indicators.
+   Depends on: global.css (must be loaded first)
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   1. BUTTONS
+   ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+/* Primary: filled accent colour */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #0d1117;              /* dark text on bright button    */
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #0d1117;
+  text-decoration: none;
+}
+
+/* Secondary: outlined */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: var(--color-accent-glow);
+  color: var(--color-accent-hover);
+  text-decoration: none;
+}
+
+/* Ghost: subtle, minimal */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------
+   2. BADGES / TAGS
+   Small labels used on cards and hero sections.
+   ------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-accent {
+  background-color: var(--color-accent-glow);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.badge-success {
+  background-color: rgba(63, 185, 80, 0.15);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.badge-warning {
+  background-color: rgba(210, 153, 34, 0.15);
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning);
+}
+
+.badge-neutral {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+/* -------------------------------------------------------------
+   3. TOPIC / INFO CARDS
+   Used on the home page and inside topic pages.
+   ------------------------------------------------------------- */
+.card-grid {
+  display: grid;
+  gap: var(--space-6);
+  /* Responsive: auto-fit means as many columns as fit;
+     minmax says each column is at least 260px wide          */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color var(--transition-normal),
+              box-shadow var(--transition-normal),
+              transform var(--transition-normal);
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent), var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card__icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent-glow);
+  border-radius: var(--radius-md);
+  color: var(--color-accent);
+}
+
+.card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.card__title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.card__body {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-loose);
+  flex-grow: 1;               /* pushes any footer to the bottom */
+}
+
+.card__footer {
+  margin-top: var(--space-2);
+}
+
+/* Clickable card (wraps the whole card in an <a>) */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-link:hover,
+.card-link:focus-visible {
+  text-decoration: none;
+}
+
+/* -------------------------------------------------------------
+   4. FLIP CARDS
+   Click to reveal definition. Used in IT Basics component list.
+   Relies on a CSS 3D transform — JS just toggles .is-flipped.
+   ------------------------------------------------------------- */
+.flip-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Outer wrapper that sets the 3D perspective */
+.flip-card {
+  perspective: 1000px;
+  height: 180px;
+  cursor: pointer;
+}
+
+/* The rotating inner container */
+.flip-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;  /* keep both faces in 3D space */
+  transition: transform var(--transition-slow);
+}
+
+/* Flip on hover OR when .is-flipped class is added by JS */
+.flip-card:hover .flip-card__inner,
+.flip-card.is-flipped .flip-card__inner {
+  transform: rotateY(180deg);
+}
+
+/* Shared face styles */
+.flip-card__front,
+.flip-card__back {
+  position: absolute;
+  inset: 0;                      /* shorthand for top/right/bottom/left: 0 */
+  backface-visibility: hidden;   /* hide the reverse side while facing away */
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  text-align: center;
+  border: 1px solid var(--color-border);
+}
+
+.flip-card__front {
+  background-color: var(--color-bg-secondary);
+}
+
+.flip-card__back {
+  background-color: var(--color-accent-glow);
+  border-color: var(--color-accent);
+  /* Start rotated 180° so it faces away; becomes visible after flip */
+  transform: rotateY(180deg);
+}
+
+.flip-card__front svg {
+  width: 36px;
+  height: 36px;
+  color: var(--color-accent);
+}
+
+.flip-card__front-title {
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.flip-card__back-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: var(--leading-loose);
+}
+
+.flip-card__hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------------
+   5. INFO / CALLOUT BOXES
+   Highlight tips, warnings, or key facts in the content.
+   ------------------------------------------------------------- */
+.callout {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  border-left: 4px solid;
+  margin: var(--space-6) 0;
+}
+
+.callout svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;             /* optical alignment with text   */
+}
+
+.callout__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.callout__title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+}
+
+.callout__body {
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  max-width: none;             /* override the p max-width */
+}
+
+.callout-tip {
+  background-color: rgba(88, 166, 255, 0.08);
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
+}
+.callout-tip svg,
+.callout-tip .callout__title { color: var(--color-accent); }
+
+.callout-success {
+  background-color: rgba(63, 185, 80, 0.08);
+  border-color: var(--color-success);
+}
+.callout-success svg,
+.callout-success .callout__title { color: var(--color-success); }
+
+.callout-warning {
+  background-color: rgba(210, 153, 34, 0.08);
+  border-color: var(--color-warning);
+}
+.callout-warning svg,
+.callout-warning .callout__title { color: var(--color-warning); }
+
+/* -------------------------------------------------------------
+   6. QUIZ BLOCK
+   Self-contained multiple-choice quiz. JS handles checking answers
+   and toggling .is-correct / .is-wrong on each option button.
+   ------------------------------------------------------------- */
+.quiz-block {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.quiz-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.quiz-counter {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.quiz-question {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--leading-normal);
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Individual answer button */
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transition-fast),
+              background-color var(--transition-fast);
+}
+
+.quiz-option:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-glow);
+}
+
+/* Letter badge (A, B, C, D) inside each option */
+.quiz-option__letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  flex-shrink: 0;
+}
+
+/* States set by JS after user picks an answer */
+.quiz-option.is-correct {
+  border-color: var(--color-success);
+  background-color: rgba(63, 185, 80, 0.1);
+}
+
+.quiz-option.is-correct .quiz-option__letter {
+  background-color: var(--color-success);
+  color: #0d1117;
+  border-color: var(--color-success);
+}
+
+.quiz-option.is-wrong {
+  border-color: var(--color-danger);
+  background-color: rgba(248, 81, 73, 0.1);
+}
+
+.quiz-option.is-wrong .quiz-option__letter {
+  background-color: var(--color-danger);
+  color: #fff;
+  border-color: var(--color-danger);
+}
+
+.quiz-option:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Feedback text shown below options after answering */
+.quiz-feedback {
+  display: none;              /* JS sets display:flex after answer */
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+}
+
+.quiz-feedback.is-visible { display: flex; }
+
+.quiz-feedback.is-correct {
+  background-color: rgba(63, 185, 80, 0.1);
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+}
+
+.quiz-feedback.is-wrong {
+  background-color: rgba(248, 81, 73, 0.1);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+}
+
+.quiz-feedback svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.quiz-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Progress bar at the bottom of the quiz */
+.quiz-progress {
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.quiz-progress__fill {
+  height: 100%;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+  /* width is set inline by JS; transition animates the change  */
+  transition: width var(--transition-slow);
+}
+
+/* Score display at the end of the quiz */
+.quiz-score {
+  text-align: center;
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.quiz-score__number {
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-accent);
+}
+
+.quiz-score__label {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+/* -------------------------------------------------------------
+   7. ACCORDION (expandable FAQ / detail sections)
+   JS toggles .is-open on the .accordion-item.
+   ------------------------------------------------------------- */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.accordion-item {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.accordion-item.is-open {
+  border-color: var(--color-accent);
+}
+
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  gap: var(--space-4);
+  transition: background-color var(--transition-fast);
+}
+
+.accordion-trigger:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+/* The chevron icon that rotates when open */
+.accordion-trigger svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+  transition: transform var(--transition-normal);
+}
+
+.accordion-item.is-open .accordion-trigger svg {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  /* height:0 with overflow:hidden creates the collapse effect  */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow);
+}
+
+.accordion-item.is-open .accordion-content {
+  /* JS sets this to the scrollHeight value so it animates open */
+  max-height: 600px;
+}
+
+.accordion-body {
+  padding: 0 var(--space-5) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-loose);
+}

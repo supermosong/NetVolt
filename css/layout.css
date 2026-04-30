@@ -1,0 +1,348 @@
+/* =============================================================
+   layout.css
+   Purpose: The persistent top navigation, page-level wrappers,
+   section headers, and the footer. All pages share these styles.
+   Depends on: global.css (must be loaded first)
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   1. GOOGLE FONTS IMPORT
+   Inter for UI text, Fira Code for code snippets.
+   Loaded here once so every page gets it via layout.css.
+   ------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap');
+
+/* -------------------------------------------------------------
+   2. TOP NAVIGATION BAR
+   Sticky so it stays visible while scrolling.
+   ------------------------------------------------------------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;               /* sits above all page content    */
+  height: var(--nav-height);
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.site-nav .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Site logo / brand name */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-logo:hover,
+.nav-logo:focus-visible {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.nav-logo svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+/* Desktop nav links list */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast),
+              background-color var(--transition-fast);
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+  text-decoration: none;
+}
+
+/* Active link — highlights the current page */
+.nav-links a.active {
+  color: var(--color-accent);
+  background-color: var(--color-accent-glow);
+}
+
+.nav-links a svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------
+   3. HAMBURGER BUTTON (mobile only)
+   Hidden on desktop; shown via media query below.
+   ------------------------------------------------------------- */
+.nav-hamburger {
+  display: none;              /* hidden on desktop              */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: none;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.nav-hamburger:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+/* The three bars of the hamburger icon */
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-normal),
+              opacity var(--transition-normal);
+}
+
+/* Animate into an X when menu is open */
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* -------------------------------------------------------------
+   4. MOBILE NAV MENU (drawer that drops below the nav bar)
+   ------------------------------------------------------------- */
+.nav-mobile-menu {
+  display: none;              /* JS toggles .is-open            */
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-4);
+}
+
+.nav-mobile-menu.is-open {
+  display: block;
+}
+
+.nav-mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast),
+              background-color var(--transition-fast);
+}
+
+.nav-mobile-menu a:hover,
+.nav-mobile-menu a.active {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.nav-mobile-menu a.active {
+  color: var(--color-accent);
+  background-color: var(--color-accent-glow);
+}
+
+.nav-mobile-menu a svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------
+   5. PAGE HERO / SECTION HEADER
+   Used at the top of each topic page and the home hero.
+   ------------------------------------------------------------- */
+.page-hero {
+  padding: var(--space-16) 0 var(--space-12);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-hero .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-hero__eyebrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-hero__title {
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
+  color: var(--color-text-primary);
+}
+
+.page-hero__subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  max-width: 55ch;
+  line-height: var(--leading-loose);
+}
+
+/* Tag/badge row below the subtitle */
+.page-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+/* -------------------------------------------------------------
+   6. MAIN CONTENT AREA
+   Wraps everything between the nav and the footer.
+   ------------------------------------------------------------- */
+.site-main {
+  /* Push content down so sticky nav doesn't overlap page-hero */
+  padding-bottom: var(--space-20);
+}
+
+/* Section dividers within a page */
+.content-section {
+  padding: var(--space-12) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.content-section:last-of-type {
+  border-bottom: none;
+}
+
+.section-title {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-2);
+}
+
+.section-subtitle {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  max-width: 60ch;
+}
+
+/* -------------------------------------------------------------
+   7. SITE FOOTER
+   ------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-8) 0;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.footer-links a {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+.footer-copy {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------------
+   8. RESPONSIVE BREAKPOINTS
+   Mobile-first: base styles above are for small screens.
+   We EXPAND the layout at wider viewports.
+   ------------------------------------------------------------- */
+
+/* Tablet and up: 640px */
+@media (min-width: 640px) {
+  .site-footer .container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* Desktop: 768px — show full nav, hide hamburger */
+@media (min-width: 768px) {
+  .nav-hamburger {
+    display: none !important;
+  }
+
+  .nav-links {
+    display: flex;
+  }
+
+  /* Safety: ensure mobile menu never shows on desktop */
+  .nav-mobile-menu {
+    display: none !important;
+  }
+}
+
+/* Mobile only: hide desktop nav links, show hamburger */
+@media (max-width: 767px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+}
