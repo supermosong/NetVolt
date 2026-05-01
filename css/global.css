@@ -251,3 +251,25 @@ hr {
 .mt-auto { margin-top: auto; }
 .mb-4    { margin-bottom: var(--space-4); }
 .mb-8    { margin-bottom: var(--space-8); }
+
+/* Skip-to-content link (WCAG 2.4.1)
+   Visually hidden until focused — lets keyboard users jump past the nav */
+.skip-link {
+  position: absolute;
+  top: -100%;          /* off-screen by default */
+  left: var(--space-4);
+  z-index: 200;        /* above the sticky nav */
+  padding: var(--space-2) var(--space-5);
+  background-color: var(--color-accent);
+  color: #0d1117;
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+/* Becomes visible when keyboard-focused */
+.skip-link:focus {
+  top: var(--space-2);
+}

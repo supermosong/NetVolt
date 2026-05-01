@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+        content="Computer Networks — learn what LANs and WANs are, how data packets travel the internet, what TCP/IP means, and how DNS translates website names into addresses. Beginner-friendly." />
+
+  <title>Computer Networks — TechLearn</title>
+
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+
+      <a href="../index.html" class="nav-logo" aria-label="TechLearn home">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        TechLearn
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li>
+          <a href="../index.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="it-basics.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            IT Basics
+          </a>
+        </li>
+        <li>
+          <a href="wifi-networking.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+              <circle cx="12" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            Wi-Fi
+          </a>
+        </li>
+        <li>
+          <a href="computer-networks.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="3"/>
+              <circle cx="5" cy="19" r="3"/>
+              <circle cx="19" cy="19" r="3"/>
+              <line x1="12" y1="8" x2="5.5" y2="16"/>
+              <line x1="12" y1="8" x2="18.5" y2="16"/>
+              <line x1="8" y1="19" x2="16" y2="19"/>
+            </svg>
+            Networks
+          </a>
+        </li>
+        <li>
+          <a href="electrical-systems.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            Electrical
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-hamburger"
+              id="nav-hamburger"
+              aria-controls="nav-mobile-menu"
+              aria-expanded="false"
+              aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Mobile dropdown -->
+  <div class="nav-mobile-menu" id="nav-mobile-menu" role="dialog"
+       aria-modal="true" aria-label="Navigation menu">
+    <a href="../index.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Home
+    </a>
+    <a href="it-basics.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+      IT Basics
+    </a>
+    <a href="wifi-networking.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+        <circle cx="12" cy="20" r="1" fill="currentColor"/>
+      </svg>
+      Wi-Fi &amp; Wireless
+    </a>
+    <a href="computer-networks.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="5" r="3"/>
+        <circle cx="5" cy="19" r="3"/>
+        <circle cx="19" cy="19" r="3"/>
+        <line x1="12" y1="8" x2="5.5" y2="16"/>
+        <line x1="12" y1="8" x2="18.5" y2="16"/>
+        <line x1="8" y1="19" x2="16" y2="19"/>
+      </svg>
+      Computer Networks
+    </a>
+    <a href="electrical-systems.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+      Electrical Systems
+    </a>
+  </div>
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+  <main class="site-main" id="main-content">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="page-hero__eyebrow">Topic 3 of 4</p>
+        <h1 class="page-hero__title" id="hero-title">Computer Networks</h1>
+        <p class="page-hero__subtitle">
+          Learn how billions of devices talk to each other, how a message
+          travels from your laptop to a server on the other side of the world
+          in milliseconds, and what TCP/IP actually means.
+        </p>
+        <div class="page-hero__tags">
+          <span class="badge badge-accent">Beginner</span>
+          <span class="badge badge-neutral">~20 min read</span>
+          <span class="badge badge-neutral">5-Question Quiz</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 1 — WHAT IS A COMPUTER NETWORK?
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec1-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec1-title">What is a Computer Network?</h2>
+        <p class="section-subtitle">
+          A network is two or more devices connected together so they can share
+          data and resources.
+        </p>
+
+        <p>
+          When your laptop sends a file to your phone over Wi-Fi, or when
+          you stream a video from a server thousands of kilometres away, you
+          are using a network. The internet itself is simply the world's largest
+          network — a network of networks.
+        </p>
+
+        <p style="margin-top: var(--space-4);">
+          Networks let devices share things: files, printers, internet
+          connections, and applications. Without networking, every computer
+          would be an island — useful on its own, but unable to communicate
+          with the outside world.
+        </p>
+
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Key idea</p>
+            <p class="callout__body">
+              Every device on a network has a unique address — its
+              <strong>IP address</strong> — just like a postal address for a
+              house. This is how data finds its way to exactly the right device
+              out of billions connected globally.
+            </p>
+          </div>
+        </div>
+
+        <!-- Network types summary cards -->
+        <div class="card-grid" style="margin-top: var(--space-8);">
+
+          <div class="card">
+            <div class="card__icon">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="card__title">LAN</h3>
+            <p class="card__body">
+              <strong>Local Area Network.</strong> Covers a small area — a home,
+              office, or school. All devices share one internet connection and can
+              communicate directly with each other.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-warning); background-color:rgba(210,153,34,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <h3 class="card__title">WAN</h3>
+            <p class="card__body">
+              <strong>Wide Area Network.</strong> Spans cities, countries, or
+              the entire globe. The internet is the world's largest WAN — it
+              connects millions of smaller LANs together.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-success); background-color:rgba(63,185,80,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                <line x1="1" y1="10" x2="23" y2="10"/>
+              </svg>
+            </div>
+            <h3 class="card__title">MAN</h3>
+            <p class="card__body">
+              <strong>Metropolitan Area Network.</strong> Sits between a LAN and
+              a WAN — covers a city or campus. Often used to link multiple
+              offices of the same organisation.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2 — LAN vs WAN
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec2-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec2-title">LAN vs WAN — Up Close</h2>
+        <p class="section-subtitle">
+          Understanding the difference between local and wide-area networks is
+          the foundation of all networking knowledge.
+        </p>
+
+        <p>
+          Imagine your home as a small village. Every house (device) in the
+          village can talk to every other house easily — that's your
+          <strong>LAN</strong>. The road connecting your village to the rest of
+          the country — that's the <strong>WAN</strong> (the internet). Your
+          router is the village gate: it controls traffic in and out.
+        </p>
+
+        <!-- LAN vs WAN diagram -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">Visual Overview</h3>
+        <div style="overflow-x: auto; margin-bottom: var(--space-6);">
+          <svg viewBox="0 0 700 300" role="img"
+               aria-label="Diagram showing two LANs (Home and Office) connected through the internet WAN"
+               style="width:100%; max-width:700px; display:block;">
+
+            <rect x="0" y="0" width="700" height="300" rx="12"
+                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+            <!-- HOME LAN bubble -->
+            <ellipse cx="150" cy="155" rx="128" ry="110"
+                     fill="rgba(88,166,255,0.05)" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="6,3"/>
+            <text x="150" y="32" text-anchor="middle" fill="#58a6ff"
+                  font-size="12" font-family="Inter,sans-serif" font-weight="700">HOME LAN</text>
+
+            <!-- Router (home) -->
+            <rect x="110" y="128" width="80" height="50" rx="6"
+                  fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
+            <line x1="125" y1="128" x2="125" y2="114" stroke="#58a6ff" stroke-width="1.5"/>
+            <line x1="150" y1="128" x2="150" y2="110" stroke="#58a6ff" stroke-width="1.5"/>
+            <line x1="175" y1="128" x2="175" y2="114" stroke="#58a6ff" stroke-width="1.5"/>
+            <text x="150" y="158" text-anchor="middle" fill="#58a6ff"
+                  font-size="9" font-family="Inter,sans-serif" font-weight="600">Router</text>
+            <text x="150" y="170" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">192.168.1.1</text>
+
+            <!-- Home devices -->
+            <rect x="42" y="195" width="55" height="38" rx="5"
+                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
+            <text x="69" y="218" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">Laptop</text>
+            <line x1="97" y1="207" x2="115" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <rect x="105" y="210" width="55" height="38" rx="5"
+                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
+            <text x="132" y="233" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">Phone</text>
+            <line x1="150" y1="210" x2="150" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <rect x="170" y="195" width="55" height="38" rx="5"
+                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
+            <text x="197" y="218" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">Smart TV</text>
+            <line x1="187" y1="195" x2="175" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- WAN / Internet cloud in the centre -->
+            <ellipse cx="350" cy="155" rx="72" ry="55"
+                     fill="rgba(188,140,255,0.08)" stroke="#bc8cff" stroke-width="1.5"/>
+            <text x="350" y="148" text-anchor="middle" fill="#bc8cff"
+                  font-size="13" font-family="Inter,sans-serif" font-weight="700">Internet</text>
+            <text x="350" y="164" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">(WAN)</text>
+
+            <!-- Connection lines: home router ↔ internet -->
+            <line x1="190" y1="155" x2="278" y2="155"
+                  stroke="#bc8cff" stroke-width="2"/>
+            <polygon points="278,151 288,155 278,159" fill="#bc8cff"/>
+
+            <!-- Connection lines: internet ↔ office router -->
+            <line x1="422" y1="155" x2="510" y2="155"
+                  stroke="#bc8cff" stroke-width="2"/>
+            <polygon points="510,151 520,155 510,159" fill="#bc8cff"/>
+
+            <!-- OFFICE LAN bubble -->
+            <ellipse cx="550" cy="155" rx="128" ry="110"
+                     fill="rgba(63,185,80,0.05)" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="6,3"/>
+            <text x="550" y="32" text-anchor="middle" fill="#3fb950"
+                  font-size="12" font-family="Inter,sans-serif" font-weight="700">OFFICE LAN</text>
+
+            <!-- Router (office) -->
+            <rect x="510" y="128" width="80" height="50" rx="6"
+                  fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
+            <line x1="525" y1="128" x2="525" y2="114" stroke="#3fb950" stroke-width="1.5"/>
+            <line x1="550" y1="128" x2="550" y2="110" stroke="#3fb950" stroke-width="1.5"/>
+            <line x1="575" y1="128" x2="575" y2="114" stroke="#3fb950" stroke-width="1.5"/>
+            <text x="550" y="158" text-anchor="middle" fill="#3fb950"
+                  font-size="9" font-family="Inter,sans-serif" font-weight="600">Router</text>
+            <text x="550" y="170" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">10.0.0.1</text>
+
+            <!-- Office devices -->
+            <rect x="482" y="195" width="55" height="38" rx="5"
+                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
+            <text x="509" y="218" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">PC 1</text>
+            <line x1="515" y1="195" x2="525" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <rect x="545" y="210" width="55" height="38" rx="5"
+                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
+            <text x="572" y="233" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">PC 2</text>
+            <line x1="563" y1="210" x2="560" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <rect x="608" y="195" width="55" height="38" rx="5"
+                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
+            <text x="635" y="218" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">Server</text>
+            <line x1="620" y1="195" x2="588" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Labels -->
+            <text x="235" y="145" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">ISP cable</text>
+            <text x="465" y="145" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">ISP cable</text>
+
+          </svg>
+        </div>
+
+        <!-- Flip cards: key concepts -->
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
+            <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
+            <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Try it!</p>
+            <p class="callout__body">Click each card to flip it and see the definition.</p>
+          </div>
+        </div>
+
+        <div class="flip-grid" role="list" style="margin-top: var(--space-6);">
+
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="LAN — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                <p class="flip-card__front-title">LAN</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  <strong>Local Area Network.</strong> A network limited to
+                  one building or site — your home Wi-Fi is a LAN. Devices
+                  share one internet connection and can directly send files to
+                  each other.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="WAN — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <p class="flip-card__front-title">WAN</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  <strong>Wide Area Network.</strong> A network that spans
+                  large geographical areas — cities, countries, or the globe.
+                  The internet is the largest WAN ever built.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Bandwidth — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                <p class="flip-card__front-title">Bandwidth</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  The maximum amount of data a connection can carry per second,
+                  measured in Mbps or Gbps. Think of it as the width of a
+                  pipe — wider means more water (data) at once.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Latency — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <p class="flip-card__front-title">Latency</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  The delay between sending data and receiving a response,
+                  measured in milliseconds (ms). Low latency is critical for
+                  gaming and video calls; bandwidth matters more for downloads.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 3 — PACKETS & ROUTING
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec3-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec3-title">Packets &amp; Routing</h2>
+        <p class="section-subtitle">
+          Data doesn't travel across the internet in one huge chunk — it is
+          broken into tiny labelled envelopes called packets.
+        </p>
+
+        <p>
+          Imagine sending a 1,000-page book through the post. Instead of
+          shipping one giant parcel, you tear out every page, put each in a
+          separate envelope labelled with the destination address and a page
+          number, and send them all. They may take different routes and arrive
+          in any order — but the recipient reassembles them in sequence.
+          That is exactly how internet data works.
+        </p>
+
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">What's inside a packet?</p>
+            <p class="callout__body">
+              Every packet carries a <strong>header</strong> (the envelope label)
+              containing: the sender's IP address, the destination IP address,
+              a sequence number so the receiver can reorder them, and error-checking
+              data. The <strong>payload</strong> is the actual content — a fragment
+              of your email, photo, or video.
+            </p>
+          </div>
+        </div>
+
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">How Packets Travel</h3>
+
+        <div class="card-grid">
+
+          <div class="card">
+            <div class="card__icon" style="font-size: var(--text-xl); background:none; color: var(--color-accent);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="card__title">1. Fragmentation</h3>
+            <p class="card__body">
+              Your device breaks the data into small packets (typically up to
+              1,500 bytes each) and numbers them so they can be reassembled
+              in the right order at the other end.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-warning); background-color:rgba(210,153,34,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="5" r="3"/>
+                <circle cx="5" cy="19" r="3"/>
+                <circle cx="19" cy="19" r="3"/>
+                <line x1="12" y1="8" x2="5.5" y2="16"/>
+                <line x1="12" y1="8" x2="18.5" y2="16"/>
+              </svg>
+            </div>
+            <h3 class="card__title">2. Routing</h3>
+            <p class="card__body">
+              Each packet is forwarded by a series of <strong>routers</strong>
+              across the internet. Every router reads the destination IP address
+              and picks the best next hop — like a relay race across the globe.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-success); background-color:rgba(63,185,80,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h3 class="card__title">3. Reassembly</h3>
+            <p class="card__body">
+              The destination device collects all packets, checks for errors,
+              requests any missing ones to be resent, and reassembles them into
+              the original data — all in milliseconds.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 4 — TCP/IP & PROTOCOLS
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec4-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec4-title">TCP/IP &amp; Protocols</h2>
+        <p class="section-subtitle">
+          A protocol is a set of agreed rules. TCP/IP is the foundational
+          rulebook that every device on the internet follows.
+        </p>
+
+        <p>
+          For two computers to communicate they must agree on: how to address
+          each other, how to break data into packets, how to reassemble them,
+          and what to do if something goes wrong. These agreements are called
+          <strong>protocols</strong>. TCP/IP is not one protocol but a family
+          of them, organised into four layers — each layer handling a different
+          part of the job.
+        </p>
+
+        <!-- TCP/IP layer stack diagram -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">The TCP/IP Layer Stack</h3>
+        <p style="margin-bottom: var(--space-4);">
+          Data passes <em>down</em> the stack when sending and <em>up</em>
+          the stack when receiving. Click each layer to learn what it does.
+        </p>
+
+        <div class="accordion" role="list">
+
+          <!-- Layer 4: Application -->
+          <div class="accordion-item" role="listitem"
+               style="border-left: 4px solid #bc8cff;">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="layer-app">
+              <span>
+                <strong style="color:#bc8cff;">Layer 4 — Application</strong>
+                &nbsp;&nbsp;
+                <span style="font-size:var(--text-xs); color:var(--color-text-secondary);">HTTP · HTTPS · DNS · FTP · SMTP</span>
+              </span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="layer-app">
+              <div class="accordion-body">
+                <p>
+                  The layer your programs use directly. When your browser asks for a
+                  webpage it uses <strong>HTTP</strong> or <strong>HTTPS</strong>.
+                  When it looks up a domain name it uses <strong>DNS</strong>.
+                  When your email client sends mail it uses <strong>SMTP</strong>.
+                  This layer defines <em>what</em> is being requested, not how to
+                  deliver it — that's the lower layers' job.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 3: Transport -->
+          <div class="accordion-item" role="listitem"
+               style="border-left: 4px solid #58a6ff;">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="layer-transport">
+              <span>
+                <strong style="color:#58a6ff;">Layer 3 — Transport</strong>
+                &nbsp;&nbsp;
+                <span style="font-size:var(--text-xs); color:var(--color-text-secondary);">TCP · UDP</span>
+              </span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="layer-transport">
+              <div class="accordion-body">
+                <p style="margin-bottom: var(--space-3);">
+                  Handles end-to-end delivery between two programs. There are two
+                  main protocols here:
+                </p>
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li>
+                    <strong>TCP (Transmission Control Protocol)</strong> — guarantees
+                    delivery. If a packet is lost it is resent. Used for web browsing,
+                    email, file downloads — anything where accuracy matters.
+                  </li>
+                  <li>
+                    <strong>UDP (User Datagram Protocol)</strong> — faster but no
+                    delivery guarantee. Used for video calls, live streams, and games
+                    where a tiny bit of lost data is acceptable but speed is critical.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 2: Internet -->
+          <div class="accordion-item" role="listitem"
+               style="border-left: 4px solid #3fb950;">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="layer-internet">
+              <span>
+                <strong style="color:#3fb950;">Layer 2 — Internet</strong>
+                &nbsp;&nbsp;
+                <span style="font-size:var(--text-xs); color:var(--color-text-secondary);">IP · ICMP</span>
+              </span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="layer-internet">
+              <div class="accordion-body">
+                <p>
+                  The <strong>IP (Internet Protocol)</strong> layer handles
+                  addressing and routing. It stamps every packet with the
+                  sender and destination IP addresses, then routers across the
+                  internet use those addresses to forward the packet to its destination.
+                  Think of IP as the postal address written on an envelope —
+                  without it, no one knows where to send the data.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 1: Network Access -->
+          <div class="accordion-item" role="listitem"
+               style="border-left: 4px solid #d29922;">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="layer-network">
+              <span>
+                <strong style="color:#d29922;">Layer 1 — Network Access</strong>
+                &nbsp;&nbsp;
+                <span style="font-size:var(--text-xs); color:var(--color-text-secondary);">Ethernet · Wi-Fi · Fibre</span>
+              </span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="layer-network">
+              <div class="accordion-body">
+                <p>
+                  The physical layer — the actual cables, radio waves, or fibre
+                  optic light pulses that carry the raw bits. This layer converts
+                  digital 1s and 0s into electrical signals (Ethernet cable),
+                  radio waves (Wi-Fi), or pulses of light (fibre optic). It also
+                  handles the short-range addressing between devices on the same
+                  local network using <strong>MAC addresses</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /accordion -->
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 5 — DNS, HTTP & HTTPS
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec5-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec5-title">Key Internet Services</h2>
+        <p class="section-subtitle">
+          Three services you use every time you open a browser — even if you've
+          never heard their names.
+        </p>
+
+        <div class="card-grid" style="margin-top: var(--space-6);">
+
+          <!-- DNS -->
+          <div class="card">
+            <div class="card__icon" style="color:#bc8cff; background-color:rgba(188,140,255,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </div>
+            <h3 class="card__title">DNS</h3>
+            <p class="card__body">
+              <strong>Domain Name System</strong> — the internet's phonebook.
+              Computers communicate using IP addresses (e.g. <code>142.250.80.46</code>),
+              but humans prefer names like <code>google.com</code>. DNS translates
+              one into the other automatically, every time you type a web address.
+            </p>
+            <div class="callout callout-tip" role="note" style="margin-top: var(--space-3);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <div class="callout__content">
+                <p class="callout__title">Real-world analogy</p>
+                <p class="callout__body">
+                  DNS is like asking a receptionist "What's the phone number for
+                  Google?" instead of memorising the number yourself.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- HTTP -->
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-warning); background-color:rgba(210,153,34,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="16"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-neutral" style="background:rgba(248,81,73,0.1); color:var(--color-danger); border-color:var(--color-danger);">Not Encrypted</span>
+            </div>
+            <h3 class="card__title">HTTP</h3>
+            <p class="card__body">
+              <strong>HyperText Transfer Protocol</strong> — the language
+              browsers use to request and receive web pages. When you type a
+              URL your browser sends an HTTP <em>request</em>; the server sends
+              an HTTP <em>response</em> containing the page. Plain HTTP sends
+              data in the open — anyone on the network can read it.
+            </p>
+          </div>
+
+          <!-- HTTPS -->
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-success); background-color:rgba(63,185,80,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-success">Encrypted</span>
+            </div>
+            <h3 class="card__title">HTTPS</h3>
+            <p class="card__body">
+              <strong>HTTP Secure</strong> — HTTP with encryption added via
+              TLS (Transport Layer Security). All data between your browser and
+              the server is scrambled so only those two parties can read it.
+              Always look for the padlock icon in your browser's address bar.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- DNS lookup flow diagram -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">What Happens When You Type a Website Address</h3>
+        <div style="overflow-x: auto;">
+          <svg viewBox="0 0 700 170" role="img"
+               aria-label="DNS lookup flow: browser → DNS resolver → root server → TLD server → authoritative server → IP returned to browser"
+               style="width:100%; max-width:700px; display:block;">
+
+            <rect x="0" y="0" width="700" height="170" rx="12"
+                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+            <!-- Step boxes -->
+            <!-- 1: Browser -->
+            <rect x="16" y="60" width="90" height="52" rx="6"
+                  fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
+            <text x="61" y="83" text-anchor="middle" fill="#58a6ff"
+                  font-size="10" font-family="Inter,sans-serif" font-weight="600">Browser</text>
+            <text x="61" y="97" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">asks DNS for</text>
+            <text x="61" y="108" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">google.com</text>
+
+            <!-- Arrow 1 -->
+            <line x1="106" y1="86" x2="130" y2="86" stroke="#58a6ff" stroke-width="1.5"/>
+            <polygon points="130,82 140,86 130,90" fill="#58a6ff"/>
+            <text x="122" y="78" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">query</text>
+
+            <!-- 2: DNS Resolver (ISP) -->
+            <rect x="142" y="60" width="100" height="52" rx="6"
+                  fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
+            <text x="192" y="83" text-anchor="middle" fill="#3fb950"
+                  font-size="10" font-family="Inter,sans-serif" font-weight="600">DNS Resolver</text>
+            <text x="192" y="97" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">(your ISP's server)</text>
+            <text x="192" y="108" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">checks its cache</text>
+
+            <!-- Arrow 2 -->
+            <line x1="242" y1="86" x2="266" y2="86" stroke="#3fb950" stroke-width="1.5"/>
+            <polygon points="266,82 276,86 266,90" fill="#3fb950"/>
+            <text x="258" y="78" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">asks</text>
+
+            <!-- 3: Root DNS Server -->
+            <rect x="278" y="60" width="100" height="52" rx="6"
+                  fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+            <text x="328" y="83" text-anchor="middle" fill="#d29922"
+                  font-size="10" font-family="Inter,sans-serif" font-weight="600">Root Server</text>
+            <text x="328" y="97" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">says: ask the</text>
+            <text x="328" y="108" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">.com server</text>
+
+            <!-- Arrow 3 -->
+            <line x1="378" y1="86" x2="402" y2="86" stroke="#d29922" stroke-width="1.5"/>
+            <polygon points="402,82 412,86 402,90" fill="#d29922"/>
+
+            <!-- 4: TLD Server -->
+            <rect x="414" y="60" width="100" height="52" rx="6"
+                  fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
+            <text x="464" y="83" text-anchor="middle" fill="#bc8cff"
+                  font-size="10" font-family="Inter,sans-serif" font-weight="600">.com Server</text>
+            <text x="464" y="97" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">says: ask Google's</text>
+            <text x="464" y="108" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">own DNS server</text>
+
+            <!-- Arrow 4 -->
+            <line x1="514" y1="86" x2="538" y2="86" stroke="#bc8cff" stroke-width="1.5"/>
+            <polygon points="538,82 548,86 538,90" fill="#bc8cff"/>
+
+            <!-- 5: Authoritative Server -->
+            <rect x="550" y="60" width="134" height="52" rx="6"
+                  fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
+            <text x="617" y="80" text-anchor="middle" fill="#58a6ff"
+                  font-size="10" font-family="Inter,sans-serif" font-weight="600">Google's DNS</text>
+            <text x="617" y="93" text-anchor="middle" fill="#3fb950"
+                  font-size="9" font-family="Inter,sans-serif" font-weight="600">✓ Returns IP</text>
+            <text x="617" y="106" text-anchor="middle" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">142.250.80.46</text>
+
+            <!-- Return arrow back to browser (below) -->
+            <path d="M617 112 Q617 148 61 148 L61 112"
+                  fill="none" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <polygon points="57,112 61,102 65,112" fill="#3fb950"/>
+            <text x="340" y="162" text-anchor="middle" fill="#3fb950"
+                  font-size="9" font-family="Inter,sans-serif">IP address returned to browser — connection begins</text>
+
+          </svg>
+        </div>
+
+        <div class="callout callout-tip" role="note" style="margin-top: var(--space-6);">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">This happens in under 20 milliseconds</p>
+            <p class="callout__body">
+              The full DNS lookup chain above typically completes in 10–50 ms —
+              and results are <strong>cached</strong> (saved) by your browser
+              and ISP, so frequently-visited sites skip most of these steps
+              and resolve even faster.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 6 — MINI QUIZ
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="quiz-title">
+      <div class="container">
+
+        <h2 class="section-title" id="quiz-title">Test Yourself</h2>
+        <p class="section-subtitle">
+          Five questions on computer networks. Instant feedback — no sign-up
+          needed.
+        </p>
+
+        <div class="quiz-block" id="quiz"
+             role="form"
+             aria-label="Computer Networks quiz">
+
+          <div class="quiz-progress" role="progressbar"
+               aria-valuenow="0" aria-valuemin="0" aria-valuemax="5"
+               aria-label="Quiz progress">
+            <div class="quiz-progress__fill" id="quiz-progress-fill"
+                 style="width: 0%;"></div>
+          </div>
+
+          <div id="quiz-question-area">
+            <!-- Populated by interactions.js -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="../index.html">Home</a>
+        <a href="it-basics.html">IT Basics</a>
+        <a href="wifi-networking.html">Wi-Fi</a>
+        <a href="computer-networks.html">Networks</a>
+        <a href="electrical-systems.html">Electrical</a>
+      </nav>
+      <p class="footer-copy">
+        &copy; 2026 TechLearn &mdash; Free educational resources for everyone.
+      </p>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+
+  <!-- Quiz questions specific to this page -->
+  <script>
+    window.QUIZ_QUESTIONS = [
+      {
+        question: 'What does LAN stand for?',
+        options: [
+          'Large Area Node',
+          'Local Access Network',
+          'Long Area Network',
+          'Local Area Network'
+        ],
+        correct: 3,
+        explanation: 'LAN stands for Local Area Network — a network that covers a small area such as a home, office, or school building. Your home Wi-Fi is a LAN.'
+      },
+      {
+        question: 'When data is sent over the internet, it is broken into small pieces. What are these pieces called?',
+        options: [
+          'Frames',
+          'Segments',
+          'Packets',
+          'Blocks'
+        ],
+        correct: 2,
+        explanation: 'Data is broken into packets — small labelled chunks that travel independently across the network and are reassembled at the destination in the correct order.'
+      },
+      {
+        question: 'What is the main job of DNS?',
+        options: [
+          'Encrypt your internet traffic',
+          'Assign IP addresses to devices on your home network',
+          'Translate domain names (like google.com) into IP addresses',
+          'Speed up your Wi-Fi connection'
+        ],
+        correct: 2,
+        explanation: 'DNS (Domain Name System) acts as the internet\'s phonebook — it translates human-readable domain names into the numerical IP addresses that computers use to find each other.'
+      },
+      {
+        question: 'What is the key difference between HTTP and HTTPS?',
+        options: [
+          'HTTPS is faster than HTTP',
+          'HTTPS encrypts the data; HTTP sends it in plain text',
+          'HTTP is newer than HTTPS',
+          'There is no practical difference'
+        ],
+        correct: 1,
+        explanation: 'HTTPS adds TLS encryption to HTTP — the data exchanged between your browser and the server is scrambled, so anyone intercepting it sees only gibberish. HTTP sends data in plain text that anyone on the network can read.'
+      },
+      {
+        question: 'Which transport protocol guarantees that all data arrives correctly, resending any lost packets?',
+        options: [
+          'UDP',
+          'IP',
+          'DNS',
+          'TCP'
+        ],
+        correct: 3,
+        explanation: 'TCP (Transmission Control Protocol) guarantees reliable, ordered delivery. If a packet is lost it is automatically resent. UDP is faster but offers no such guarantee — it is used where speed matters more than perfection (video calls, gaming).'
+      }
+    ];
+  </script>
+
+  <script src="../js/interactions.js"></script>
+
+</body>
+</html>

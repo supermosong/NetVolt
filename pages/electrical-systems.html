@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+        content="Electrical Systems — learn about voltage, current, resistance, AC vs DC, basic circuit components, and how electricity powers your devices. Beginner-friendly with interactive activities." />
+
+  <title>Electrical Systems — TechLearn</title>
+
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+
+      <a href="../index.html" class="nav-logo" aria-label="TechLearn home">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        TechLearn
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li>
+          <a href="../index.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="it-basics.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            IT Basics
+          </a>
+        </li>
+        <li>
+          <a href="wifi-networking.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+              <circle cx="12" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            Wi-Fi
+          </a>
+        </li>
+        <li>
+          <a href="computer-networks.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="3"/>
+              <circle cx="5" cy="19" r="3"/>
+              <circle cx="19" cy="19" r="3"/>
+              <line x1="12" y1="8" x2="5.5" y2="16"/>
+              <line x1="12" y1="8" x2="18.5" y2="16"/>
+              <line x1="8" y1="19" x2="16" y2="19"/>
+            </svg>
+            Networks
+          </a>
+        </li>
+        <li>
+          <a href="electrical-systems.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            Electrical
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-hamburger"
+              id="nav-hamburger"
+              aria-controls="nav-mobile-menu"
+              aria-expanded="false"
+              aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Mobile dropdown -->
+  <div class="nav-mobile-menu" id="nav-mobile-menu" role="dialog"
+       aria-modal="true" aria-label="Navigation menu">
+    <a href="../index.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Home
+    </a>
+    <a href="it-basics.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+      IT Basics
+    </a>
+    <a href="wifi-networking.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+        <circle cx="12" cy="20" r="1" fill="currentColor"/>
+      </svg>
+      Wi-Fi &amp; Wireless
+    </a>
+    <a href="computer-networks.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="5" r="3"/>
+        <circle cx="5" cy="19" r="3"/>
+        <circle cx="19" cy="19" r="3"/>
+        <line x1="12" y1="8" x2="5.5" y2="16"/>
+        <line x1="12" y1="8" x2="18.5" y2="16"/>
+        <line x1="8" y1="19" x2="16" y2="19"/>
+      </svg>
+      Computer Networks
+    </a>
+    <a href="electrical-systems.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+      Electrical Systems
+    </a>
+  </div>
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+  <main class="site-main" id="main-content">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="page-hero__eyebrow">Topic 4 of 4</p>
+        <h1 class="page-hero__title" id="hero-title">Electrical Systems</h1>
+        <p class="page-hero__subtitle">
+          Understand the electricity that powers every device you own — from
+          the voltage in your wall socket to the tiny circuits inside your
+          phone's battery.
+        </p>
+        <div class="page-hero__tags">
+          <span class="badge badge-accent">Beginner</span>
+          <span class="badge badge-neutral">~20 min read</span>
+          <span class="badge badge-neutral">5-Question Quiz</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 1 — WHAT IS ELECTRICITY?
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec1-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec1-title">What is Electricity?</h2>
+        <p class="section-subtitle">
+          Electricity is the flow of electrons through a conductor — like water
+          flowing through a pipe.
+        </p>
+
+        <p>
+          Everything is made of atoms. Atoms contain tiny particles called
+          <strong>electrons</strong>. In certain materials — especially metals
+          — electrons can be pushed loose and made to flow from one place to
+          another. That flow of electrons is electric current, and it is what
+          powers every device you own.
+        </p>
+
+        <p style="margin-top: var(--space-4);">
+          Three measurements describe any electrical circuit. The water-pipe
+          analogy below makes them easy to picture:
+        </p>
+
+        <!-- Water pipe analogy SVG -->
+        <div style="overflow-x: auto; margin: var(--space-8) 0;">
+          <svg viewBox="0 0 700 240" role="img"
+               aria-label="Water pipe analogy: voltage is water pressure, current is flow rate, resistance is pipe narrowness"
+               style="width:100%; max-width:700px; display:block;">
+
+            <rect x="0" y="0" width="700" height="240" rx="12"
+                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+            <!-- VOLTAGE panel -->
+            <rect x="16" y="20" width="200" height="200" rx="8"
+                  fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
+            <text x="116" y="44" text-anchor="middle" fill="#58a6ff"
+                  font-size="13" font-family="Inter,sans-serif" font-weight="700">VOLTAGE (V)</text>
+            <!-- Water tank high vs low -->
+            <rect x="60" y="56" width="60" height="90" rx="4"
+                  fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+            <rect x="60" y="86" width="60" height="60" rx="0"
+                  fill="rgba(88,166,255,0.3)"/>
+            <!-- pressure arrows -->
+            <line x1="120" y1="110" x2="150" y2="110"
+                  stroke="#58a6ff" stroke-width="2"/>
+            <polygon points="150,106 160,110 150,114" fill="#58a6ff"/>
+            <!-- pipe -->
+            <rect x="160" y="104" width="30" height="12" rx="3"
+                  fill="#30363d" stroke="#8b949e" stroke-width="1"/>
+            <text x="116" y="170" text-anchor="middle" fill="#e6edf3"
+                  font-size="10" font-family="Inter,sans-serif" font-weight="600">Water pressure</text>
+            <text x="116" y="184" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">Higher tank = more</text>
+            <text x="116" y="196" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">pressure = more volts</text>
+
+            <!-- CURRENT panel -->
+            <rect x="250" y="20" width="200" height="200" rx="8"
+                  fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
+            <text x="350" y="44" text-anchor="middle" fill="#3fb950"
+                  font-size="13" font-family="Inter,sans-serif" font-weight="700">CURRENT (A)</text>
+            <!-- Wide pipe with flow -->
+            <rect x="280" y="96" width="140" height="28" rx="6"
+                  fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+            <rect x="282" y="98" width="136" height="24" rx="5"
+                  fill="rgba(63,185,80,0.2)"/>
+            <!-- flow arrows inside pipe -->
+            <polygon points="320,106 330,110 320,114" fill="#3fb950" opacity="0.8"/>
+            <polygon points="345,106 355,110 345,114" fill="#3fb950" opacity="0.8"/>
+            <polygon points="370,106 380,110 370,114" fill="#3fb950" opacity="0.8"/>
+            <text x="350" y="170" text-anchor="middle" fill="#e6edf3"
+                  font-size="10" font-family="Inter,sans-serif" font-weight="600">Flow rate of water</text>
+            <text x="350" y="184" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">More water moving =</text>
+            <text x="350" y="196" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">higher amps</text>
+
+            <!-- RESISTANCE panel -->
+            <rect x="484" y="20" width="200" height="200" rx="8"
+                  fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+            <text x="584" y="44" text-anchor="middle" fill="#d29922"
+                  font-size="13" font-family="Inter,sans-serif" font-weight="700">RESISTANCE (Ω)</text>
+            <!-- Wide pipe → narrow section -->
+            <rect x="510" y="100" width="50" height="20" rx="3"
+                  fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+            <!-- narrow constriction -->
+            <rect x="560" y="106" width="30" height="8" rx="2"
+                  fill="#0d1117" stroke="#d29922" stroke-width="1.5"/>
+            <rect x="590" y="100" width="50" height="20" rx="3"
+                  fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+            <!-- flow slow arrow -->
+            <polygon points="575,108 582,110 575,112" fill="#d29922"/>
+            <text x="584" y="170" text-anchor="middle" fill="#e6edf3"
+                  font-size="10" font-family="Inter,sans-serif" font-weight="600">Narrow pipe section</text>
+            <text x="584" y="184" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">Restriction slows flow =</text>
+            <text x="584" y="196" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">higher ohms</text>
+
+          </svg>
+        </div>
+
+        <!-- Ohm's Law callout -->
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Ohm's Law — the most important formula in electronics</p>
+            <p class="callout__body">
+              <strong>V = I × R</strong> &nbsp;—&nbsp;
+              Voltage (V) equals Current (I) multiplied by Resistance (R).
+              Double the resistance and the current halves. Double the voltage
+              and the current doubles. Every electronic component is designed
+              around this relationship.
+            </p>
+          </div>
+        </div>
+
+        <!-- Three measurement cards -->
+        <div class="card-grid" style="margin-top: var(--space-8);">
+
+          <div class="card">
+            <div class="card__icon" style="color:#58a6ff; background-color:rgba(88,166,255,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 20V10"/>
+                <path d="M12 20V4"/>
+                <path d="M6 20v-6"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Voltage — V (Volts)</h3>
+            <p class="card__body">
+              The electrical "pressure" that pushes electrons around a circuit.
+              A AA battery provides 1.5 V; a UK wall socket provides 230 V.
+              Higher voltage can push more current through the same resistance.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color:#3fb950; background-color:rgba(63,185,80,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Current — I (Amps)</h3>
+            <p class="card__body">
+              The rate at which electrons flow past a point in the circuit —
+              like litres per second in a pipe. A phone charger draws about
+              1–3 A; a kettle draws around 10 A.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color:#d29922; background-color:rgba(210,153,34,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <line x1="5" y1="8" x2="8" y2="12"/>
+                <line x1="8" y1="12" x2="11" y2="8"/>
+                <line x1="11" y1="8" x2="14" y2="12"/>
+                <line x1="14" y1="12" x2="17" y2="8"/>
+                <line x1="17" y1="8" x2="19" y2="12"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Resistance — R (Ohms Ω)</h3>
+            <p class="card__body">
+              How much a component opposes the flow of current. Every material
+              has some resistance — copper wire has very low resistance (good
+              conductor); rubber has very high resistance (good insulator).
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2 — AC vs DC
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec2-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec2-title">AC vs DC</h2>
+        <p class="section-subtitle">
+          There are two fundamentally different ways electric current can flow —
+          and both power your home simultaneously.
+        </p>
+
+        <p>
+          <strong>DC (Direct Current)</strong> flows in one steady direction —
+          like water flowing downhill. Batteries produce DC.
+          <strong>AC (Alternating Current)</strong> reverses direction many
+          times per second — it "alternates". Wall sockets provide AC because
+          AC travels long distances through power lines far more efficiently
+          than DC.
+        </p>
+
+        <!-- Waveform comparison SVG -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">Visualising the Difference</h3>
+        <div style="overflow-x: auto; margin-bottom: var(--space-8);">
+          <svg viewBox="0 0 700 200" role="img"
+               aria-label="Waveform comparison: DC is a flat horizontal line; AC is a smooth sine wave oscillating above and below zero"
+               style="width:100%; max-width:700px; display:block;">
+
+            <rect x="0" y="0" width="700" height="200" rx="12"
+                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+            <!-- DC panel -->
+            <text x="175" y="28" text-anchor="middle" fill="#d29922"
+                  font-size="13" font-family="Inter,sans-serif" font-weight="700">DC — Direct Current</text>
+
+            <!-- DC axes -->
+            <line x1="30" y1="100" x2="320" y2="100"
+                  stroke="#30363d" stroke-width="1"/>
+            <line x1="40" y1="30" x2="40" y2="170"
+                  stroke="#30363d" stroke-width="1"/>
+            <text x="28" y="104" text-anchor="end" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">0</text>
+            <text x="28" y="66" text-anchor="end" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">+</text>
+            <text x="28" y="142" text-anchor="end" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">−</text>
+
+            <!-- DC line — flat positive -->
+            <line x1="50" y1="68" x2="310" y2="68"
+                  stroke="#d29922" stroke-width="2.5"/>
+            <text x="175" y="178" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">Steady, one-direction flow (e.g. battery, USB)</text>
+
+            <!-- Divider -->
+            <line x1="350" y1="20" x2="350" y2="180"
+                  stroke="#30363d" stroke-width="1" stroke-dasharray="4,3"/>
+
+            <!-- AC panel -->
+            <text x="525" y="28" text-anchor="middle" fill="#58a6ff"
+                  font-size="13" font-family="Inter,sans-serif" font-weight="700">AC — Alternating Current</text>
+
+            <!-- AC axes -->
+            <line x1="370" y1="100" x2="690" y2="100"
+                  stroke="#30363d" stroke-width="1"/>
+            <line x1="380" y1="30" x2="380" y2="170"
+                  stroke="#30363d" stroke-width="1"/>
+            <text x="368" y="104" text-anchor="end" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">0</text>
+            <text x="368" y="66" text-anchor="end" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">+</text>
+            <text x="368" y="142" text-anchor="end" fill="#8b949e"
+                  font-size="8" font-family="Inter,sans-serif">−</text>
+
+            <!-- AC sine wave — one full cycle drawn with a path -->
+            <path d="M390 100
+                     C410 100 420 40 440 40
+                     C460 40 470 100 490 100
+                     C510 100 520 160 540 160
+                     C560 160 570 100 590 100
+                     C610 100 620 40 640 40
+                     C660 40 670 100 680 100"
+                  fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+
+            <text x="525" y="178" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">Reverses direction 50–60 times/sec (e.g. wall socket)</text>
+
+          </svg>
+        </div>
+
+        <!-- AC vs DC flip cards -->
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
+            <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
+            <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Try it!</p>
+            <p class="callout__body">Click each card to flip it and see where that type of electricity is found.</p>
+          </div>
+        </div>
+
+        <div class="flip-grid" role="list" style="margin-top: var(--space-6);">
+
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="DC — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2"/>
+                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                  <line x1="12" y1="12" x2="12" y2="16"/>
+                  <line x1="10" y1="14" x2="14" y2="14"/>
+                </svg>
+                <p class="flip-card__front-title">DC</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  <strong>Used in:</strong> batteries, phone chargers, laptops,
+                  solar panels, USB devices, and electric cars. All electronics
+                  inside your devices run on DC — chargers convert AC from
+                  the wall into DC.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="AC — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <p class="flip-card__front-title">AC</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  <strong>Used in:</strong> wall sockets, the national power
+                  grid, electric ovens, kettles, washing machines, and air
+                  conditioners. AC is used for the grid because it can be
+                  stepped up to high voltages for efficient long-distance
+                  transmission, then stepped back down at your home.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Transformer — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="8" cy="12" r="5"/>
+                  <circle cx="16" cy="12" r="5"/>
+                </svg>
+                <p class="flip-card__front-title">Transformer</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  A device that changes AC voltage up or down. Power stations
+                  use transformers to boost voltage to 400,000 V for
+                  transmission, then step it back down to 230 V for your home.
+                  Only works with AC — not DC.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Rectifier — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="7 16 12 8 17 16"/>
+                  <line x1="7" y1="16" x2="17" y2="16"/>
+                </svg>
+                <p class="flip-card__front-title">Rectifier</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Converts AC into DC using diodes. The brick-shaped charger
+                  for your laptop contains a rectifier — it takes AC from the
+                  wall and converts it into the DC your laptop needs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 3 — BASIC CIRCUIT COMPONENTS
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec3-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec3-title">Basic Circuit Components</h2>
+        <p class="section-subtitle">
+          Every electronic device is built from a small set of fundamental
+          components — each with one specific job.
+        </p>
+
+        <p>
+          A circuit is a closed loop that allows current to flow. Components
+          are connected into this loop to control, shape, or convert that
+          current into something useful — light, sound, motion, or computation.
+        </p>
+
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
+            <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
+            <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Try it!</p>
+            <p class="callout__body">Click each card to flip it and discover what that component does.</p>
+          </div>
+        </div>
+
+        <div class="flip-grid" role="list" style="margin-top: var(--space-6);">
+
+          <!-- Resistor -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Resistor — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <!-- Resistor symbol: zigzag -->
+                <svg aria-hidden="true" viewBox="0 0 48 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="0" y1="12" x2="8" y2="12"/>
+                  <polyline points="8,12 11,4 15,20 19,4 23,20 27,4 31,20 35,12 40,12"/>
+                  <line x1="40" y1="12" x2="48" y2="12"/>
+                </svg>
+                <p class="flip-card__front-title">Resistor</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Limits current flow. Used to protect other components from
+                  too much current — for example, a resistor in series with an
+                  LED stops it from burning out. Measured in ohms (Ω).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Capacitor -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Capacitor — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <!-- Capacitor symbol: two parallel lines -->
+                <svg aria-hidden="true" viewBox="0 0 48 32" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="0" y1="16" x2="20" y2="16"/>
+                  <line x1="20" y1="4" x2="20" y2="28"/>
+                  <line x1="28" y1="4" x2="28" y2="28"/>
+                  <line x1="28" y1="16" x2="48" y2="16"/>
+                </svg>
+                <p class="flip-card__front-title">Capacitor</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Stores electrical charge and releases it quickly. Used for
+                  smoothing power supply ripples, filtering noise, and as
+                  short-term energy storage. Measured in farads (F).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diode -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Diode — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <!-- Diode symbol: triangle + bar -->
+                <svg aria-hidden="true" viewBox="0 0 48 28" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="0" y1="14" x2="14" y2="14"/>
+                  <polygon points="14,4 14,24 32,14"/>
+                  <line x1="32" y1="4" x2="32" y2="24"/>
+                  <line x1="32" y1="14" x2="48" y2="14"/>
+                </svg>
+                <p class="flip-card__front-title">Diode</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  A one-way valve for electricity — allows current to flow in
+                  one direction only and blocks it in reverse. Key component
+                  in rectifiers (converting AC to DC) and circuit protection.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- LED -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="LED — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="5"/>
+                  <line x1="12" y1="1" x2="12" y2="3"/>
+                  <line x1="12" y1="21" x2="12" y2="23"/>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                  <line x1="1" y1="12" x2="3" y2="12"/>
+                  <line x1="21" y1="12" x2="23" y2="12"/>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <p class="flip-card__front-title">LED</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  <strong>Light Emitting Diode.</strong> A diode that produces
+                  light when current flows through it. Extremely efficient —
+                  uses up to 90% less energy than an incandescent bulb. Found
+                  in screens, torches, traffic lights, and indicator lamps.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transistor -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Transistor — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="2"/>
+                  <line x1="9" y1="9" x2="15" y2="9"/>
+                  <line x1="9" y1="12" x2="15" y2="12"/>
+                  <line x1="9" y1="15" x2="13" y2="15"/>
+                </svg>
+                <p class="flip-card__front-title">Transistor</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Acts as an electronic switch or amplifier. A tiny current
+                  at one pin controls a much larger current. A modern CPU
+                  contains billions of transistors switching on and off to
+                  process 1s and 0s.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Switch -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Switch — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                  <line x1="6" y1="1" x2="6" y2="4"/>
+                  <line x1="10" y1="1" x2="10" y2="4"/>
+                  <line x1="14" y1="1" x2="14" y2="4"/>
+                </svg>
+                <p class="flip-card__front-title">Switch</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Opens or closes a circuit to stop or allow current flow.
+                  A light switch is the simplest example. In electronics,
+                  transistors act as microscopic switches that can toggle
+                  billions of times per second.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 4 — SERIES vs PARALLEL CIRCUITS
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec4-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec4-title">Series vs Parallel Circuits</h2>
+        <p class="section-subtitle">
+          Components in a circuit can be connected in two fundamentally
+          different ways — and the difference matters enormously.
+        </p>
+
+        <!-- Circuit diagrams SVG -->
+        <div style="overflow-x: auto; margin: var(--space-6) 0;">
+          <svg viewBox="0 0 700 260" role="img"
+               aria-label="Two circuit diagrams: series circuit with components in one loop, and parallel circuit with components on separate branches"
+               style="width:100%; max-width:700px; display:block;">
+
+            <rect x="0" y="0" width="700" height="260" rx="12"
+                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+            <!-- ===== SERIES CIRCUIT (left half) ===== -->
+            <text x="175" y="28" text-anchor="middle" fill="#58a6ff"
+                  font-size="13" font-family="Inter,sans-serif" font-weight="700">Series Circuit</text>
+
+            <!-- Battery -->
+            <rect x="30" y="90" width="30" height="70" rx="4"
+                  fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+            <line x1="38" y1="90" x2="52" y2="90" stroke="#d29922" stroke-width="2"/>
+            <line x1="42" y1="84" x2="48" y2="84" stroke="#d29922" stroke-width="1.5"/>
+            <text x="45" y="132" text-anchor="middle" fill="#d29922"
+                  font-size="8" font-family="Inter,sans-serif" font-weight="600">BAT</text>
+            <text x="45" y="144" text-anchor="middle" fill="#8b949e"
+                  font-size="7" font-family="Inter,sans-serif">9 V</text>
+
+            <!-- Wires: top rail -->
+            <line x1="45" y1="90" x2="45" y2="50" stroke="#58a6ff" stroke-width="2"/>
+            <line x1="45" y1="50" x2="310" y2="50" stroke="#58a6ff" stroke-width="2"/>
+            <!-- Wires: bottom rail -->
+            <line x1="45" y1="160" x2="45" y2="210" stroke="#58a6ff" stroke-width="2"/>
+            <line x1="45" y1="210" x2="310" y2="210" stroke="#58a6ff" stroke-width="2"/>
+            <line x1="310" y1="50" x2="310" y2="210" stroke="#58a6ff" stroke-width="2"/>
+
+            <!-- Resistor 1 (on top rail) -->
+            <line x1="110" y1="50" x2="120" y2="50" stroke="#58a6ff" stroke-width="2"/>
+            <polyline points="120,50 123,38 127,62 131,38 135,62 139,38 143,50 150,50"
+                      fill="none" stroke="#3fb950" stroke-width="2"/>
+            <line x1="150" y1="50" x2="160" y2="50" stroke="#58a6ff" stroke-width="2"/>
+            <text x="135" y="76" text-anchor="middle" fill="#3fb950"
+                  font-size="8" font-family="Inter,sans-serif">R1 100Ω</text>
+
+            <!-- Bulb 1 (on top rail) -->
+            <circle cx="220" cy="50" r="14" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
+            <line x1="213" y1="57" x2="227" y2="43" stroke="#f0883e" stroke-width="1.5"/>
+            <line x1="206" y1="50" x2="213" y2="50" stroke="#58a6ff" stroke-width="2"/>
+            <line x1="227" y1="50" x2="234" y2="50" stroke="#58a6ff" stroke-width="2"/>
+            <text x="220" y="76" text-anchor="middle" fill="#f0883e"
+                  font-size="8" font-family="Inter,sans-serif">Bulb 1</text>
+
+            <!-- Bulb 2 (on top rail) -->
+            <circle cx="285" cy="50" r="14" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
+            <line x1="278" y1="57" x2="292" y2="43" stroke="#f0883e" stroke-width="1.5"/>
+            <line x1="271" y1="50" x2="278" y2="50" stroke="#58a6ff" stroke-width="2"/>
+            <line x1="292" y1="50" x2="300" y2="50" stroke="#58a6ff" stroke-width="2"/>
+            <text x="285" y="76" text-anchor="middle" fill="#f0883e"
+                  font-size="8" font-family="Inter,sans-serif">Bulb 2</text>
+
+            <text x="175" y="235" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">One path — if one bulb fails, all go out</text>
+
+            <!-- Divider -->
+            <line x1="350" y1="20" x2="350" y2="248" stroke="#30363d"
+                  stroke-width="1" stroke-dasharray="4,3"/>
+
+            <!-- ===== PARALLEL CIRCUIT (right half) ===== -->
+            <text x="525" y="28" text-anchor="middle" fill="#3fb950"
+                  font-size="13" font-family="Inter,sans-serif" font-weight="700">Parallel Circuit</text>
+
+            <!-- Battery -->
+            <rect x="370" y="90" width="30" height="70" rx="4"
+                  fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+            <line x1="378" y1="90" x2="392" y2="90" stroke="#d29922" stroke-width="2"/>
+            <line x1="382" y1="84" x2="388" y2="84" stroke="#d29922" stroke-width="1.5"/>
+            <text x="385" y="132" text-anchor="middle" fill="#d29922"
+                  font-size="8" font-family="Inter,sans-serif" font-weight="600">BAT</text>
+            <text x="385" y="144" text-anchor="middle" fill="#8b949e"
+                  font-size="7" font-family="Inter,sans-serif">9 V</text>
+
+            <!-- Top rail -->
+            <line x1="385" y1="90" x2="385" y2="50" stroke="#3fb950" stroke-width="2"/>
+            <line x1="385" y1="50" x2="670" y2="50" stroke="#3fb950" stroke-width="2"/>
+            <!-- Bottom rail -->
+            <line x1="385" y1="160" x2="385" y2="210" stroke="#3fb950" stroke-width="2"/>
+            <line x1="385" y1="210" x2="670" y2="210" stroke="#3fb950" stroke-width="2"/>
+
+            <!-- Branch 1: Bulb -->
+            <line x1="470" y1="50" x2="470" y2="76" stroke="#3fb950" stroke-width="2"/>
+            <circle cx="470" cy="92" r="14" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
+            <line x1="463" y1="99" x2="477" y2="85" stroke="#f0883e" stroke-width="1.5"/>
+            <line x1="470" y1="106" x2="470" y2="210" stroke="#3fb950" stroke-width="2"/>
+            <text x="470" y="122" text-anchor="middle" fill="#f0883e"
+                  font-size="8" font-family="Inter,sans-serif">Bulb 1</text>
+
+            <!-- Branch 2: Bulb -->
+            <line x1="570" y1="50" x2="570" y2="76" stroke="#3fb950" stroke-width="2"/>
+            <circle cx="570" cy="92" r="14" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
+            <line x1="563" y1="99" x2="577" y2="85" stroke="#f0883e" stroke-width="1.5"/>
+            <line x1="570" y1="106" x2="570" y2="210" stroke="#3fb950" stroke-width="2"/>
+            <text x="570" y="122" text-anchor="middle" fill="#f0883e"
+                  font-size="8" font-family="Inter,sans-serif">Bulb 2</text>
+
+            <!-- Close circuit -->
+            <line x1="670" y1="50" x2="670" y2="210" stroke="#3fb950" stroke-width="2"/>
+
+            <text x="525" y="235" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">Multiple paths — one bulb fails, others stay on</text>
+
+          </svg>
+        </div>
+
+        <!-- Comparison cards -->
+        <div class="card-grid">
+
+          <div class="card">
+            <div class="card__icon" style="color:#58a6ff; background-color:rgba(88,166,255,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Series Circuit</h3>
+            <p class="card__body">
+              All components share <strong>one single path</strong>. The same
+              current flows through every component. If any one component
+              breaks, the circuit is open and everything stops — like old
+              Christmas lights where one bulb kills the whole string.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-loose);">
+              <li>Same current everywhere</li>
+              <li>Voltage split between components</li>
+              <li>One failure = all fail</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color:#3fb950; background-color:rgba(63,185,80,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Parallel Circuit</h3>
+            <p class="card__body">
+              Components each have their <strong>own path</strong> back to the
+              source. Each branch receives the full supply voltage. If one
+              branch fails, the others keep working — this is how your home
+              wiring is designed.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-loose);">
+              <li>Same voltage on each branch</li>
+              <li>Current splits between branches</li>
+              <li>One failure = others unaffected</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="callout callout-tip" role="note" style="margin-top: var(--space-6);">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Real-world example</p>
+            <p class="callout__body">
+              Your home is wired in <strong>parallel</strong> — each socket
+              gets the full 230 V and unplugging one device doesn't affect the
+              others. Older fairy lights were wired in <strong>series</strong>
+              — one blown bulb knocked out the whole string.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 5 — HOW ELECTRICITY POWERS TECHNOLOGY
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec5-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec5-title">How Electricity Powers Technology</h2>
+        <p class="section-subtitle">
+          Every device you own takes raw electricity and transforms it into
+          exactly the voltage and current it needs.
+        </p>
+
+        <p>
+          Wall sockets supply AC at a high voltage — too high and the wrong
+          type for most electronics. Every device contains circuitry to convert
+          and regulate this supply into something safe and stable for its
+          components.
+        </p>
+
+        <div class="accordion" style="margin-top: var(--space-8);" role="list">
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-charger">
+              <span>How does a phone charger work?</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-charger">
+              <div class="accordion-body">
+                <p style="margin-bottom: var(--space-3);">
+                  Your charger brick is a miniature power supply that does four things:
+                </p>
+                <ol style="list-style: decimal; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>Steps down voltage</strong> — a transformer reduces 230 V AC to a much lower level.</li>
+                  <li><strong>Rectifies</strong> — diodes convert AC to DC.</li>
+                  <li><strong>Filters</strong> — capacitors smooth out ripples in the DC.</li>
+                  <li><strong>Regulates</strong> — a voltage regulator chip locks the output to exactly 5 V (USB-A) or up to 20 V (USB-C fast charging) so it matches your phone's requirements.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-psu">
+              <span>How does a PC power supply unit (PSU) work?</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-psu">
+              <div class="accordion-body">
+                <p style="margin-bottom: var(--space-3);">
+                  A PC power supply converts mains AC into multiple DC voltages
+                  that different components need:
+                </p>
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>12 V</strong> — powers the CPU, GPU, and case fans</li>
+                  <li><strong>5 V</strong> — powers USB ports and older storage drives</li>
+                  <li><strong>3.3 V</strong> — powers RAM and some motherboard circuits</li>
+                </ul>
+                <p style="margin-top: var(--space-3);">
+                  A PSU is rated in watts — e.g. a 650 W PSU can deliver up to
+                  650 W of total power across all its outputs simultaneously.
+                  Choose a PSU with headroom above your system's peak consumption.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-battery">
+              <span>How does a lithium battery store and release energy?</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-battery">
+              <div class="accordion-body">
+                <p>
+                  A lithium-ion battery stores energy as chemical potential energy.
+                  During <strong>charging</strong>, electricity forces lithium ions
+                  to move from the positive electrode to the negative electrode
+                  through a liquid electrolyte — storing energy in the process.
+                  During <strong>discharge</strong> (powering your phone), the ions
+                  flow back, releasing electrons as electrical current.
+                </p>
+                <p style="margin-top: var(--space-3);">
+                  Each charge cycle slightly degrades the electrodes, which is
+                  why battery capacity slowly decreases over time. Modern phones
+                  limit charging to ~80% by default to slow this degradation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-grid">
+              <span>Why does the national power grid use AC instead of DC?</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-grid">
+              <div class="accordion-body">
+                <p>
+                  When electricity travels through a long cable, some energy is
+                  lost as heat due to resistance. This loss is proportional to
+                  current — lower current means less loss. Transformers can only
+                  work with AC, and they can step AC up to very high voltages
+                  (reducing current for the same power). The grid transmits at
+                  400,000 V to minimise losses over hundreds of kilometres, then
+                  transformers step it back down to 230 V at your home.
+                </p>
+                <p style="margin-top: var(--space-3);">
+                  DC cannot be stepped up or down with a simple transformer —
+                  this was the key reason AC won the "War of Currents" between
+                  Nikola Tesla (AC) and Thomas Edison (DC) in the 1880s.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 6 — MINI QUIZ
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="quiz-title">
+      <div class="container">
+
+        <h2 class="section-title" id="quiz-title">Test Yourself</h2>
+        <p class="section-subtitle">
+          Five questions on electrical systems. Instant feedback — no sign-up
+          needed.
+        </p>
+
+        <div class="quiz-block" id="quiz"
+             role="form"
+             aria-label="Electrical Systems quiz">
+
+          <div class="quiz-progress" role="progressbar"
+               aria-valuenow="0" aria-valuemin="0" aria-valuemax="5"
+               aria-label="Quiz progress">
+            <div class="quiz-progress__fill" id="quiz-progress-fill"
+                 style="width: 0%;"></div>
+          </div>
+
+          <div id="quiz-question-area">
+            <!-- Populated by interactions.js -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="../index.html">Home</a>
+        <a href="it-basics.html">IT Basics</a>
+        <a href="wifi-networking.html">Wi-Fi</a>
+        <a href="computer-networks.html">Networks</a>
+        <a href="electrical-systems.html">Electrical</a>
+      </nav>
+      <p class="footer-copy">
+        &copy; 2026 TechLearn &mdash; Free educational resources for everyone.
+      </p>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+
+  <!-- Quiz questions specific to this page -->
+  <script>
+    window.QUIZ_QUESTIONS = [
+      {
+        question: 'In the water-pipe analogy, what does VOLTAGE represent?',
+        options: [
+          'The width of the pipe',
+          'The amount of water in the tank',
+          'The water pressure pushing water through the pipe',
+          'The speed at which the pump motor spins'
+        ],
+        correct: 2,
+        explanation: 'Voltage is electrical pressure — the force that pushes electrons through a circuit. Higher voltage pushes more current through the same resistance, just as higher water pressure pushes more water through a pipe.'
+      },
+      {
+        question: 'What is the key difference between AC and DC?',
+        options: [
+          'DC is faster than AC',
+          'AC alternates direction many times per second; DC flows in one steady direction',
+          'AC is used in batteries; DC is used in wall sockets',
+          'AC is stronger than DC'
+        ],
+        correct: 1,
+        explanation: 'DC (Direct Current) flows in one direction — like a battery. AC (Alternating Current) reverses direction typically 50–60 times per second. Wall sockets provide AC; batteries and most electronics inside devices run on DC.'
+      },
+      {
+        question: 'What is the main job of a resistor in a circuit?',
+        options: [
+          'Store electrical charge',
+          'Convert AC to DC',
+          'Emit light when current flows through it',
+          'Limit or reduce the flow of current'
+        ],
+        correct: 3,
+        explanation: 'A resistor limits current flow, measured in ohms (Ω). It is commonly used to protect components like LEDs from receiving too much current and burning out.'
+      },
+      {
+        question: 'In a SERIES circuit, what happens if one bulb blows?',
+        options: [
+          'Only that bulb goes out; the others stay on',
+          'The other bulbs glow brighter to compensate',
+          'All bulbs in the circuit go out',
+          'The circuit automatically switches to parallel mode'
+        ],
+        correct: 2,
+        explanation: 'In a series circuit there is only one path for current. If any component in that path breaks, the circuit is open and current cannot flow — so all components stop working.'
+      },
+      {
+        question: 'Which type of current does a battery produce?',
+        options: [
+          'AC (Alternating Current)',
+          'Both AC and DC equally',
+          'DC (Direct Current)',
+          'Neither — batteries produce static electricity'
+        ],
+        correct: 2,
+        explanation: 'Batteries produce DC (Direct Current) — a steady flow of electrons in one direction from the negative terminal to the positive terminal. Your charger converts AC from the wall into DC to charge the battery.'
+      }
+    ];
+  </script>
+
+  <script src="../js/interactions.js"></script>
+
+</body>
+</html>

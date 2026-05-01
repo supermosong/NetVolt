@@ -272,7 +272,7 @@
 
 .flip-card__hint {
   font-size: var(--text-xs);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary); /* muted failed AA contrast; secondary = 5.7:1 ✓ */
 }
 
 /* -------------------------------------------------------------
@@ -358,7 +358,7 @@
 .quiz-counter {
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary); /* muted failed AA contrast; secondary = 5.7:1 ✓ */
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -639,4 +639,41 @@
 /* Subtle hover highlight on rows */
 .compare-table tbody tr:hover td {
   background-color: var(--color-bg-tertiary);
+}
+
+/* -------------------------------------------------------------
+   9. RESPONSIVE OVERRIDES (mobile-specific component tweaks)
+   These refine component behaviour on narrow viewports.
+   General layout breakpoints live in layout.css.
+   ------------------------------------------------------------- */
+
+/* Below 480px: collapse flip-grid to single column so cards are
+   not too narrow to read comfortably */
+@media (max-width: 480px) {
+  .flip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Give flip cards a bit more height when full-width on mobile */
+  .flip-card {
+    height: 160px;
+  }
+}
+
+/* Below 480px: tighten quiz block padding */
+@media (max-width: 480px) {
+  .quiz-block {
+    padding: var(--space-4);
+  }
+
+  .quiz-option {
+    padding: var(--space-3);
+  }
+}
+
+/* Below 640px: reduce card-grid minimum so cards stack sooner */
+@media (max-width: 640px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
 }

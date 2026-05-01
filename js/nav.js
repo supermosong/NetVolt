@@ -53,18 +53,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* Focus trap: keep keyboard focus inside the menu while it is open */
+  mobileMenu.addEventListener('keydown', function (event) {
+    if (event.key !== 'Tab') return;
+
+    var focusableLinks = Array.from(mobileMenu.querySelectorAll('a'));
+    var first = focusableLinks[0];
+    var last  = focusableLinks[focusableLinks.length - 1];
+
+    if (event.shiftKey) {
+      /* Shift+Tab on first link → wrap to last */
+      if (document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else {
+      /* Tab on last link → wrap to first */
+      if (document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
   function openMobileMenu() {
     mobileMenu.classList.add('is-open');
     /* aria-expanded tells screen readers the menu is now open */
     hamburger.setAttribute('aria-expanded', 'true');
     /* Prevent the page behind from scrolling while menu is open */
     document.body.style.overflow = 'hidden';
+    /* Move focus to the first link so keyboard users are inside the menu */
+    var firstLink = mobileMenu.querySelector('a');
+    if (firstLink) firstLink.focus();
   }
 
   function closeMobileMenu() {
     mobileMenu.classList.remove('is-open');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    /* Focus is returned to hamburger on Escape by the existing keydown
+       handler above; click-outside closes silently without shifting focus */
   }
 
   /* -----------------------------------------------------------

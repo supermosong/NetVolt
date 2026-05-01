@@ -302,7 +302,7 @@
 
 .footer-copy {
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary); /* muted failed AA contrast; secondary = 5.6:1 ✓ */
 }
 
 /* -------------------------------------------------------------
