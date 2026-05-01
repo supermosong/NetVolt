@@ -99,69 +99,27 @@ function initAccordion() {
 
 /* =============================================================
    3. QUIZ ENGINE
-   Reads the QUESTIONS array below and renders each question
+   Reads window.QUIZ_QUESTIONS (set by each page) and renders each question
    one at a time inside #quiz-question-area.
    After all questions are answered it shows the final score.
    ============================================================= */
 
-/* --- Quiz data ----------------------------------------------- */
-var QUESTIONS = [
-  {
-    question: 'What does CPU stand for?',
-    options: [
-      'Computer Power Unit',
-      'Central Processing Unit',
-      'Control Program Utility',
-      'Central Program Uploader'
-    ],
-    correct: 1, /* index of the correct option (0-based) */
-    explanation: 'CPU stands for Central Processing Unit — it is the main chip that carries out every instruction a program gives to the computer.'
-  },
-  {
-    question: 'Which type of storage holds data temporarily and loses everything when the computer is turned off?',
-    options: [
-      'HDD (Hard Disk Drive)',
-      'SSD (Solid State Drive)',
-      'RAM (Random Access Memory)',
-      'USB Flash Drive'
-    ],
-    correct: 2,
-    explanation: 'RAM is temporary (volatile) memory — it holds programs currently in use but clears completely when power is cut. SSDs and HDDs keep data permanently.'
-  },
-  {
-    question: 'Which of the following is an INPUT device?',
-    options: [
-      'Monitor',
-      'Printer',
-      'Speakers',
-      'Keyboard'
-    ],
-    correct: 3,
-    explanation: 'A keyboard sends data INTO the computer (input). Monitors, printers, and speakers all send information OUT to the user (output).'
-  },
-  {
-    question: 'What is the main difference between hardware and software?',
-    options: [
-      'Hardware always costs more than software',
-      'Software is physical; hardware is digital',
-      'Hardware is the physical parts; software is the programs and instructions',
-      'They are exactly the same thing'
-    ],
-    correct: 2,
-    explanation: 'Hardware is anything you can physically touch (the CPU, screen, keyboard). Software is the set of instructions that tells hardware what to do (the OS, apps, games).'
-  },
-  {
-    question: 'Which operating system is completely free and open-source?',
-    options: [
-      'Windows',
-      'macOS',
-      'Linux',
-      'iOS'
-    ],
-    correct: 2,
-    explanation: 'Linux is free and open-source — anyone can view, change, and share its code. Windows and macOS are proprietary (owned by Microsoft and Apple). iOS is also proprietary.'
-  }
-];
+/* --- Quiz data -----------------------------------------------
+   Questions are NOT defined here. Each page provides its own
+   question set by setting window.QUIZ_QUESTIONS before this
+   script loads. Example in the page's HTML:
+
+     <script>
+       window.QUIZ_QUESTIONS = [
+         { question: '...', options: [...], correct: 0, explanation: '...' },
+         ...
+       ];
+     </script>
+     <script src="../js/interactions.js"></script>
+
+   If window.QUIZ_QUESTIONS is absent or empty the quiz section
+   is silently skipped, so non-quiz pages are unaffected.
+------------------------------------------------------------- */
 
 /* Letter labels for the four options */
 var LETTERS = ['A', 'B', 'C', 'D'];
@@ -173,21 +131,23 @@ var answered = false; /* prevents double-clicking after revealing answer */
 
 function initQuiz() {
   var area = document.getElementById('quiz-question-area');
-  if (!area) return; /* exit quietly if we're on a page with no quiz */
+  /* Exit quietly if there's no quiz area or no questions defined for this page */
+  if (!area) return;
+  if (!window.QUIZ_QUESTIONS || window.QUIZ_QUESTIONS.length === 0) return;
 
   renderQuestion(area);
 }
 
 /* Render the current question into the quiz area */
 function renderQuestion(area) {
-  var q = QUESTIONS[currentQuestion];
+  var q = window.QUIZ_QUESTIONS[currentQuestion];
 
   /* Build the HTML string for this question */
   var html = '';
 
   /* Header row: counter label */
   html += '<div class="quiz-header">';
-  html += '  <span class="quiz-counter">Question ' + (currentQuestion + 1) + ' of ' + QUESTIONS.length + '</span>';
+  html += '  <span class="quiz-counter">Question ' + (currentQuestion + 1) + ' of ' + window.QUIZ_QUESTIONS.length + '</span>';
   html += '</div>';
 
   /* Question text */
@@ -214,7 +174,7 @@ function renderQuestion(area) {
   html += '<div class="quiz-footer">';
   html += '  <span></span>'; /* spacer to push button right */
   html += '  <button class="btn btn-primary" id="quiz-next-btn" style="display:none;" aria-label="Next question">';
-  var isLast = (currentQuestion === QUESTIONS.length - 1);
+  var isLast = (currentQuestion === window.QUIZ_QUESTIONS.length - 1);
   html += isLast ? 'See My Score →' : 'Next Question →';
   html += '  </button>';
   html += '</div>';
@@ -237,7 +197,7 @@ function renderQuestion(area) {
   if (nextBtn) {
     nextBtn.addEventListener('click', function () {
       currentQuestion++;
-      if (currentQuestion < QUESTIONS.length) {
+      if (currentQuestion < window.QUIZ_QUESTIONS.length) {
         renderQuestion(area);
         updateProgressBar();
       } else {
@@ -252,7 +212,7 @@ function handleAnswer(chosenIndex, area) {
   if (answered) return; /* ignore clicks after the first */
   answered = true;
 
-  var q = QUESTIONS[currentQuestion];
+  var q = window.QUIZ_QUESTIONS[currentQuestion];
   var isCorrect = (chosenIndex === q.correct);
 
   if (isCorrect) score++;
@@ -299,7 +259,7 @@ function updateProgressBar() {
   if (!fill) return;
 
   /* currentQuestion is the index of the question just answered */
-  var pct = Math.round(((currentQuestion + 1) / QUESTIONS.length) * 100);
+  var pct = Math.round(((currentQuestion + 1) / window.QUIZ_QUESTIONS.length) * 100);
   fill.style.width = pct + '%';
 
   if (bar) {
@@ -309,7 +269,7 @@ function updateProgressBar() {
 
 /* Render the final score screen */
 function renderScore(area) {
-  var pct = Math.round((score / QUESTIONS.length) * 100);
+  var pct = Math.round((score / window.QUIZ_QUESTIONS.length) * 100);
 
   /* Pick an encouraging message based on score */
   var message;
@@ -325,7 +285,7 @@ function renderScore(area) {
 
   var html = '<div class="quiz-score">'
     + '  <p class="quiz-counter">Quiz complete</p>'
-    + '  <p class="quiz-score__number">' + score + ' / ' + QUESTIONS.length + '</p>'
+    + '  <p class="quiz-score__number">' + score + ' / ' + window.QUIZ_QUESTIONS.length + '</p>'
     + '  <p class="quiz-score__label">' + message + '</p>'
     + '  <button class="btn btn-secondary" id="quiz-restart-btn">'
     + '    Try Again'

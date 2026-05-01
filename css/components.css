@@ -594,3 +594,49 @@
   color: var(--color-text-secondary);
   line-height: var(--leading-loose);
 }
+
+/* -------------------------------------------------------------
+   8. COMPARISON TABLE
+   Used on the Wi-Fi page (frequency band comparison) and any
+   other page that needs a simple styled data table.
+   ------------------------------------------------------------- */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;         /* keeps border-radius on the table */
+  border: 1px solid var(--color-border);
+}
+
+.compare-table th,
+.compare-table td {
+  padding: var(--space-3) var(--space-5);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.compare-table th {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.compare-table td {
+  color: var(--color-text-primary);
+  line-height: var(--leading-loose);
+}
+
+/* Remove bottom border on last row */
+.compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Subtle hover highlight on rows */
+.compare-table tbody tr:hover td {
+  background-color: var(--color-bg-tertiary);
+}

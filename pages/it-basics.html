@@ -1055,6 +1055,68 @@
 
   <!-- Scripts at end of body so HTML is fully parsed first -->
   <script src="../js/nav.js"></script>
+
+  <!-- Quiz questions for this page — must come before interactions.js -->
+  <script>
+    window.QUIZ_QUESTIONS = [
+      {
+        question: 'What does CPU stand for?',
+        options: [
+          'Computer Power Unit',
+          'Central Processing Unit',
+          'Control Program Utility',
+          'Central Program Uploader'
+        ],
+        correct: 1,
+        explanation: 'CPU stands for Central Processing Unit — the main chip that carries out every instruction a program gives to the computer.'
+      },
+      {
+        question: 'Which type of storage holds data temporarily and loses everything when the computer is turned off?',
+        options: [
+          'HDD (Hard Disk Drive)',
+          'SSD (Solid State Drive)',
+          'RAM (Random Access Memory)',
+          'USB Flash Drive'
+        ],
+        correct: 2,
+        explanation: 'RAM is temporary (volatile) memory — it holds programs currently in use but clears completely when power is cut. SSDs and HDDs keep data permanently.'
+      },
+      {
+        question: 'Which of the following is an INPUT device?',
+        options: [
+          'Monitor',
+          'Printer',
+          'Speakers',
+          'Keyboard'
+        ],
+        correct: 3,
+        explanation: 'A keyboard sends data INTO the computer (input). Monitors, printers, and speakers all send information OUT to the user (output).'
+      },
+      {
+        question: 'What is the main difference between hardware and software?',
+        options: [
+          'Hardware always costs more than software',
+          'Software is physical; hardware is digital',
+          'Hardware is the physical parts; software is the programs and instructions',
+          'They are exactly the same thing'
+        ],
+        correct: 2,
+        explanation: 'Hardware is anything you can physically touch (the CPU, screen, keyboard). Software is the set of instructions that tells hardware what to do (the OS, apps, games).'
+      },
+      {
+        question: 'Which operating system is completely free and open-source?',
+        options: [
+          'Windows',
+          'macOS',
+          'Linux',
+          'iOS'
+        ],
+        correct: 2,
+        explanation: 'Linux is free and open-source — anyone can view, change, and share its code. Windows and macOS are proprietary (owned by Microsoft and Apple). iOS is also proprietary.'
+      }
+    ];
+  </script>
+
   <script src="../js/interactions.js"></script>
 
 </body>

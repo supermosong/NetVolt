@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+        content="Wi-Fi & Wireless Networking — learn how Wi-Fi works, what radio waves and frequencies are, how routers connect you to the internet, and how to stay secure. Beginner-friendly." />
+
+  <title>Wi-Fi &amp; Wireless — TechLearn</title>
+
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+
+<body>
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+
+      <a href="../index.html" class="nav-logo" aria-label="TechLearn home">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        TechLearn
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li>
+          <a href="../index.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="it-basics.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            IT Basics
+          </a>
+        </li>
+        <li>
+          <a href="wifi-networking.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+              <circle cx="12" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            Wi-Fi
+          </a>
+        </li>
+        <li>
+          <a href="computer-networks.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="3"/>
+              <circle cx="5" cy="19" r="3"/>
+              <circle cx="19" cy="19" r="3"/>
+              <line x1="12" y1="8" x2="5.5" y2="16"/>
+              <line x1="12" y1="8" x2="18.5" y2="16"/>
+              <line x1="8" y1="19" x2="16" y2="19"/>
+            </svg>
+            Networks
+          </a>
+        </li>
+        <li>
+          <a href="electrical-systems.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            Electrical
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-hamburger"
+              id="nav-hamburger"
+              aria-controls="nav-mobile-menu"
+              aria-expanded="false"
+              aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Mobile dropdown -->
+  <div class="nav-mobile-menu" id="nav-mobile-menu" role="dialog"
+       aria-label="Navigation menu">
+    <a href="../index.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Home
+    </a>
+    <a href="it-basics.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+      IT Basics
+    </a>
+    <a href="wifi-networking.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+        <circle cx="12" cy="20" r="1" fill="currentColor"/>
+      </svg>
+      Wi-Fi &amp; Wireless
+    </a>
+    <a href="computer-networks.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="5" r="3"/>
+        <circle cx="5" cy="19" r="3"/>
+        <circle cx="19" cy="19" r="3"/>
+        <line x1="12" y1="8" x2="5.5" y2="16"/>
+        <line x1="12" y1="8" x2="18.5" y2="16"/>
+        <line x1="8" y1="19" x2="16" y2="19"/>
+      </svg>
+      Computer Networks
+    </a>
+    <a href="electrical-systems.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+      Electrical Systems
+    </a>
+  </div>
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+  <main class="site-main" id="main-content">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="page-hero__eyebrow">Topic 2 of 4</p>
+        <h1 class="page-hero__title" id="hero-title">Wi-Fi &amp; Wireless</h1>
+        <p class="page-hero__subtitle">
+          Discover how your phone, laptop, and smart TV connect to the internet
+          without a single cable — and what's actually happening inside your
+          router right now.
+        </p>
+        <div class="page-hero__tags">
+          <span class="badge badge-accent">Beginner</span>
+          <span class="badge badge-neutral">~20 min read</span>
+          <span class="badge badge-neutral">5-Question Quiz</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 1 — WHAT IS WI-FI?
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec1-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec1-title">What is Wi-Fi?</h2>
+        <p class="section-subtitle">
+          Wi-Fi lets devices communicate with a router using invisible radio
+          waves — no cables needed.
+        </p>
+
+        <p>
+          Wi-Fi stands for <strong>Wireless Fidelity</strong>. It is a
+          technology that uses radio waves — the same family of waves used by
+          FM radio and Bluetooth — to carry data through the air between your
+          device and a router.
+        </p>
+
+        <p style="margin-top: var(--space-4);">
+          Think of it like a two-way walkie-talkie. Your laptop asks the router
+          for a webpage; the router receives that request, fetches the page from
+          the internet, and sends the data back — all through the air, at the
+          speed of light, in milliseconds.
+        </p>
+
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">A brief history</p>
+            <p class="callout__body">
+              Wi-Fi was invented in 1997 and became widespread in the early 2000s.
+              Today it is governed by a set of technical standards called
+              <strong>IEEE 802.11</strong> — the version letter (a, b, g, n, ac, ax)
+              tells you how fast and how far each generation can reach.
+            </p>
+          </div>
+        </div>
+
+        <!-- How Wi-Fi works diagram -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">How a Wi-Fi Connection Works</h3>
+        <p>Follow the path data takes from your device to the internet and back.</p>
+
+        <div style="margin-top: var(--space-6); overflow-x: auto;">
+          <svg class="hw-diagram" viewBox="0 0 700 200" role="img"
+               aria-label="Diagram: Device sends request via Wi-Fi to router, router sends to internet via modem, response travels back">
+
+            <!-- Background -->
+            <rect x="0" y="0" width="700" height="200" rx="12"
+                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+            <!-- DEVICE -->
+            <rect x="30" y="60" width="100" height="80" rx="8"
+                  fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
+            <rect x="40" y="68" width="80" height="50" rx="4" fill="#0d1117"/>
+            <rect x="55" y="122" width="50" height="5" rx="2" fill="#30363d"/>
+            <text x="80" y="148" text-anchor="middle" fill="#58a6ff"
+                  font-size="11" font-family="Inter,sans-serif" font-weight="600">Your Device</text>
+            <text x="80" y="160" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">phone / laptop / TV</text>
+
+            <!-- Arrow 1: device → router (radio waves) -->
+            <line x1="132" y1="100" x2="218" y2="100"
+                  stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <polygon points="218,96 228,100 218,104" fill="#58a6ff"/>
+            <!-- wave arcs above arrow -->
+            <path d="M152 90 Q162 80 172 90 Q182 100 192 90 Q202 80 212 90"
+                  fill="none" stroke="#58a6ff" stroke-width="1" opacity="0.5"/>
+            <text x="180" y="76" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">radio waves</text>
+
+            <!-- ROUTER -->
+            <rect x="230" y="60" width="100" height="80" rx="8"
+                  fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
+            <!-- Antenna -->
+            <line x1="255" y1="60" x2="255" y2="42" stroke="#3fb950" stroke-width="1.5"/>
+            <line x1="280" y1="60" x2="280" y2="38" stroke="#3fb950" stroke-width="1.5"/>
+            <line x1="305" y1="60" x2="305" y2="42" stroke="#3fb950" stroke-width="1.5"/>
+            <!-- Wi-Fi symbol on router -->
+            <path d="M263 88 Q280 74 297 88" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+            <path d="M269 94 Q280 84 291 94" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+            <circle cx="280" cy="100" r="3" fill="#3fb950"/>
+            <text x="280" y="148" text-anchor="middle" fill="#3fb950"
+                  font-size="11" font-family="Inter,sans-serif" font-weight="600">Router</text>
+            <text x="280" y="160" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">your home hub</text>
+
+            <!-- Arrow 2: router → modem (cable) -->
+            <line x1="332" y1="100" x2="418" y2="100"
+                  stroke="#d29922" stroke-width="2"/>
+            <polygon points="418,96 428,100 418,104" fill="#d29922"/>
+            <text x="380" y="88" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">cable</text>
+
+            <!-- MODEM -->
+            <rect x="430" y="60" width="100" height="80" rx="8"
+                  fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+            <rect x="445" y="80" width="70" height="8" rx="3" fill="#30363d"/>
+            <rect x="445" y="96" width="70" height="8" rx="3" fill="#30363d"/>
+            <text x="480" y="148" text-anchor="middle" fill="#d29922"
+                  font-size="11" font-family="Inter,sans-serif" font-weight="600">Modem</text>
+            <text x="480" y="160" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">ISP gateway</text>
+
+            <!-- Arrow 3: modem → internet -->
+            <line x1="532" y1="100" x2="608" y2="100"
+                  stroke="#bc8cff" stroke-width="2"/>
+            <polygon points="608,96 618,100 608,104" fill="#bc8cff"/>
+            <text x="570" y="88" text-anchor="middle" fill="#8b949e"
+                  font-size="9" font-family="Inter,sans-serif">fibre / cable</text>
+
+            <!-- INTERNET CLOUD -->
+            <ellipse cx="650" cy="100" rx="38" ry="26"
+                     fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
+            <text x="650" y="97" text-anchor="middle" fill="#bc8cff"
+                  font-size="11" font-family="Inter,sans-serif" font-weight="600">Inter-</text>
+            <text x="650" y="110" text-anchor="middle" fill="#bc8cff"
+                  font-size="11" font-family="Inter,sans-serif" font-weight="600">net</text>
+
+          </svg>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2 — RADIO WAVES & FREQUENCIES
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec2-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec2-title">Radio Waves &amp; Frequencies</h2>
+        <p class="section-subtitle">
+          Wi-Fi transmits data as radio waves. The frequency it uses controls
+          the trade-off between speed and range.
+        </p>
+
+        <p>
+          A <strong>frequency</strong> is how many times a wave oscillates
+          (vibrates) per second, measured in Hertz (Hz). Higher frequency means
+          more data per second — but the waves lose energy faster and cannot
+          pass through walls as easily.
+        </p>
+
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Try it!</p>
+            <p class="callout__body">
+              Click each card below to flip it and see the key details for each
+              frequency band.
+            </p>
+          </div>
+        </div>
+
+        <div class="flip-grid" role="list" style="margin-top: var(--space-6);">
+
+          <!-- 2.4 GHz -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="2.4 GHz band — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                  <circle cx="12" cy="20" r="1" fill="currentColor"/>
+                </svg>
+                <p class="flip-card__front-title">2.4 GHz</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  <strong>Longer range, slower speed.</strong> Travels farther
+                  and passes through walls better — but gets congested because
+                  microwaves and Bluetooth also use this band.
+                  Best for: far rooms, older devices.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 GHz -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="5 GHz band — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <p class="flip-card__front-title">5 GHz</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  <strong>Shorter range, much faster speed.</strong> Less
+                  congested with more channels available. Walls and distance
+                  weaken it quickly.
+                  Best for: streaming, gaming, close to the router.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 GHz (Wi-Fi 6E) -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="6 GHz band — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 8v4l3 3"/>
+                </svg>
+                <p class="flip-card__front-title">6 GHz</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  <strong>Newest band (Wi-Fi 6E &amp; 7).</strong> Extremely
+                  fast and nearly empty of interference — but only works
+                  within close range and needs compatible hardware.
+                  Best for: future-proofing, dense environments.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Quick comparison table -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">Quick Comparison</h3>
+        <div style="overflow-x: auto;">
+          <table class="compare-table" aria-label="Frequency band comparison">
+            <thead>
+              <tr>
+                <th scope="col">Band</th>
+                <th scope="col">Max Speed</th>
+                <th scope="col">Range</th>
+                <th scope="col">Wall Penetration</th>
+                <th scope="col">Congestion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>2.4 GHz</strong></td>
+                <td>~600 Mbps</td>
+                <td>Up to 45 m indoors</td>
+                <td>Good</td>
+                <td>High (shared with microwaves, Bluetooth)</td>
+              </tr>
+              <tr>
+                <td><strong>5 GHz</strong></td>
+                <td>~3.5 Gbps</td>
+                <td>Up to 15 m indoors</td>
+                <td>Moderate</td>
+                <td>Low</td>
+              </tr>
+              <tr>
+                <td><strong>6 GHz</strong></td>
+                <td>~9.6 Gbps</td>
+                <td>Up to 10 m indoors</td>
+                <td>Low</td>
+                <td>Very low (new band)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 3 — HOW A ROUTER WORKS
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec3-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec3-title">How a Router Works</h2>
+        <p class="section-subtitle">
+          A router is the traffic controller of your home network — it decides
+          where every packet of data goes.
+        </p>
+
+        <p>
+          When you visit a website, your request is broken into small chunks
+          called <strong>packets</strong>. Your device sends these packets to
+          the router wirelessly. The router then forwards them to your
+          <strong>modem</strong>, which connects to your Internet Service
+          Provider (ISP), which reaches the website's server. The response
+          travels back the same path — in under a second.
+        </p>
+
+        <div class="card-grid" style="margin-top: var(--space-8);">
+
+          <div class="card">
+            <div class="card__icon">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                <circle cx="12" cy="20" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Router</h3>
+            <p class="card__body">
+              Manages traffic between all devices on your home network and the
+              wider internet. Assigns each device a local IP address and
+              decides which packets go where. Often has built-in Wi-Fi.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-warning); background-color:rgba(210,153,34,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                <line x1="6" y1="10" x2="6" y2="14"/>
+                <line x1="10" y1="10" x2="10" y2="14"/>
+                <line x1="14" y1="10" x2="14" y2="14"/>
+                <line x1="18" y1="10" x2="18" y2="14"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Modem</h3>
+            <p class="card__body">
+              Translates the digital signals from your router into a format
+              your ISP's network understands (and vice versa). It is your
+              home's gateway to the wider internet.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-success); background-color:rgba(63,185,80,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <h3 class="card__title">ISP</h3>
+            <p class="card__body">
+              Your <strong>Internet Service Provider</strong> (e.g. BT, Virgin,
+              Comcast) owns the physical cables or fibre that link your home
+              to the rest of the internet.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Accordion: common router questions -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">Common Questions</h3>
+        <div class="accordion" role="list">
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-ssid">
+              <span>What is an SSID?</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-ssid">
+              <div class="accordion-body">
+                SSID stands for <strong>Service Set Identifier</strong> — it is simply
+                the name of your Wi-Fi network (for example "HomeNetwork_5G"). When
+                your device searches for Wi-Fi it shows a list of nearby SSIDs.
+                Each router broadcasts its SSID so devices know it exists.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-ipaddr">
+              <span>What is an IP address?</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-ipaddr">
+              <div class="accordion-body">
+                An <strong>IP address</strong> (Internet Protocol address) is a
+                unique number assigned to every device on a network — like a postal
+                address for data. Your router gives each device on your home network
+                a <em>local</em> IP address (e.g. 192.168.1.5). Your whole home also
+                has one <em>public</em> IP address assigned by your ISP.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-dhcp">
+              <span>What does DHCP do?</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-dhcp">
+              <div class="accordion-body">
+                <strong>DHCP</strong> (Dynamic Host Configuration Protocol) is the
+                system that automatically assigns IP addresses to devices when they
+                join the network. When your phone connects to Wi-Fi it asks the
+                router "what address should I use?" — DHCP answers automatically so
+                you never have to configure it manually.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 4 — WI-FI SECURITY
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec4-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec4-title">Wi-Fi Security</h2>
+        <p class="section-subtitle">
+          Without a password, anyone nearby could join your network and spy on
+          your traffic. Security protocols encrypt your data so only authorised
+          devices can read it.
+        </p>
+
+        <p>
+          <strong>Encryption</strong> scrambles data before it travels through
+          the air so that even if someone intercepts it, they see meaningless
+          gibberish. Wi-Fi security has gone through several generations —
+          each one stronger than the last.
+        </p>
+
+        <div class="card-grid" style="margin-top: var(--space-8);">
+
+          <!-- WEP -->
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-danger); background-color:rgba(248,81,73,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-neutral" style="background:rgba(248,81,73,0.1); color:var(--color-danger); border-color:var(--color-danger);">Avoid — Broken</span>
+            </div>
+            <h3 class="card__title">WEP</h3>
+            <p class="card__body">
+              <strong>Wired Equivalent Privacy</strong> (1997). The original
+              Wi-Fi security — now completely broken. A hacker with basic tools
+              can crack a WEP password in under a minute. Never use it.
+            </p>
+          </div>
+
+          <!-- WPA -->
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-warning); background-color:rgba(210,153,34,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-warning">Outdated</span>
+            </div>
+            <h3 class="card__title">WPA</h3>
+            <p class="card__body">
+              <strong>Wi-Fi Protected Access</strong> (2003). An emergency
+              replacement for WEP — much better, but still has known
+              weaknesses. You may see it on very old routers.
+            </p>
+          </div>
+
+          <!-- WPA2 -->
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-success); background-color:rgba(63,185,80,0.15);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-success">Current Standard</span>
+            </div>
+            <h3 class="card__title">WPA2</h3>
+            <p class="card__body">
+              <strong>Wi-Fi Protected Access 2</strong> (2004). Uses AES
+              encryption — the same standard governments use. Most routers
+              today use WPA2. A strong password makes it very hard to crack.
+            </p>
+          </div>
+
+          <!-- WPA3 -->
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-accent); background-color: var(--color-accent-glow);">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-accent">Latest &amp; Strongest</span>
+            </div>
+            <h3 class="card__title">WPA3</h3>
+            <p class="card__body">
+              <strong>Wi-Fi Protected Access 3</strong> (2018). Protects even
+              against guessing attacks on weak passwords and secures open
+              (café) networks. Choose this if your router supports it.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="callout callout-warning" role="note" style="margin-top: var(--space-8);">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Public Wi-Fi warning</p>
+            <p class="callout__body">
+              Open networks (airports, cafés) have no encryption between your
+              device and the router — anyone on the same network can potentially
+              see your traffic. Always use HTTPS websites or a VPN on public Wi-Fi.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 5 — COMMON WI-FI PROBLEMS & FIXES
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec5-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec5-title">Common Wi-Fi Problems &amp; Fixes</h2>
+        <p class="section-subtitle">
+          Before calling your ISP, try these — they solve most Wi-Fi problems
+          in under five minutes.
+        </p>
+
+        <div class="accordion" role="list">
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="fix-slow">
+              <span>Wi-Fi is slow or keeps dropping</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="fix-slow">
+              <div class="accordion-body">
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>Restart the router</strong> — unplug it for 30 seconds, plug it back in. Fixes ~80% of issues.</li>
+                  <li><strong>Switch to 5 GHz</strong> — if you're near the router, 5 GHz is much faster than 2.4 GHz.</li>
+                  <li><strong>Reduce interference</strong> — move the router away from microwaves, cordless phones, and thick walls.</li>
+                  <li><strong>Check for updates</strong> — routers have firmware that needs updating occasionally.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="fix-noconnect">
+              <span>Device won't connect to Wi-Fi at all</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="fix-noconnect">
+              <div class="accordion-body">
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>Check the password</strong> — Wi-Fi passwords are case-sensitive.</li>
+                  <li><strong>Forget and rejoin</strong> — on your device, forget the network and reconnect fresh.</li>
+                  <li><strong>Restart the device</strong> — Wi-Fi adapters can get stuck.</li>
+                  <li><strong>Check if others are affected</strong> — if only your device fails, the problem is likely the device not the router.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="fix-range">
+              <span>Wi-Fi doesn't reach far enough</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="fix-range">
+              <div class="accordion-body">
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>Move the router</strong> — place it centrally in your home, raised up, away from walls.</li>
+                  <li><strong>Use a Wi-Fi extender</strong> — repeats the signal into dead zones. Easy to set up.</li>
+                  <li><strong>Try a mesh system</strong> — multiple nodes that together blanket your home in one seamless network.</li>
+                  <li><strong>Use a powerline adapter</strong> — sends data through your home's electrical wiring to a remote room.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="fix-speed">
+              <span>Internet is working but feels very slow today</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="fix-speed">
+              <div class="accordion-body">
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>Run a speed test</strong> — visit a speed test site to see if the issue is with your ISP connection or your internal network.</li>
+                  <li><strong>Check for heavy users</strong> — someone streaming 4K or downloading large files can saturate your connection.</li>
+                  <li><strong>Try a wired connection</strong> — plug directly into the router with an ethernet cable to isolate whether Wi-Fi is the bottleneck.</li>
+                  <li><strong>Contact your ISP</strong> — if a wired connection is also slow, there may be an outage or a problem on their end.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 6 — MINI QUIZ
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="quiz-title">
+      <div class="container">
+
+        <h2 class="section-title" id="quiz-title">Test Yourself</h2>
+        <p class="section-subtitle">
+          Five questions to check what you've learned. Instant feedback —
+          no sign-up needed.
+        </p>
+
+        <div class="quiz-block" id="quiz"
+             role="form"
+             aria-label="Wi-Fi and Wireless quiz">
+
+          <div class="quiz-progress" role="progressbar"
+               aria-valuenow="0" aria-valuemin="0" aria-valuemax="5"
+               aria-label="Quiz progress">
+            <div class="quiz-progress__fill" id="quiz-progress-fill"
+                 style="width: 0%;"></div>
+          </div>
+
+          <div id="quiz-question-area">
+            <!-- Populated by interactions.js -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="../index.html">Home</a>
+        <a href="it-basics.html">IT Basics</a>
+        <a href="wifi-networking.html">Wi-Fi</a>
+        <a href="computer-networks.html">Networks</a>
+        <a href="electrical-systems.html">Electrical</a>
+      </nav>
+      <p class="footer-copy">
+        &copy; 2026 TechLearn &mdash; Free educational resources for everyone.
+      </p>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+
+  <!-- Quiz questions specific to this page -->
+  <script>
+    window.QUIZ_QUESTIONS = [
+      {
+        question: 'What does Wi-Fi stand for?',
+        options: [
+          'Wireless Fiber',
+          'Wide Frequency Interface',
+          'Wireless Fidelity',
+          'Wired Fidelity'
+        ],
+        correct: 2,
+        explanation: 'Wi-Fi stands for Wireless Fidelity — a marketing name adopted in 1999 for the IEEE 802.11 wireless networking standards.'
+      },
+      {
+        question: 'Which Wi-Fi frequency band has a longer range but slower maximum speed?',
+        options: [
+          '5 GHz',
+          '6 GHz',
+          '60 GHz',
+          '2.4 GHz'
+        ],
+        correct: 3,
+        explanation: '2.4 GHz travels farther and passes through walls more easily, but its maximum speed is lower than 5 GHz or 6 GHz. It is also more congested because microwaves and Bluetooth use the same band.'
+      },
+      {
+        question: 'What does SSID stand for?',
+        options: [
+          'Secure Signal Internet Data',
+          'Service Set Identifier',
+          'System Signal ID',
+          'Signal Strength Indicator'
+        ],
+        correct: 1,
+        explanation: 'SSID stands for Service Set Identifier — it is simply the name of a Wi-Fi network that your device sees in the list of available connections.'
+      },
+      {
+        question: 'Which Wi-Fi security protocol is considered broken and should never be used?',
+        options: [
+          'WPA2',
+          'WPA3',
+          'WPA',
+          'WEP'
+        ],
+        correct: 3,
+        explanation: 'WEP (Wired Equivalent Privacy) is completely broken — a hacker with basic tools can crack it in under a minute. Always use WPA2 or WPA3 instead.'
+      },
+      {
+        question: 'A device connects to a router wirelessly. What does the router use to connect to the wider internet?',
+        options: [
+          'Another Wi-Fi router',
+          'A Bluetooth adapter',
+          'A modem connected to the ISP',
+          'A direct satellite link'
+        ],
+        correct: 2,
+        explanation: 'The router forwards your data to a modem, which translates it into a format the ISP\'s network understands. The ISP then routes your traffic to the wider internet.'
+      }
+    ];
+  </script>
+
+  <script src="../js/interactions.js"></script>
+
+</body>
+</html>
