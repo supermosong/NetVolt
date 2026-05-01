@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+        content="IT Basics — learn what a computer is, how hardware and software work, types of storage, and operating systems. Beginner-friendly with interactive activities." />
+
+  <title>IT Basics — TechLearn</title>
+
+  <!-- One level up because this file lives inside /pages/ -->
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+
+<body>
+
+  <!-- =========================================================
+       NAVIGATION (identical structure to index.html)
+       ========================================================= -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+
+      <a href="../index.html" class="nav-logo" aria-label="TechLearn home">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        TechLearn
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li>
+          <a href="../index.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="it-basics.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            IT Basics
+          </a>
+        </li>
+        <li>
+          <a href="wifi-networking.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+              <circle cx="12" cy="20" r="1" fill="currentColor"/>
+            </svg>
+            Wi-Fi
+          </a>
+        </li>
+        <li>
+          <a href="computer-networks.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="3"/>
+              <circle cx="5" cy="19" r="3"/>
+              <circle cx="19" cy="19" r="3"/>
+              <line x1="12" y1="8" x2="5.5" y2="16"/>
+              <line x1="12" y1="8" x2="18.5" y2="16"/>
+              <line x1="8" y1="19" x2="16" y2="19"/>
+            </svg>
+            Networks
+          </a>
+        </li>
+        <li>
+          <a href="electrical-systems.html">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            Electrical
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-hamburger"
+              id="nav-hamburger"
+              aria-controls="nav-mobile-menu"
+              aria-expanded="false"
+              aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Mobile dropdown -->
+  <div class="nav-mobile-menu" id="nav-mobile-menu" role="dialog"
+       aria-label="Navigation menu">
+    <a href="../index.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Home
+    </a>
+    <a href="it-basics.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+      IT Basics
+    </a>
+    <a href="wifi-networking.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+        <circle cx="12" cy="20" r="1" fill="currentColor"/>
+      </svg>
+      Wi-Fi &amp; Wireless
+    </a>
+    <a href="computer-networks.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="5" r="3"/>
+        <circle cx="5" cy="19" r="3"/>
+        <circle cx="19" cy="19" r="3"/>
+        <line x1="12" y1="8" x2="5.5" y2="16"/>
+        <line x1="12" y1="8" x2="18.5" y2="16"/>
+        <line x1="8" y1="19" x2="16" y2="19"/>
+      </svg>
+      Computer Networks
+    </a>
+    <a href="electrical-systems.html">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+      Electrical Systems
+    </a>
+  </div>
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+  <main class="site-main" id="main-content">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="page-hero__eyebrow">Topic 1 of 4</p>
+        <h1 class="page-hero__title" id="hero-title">IT Basics</h1>
+        <p class="page-hero__subtitle">
+          Understand what a computer actually is, how its parts work together,
+          and what happens when you press the power button — no prior knowledge
+          needed.
+        </p>
+        <div class="page-hero__tags">
+          <span class="badge badge-accent">Beginner</span>
+          <span class="badge badge-neutral">~20 min read</span>
+          <span class="badge badge-neutral">5-Question Quiz</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 1 — WHAT IS A COMPUTER?
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec1-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec1-title">What is a Computer?</h2>
+        <p class="section-subtitle">
+          A computer is a machine that takes in information, processes it using
+          a set of instructions, and produces a result — all in a split second.
+        </p>
+
+        <p>
+          Think of it like a very fast chef. You give the chef ingredients
+          (your input), the chef follows a recipe (the program), and serves you
+          a meal (the output). Every computer — from a giant server to your
+          smartphone — works on exactly the same idea.
+        </p>
+
+        <!-- Key tip callout -->
+        <div class="callout callout-tip" role="note">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Key idea</p>
+            <p class="callout__body">
+              Every computer — no matter its size — does three things:
+              <strong>Input → Process → Output</strong>. Keep this in mind
+              as you learn about the parts below.
+            </p>
+          </div>
+        </div>
+
+        <!-- Labeled hardware diagram (SVG) -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">Inside a Computer</h3>
+        <p>The diagram below shows the main parts found inside a desktop computer.
+           Hover over or tap any part to learn more.</p>
+
+        <!-- Diagram container — SVG + tooltip labels -->
+        <div class="diagram-wrapper" aria-label="Labeled diagram of computer components"
+             style="margin-top: var(--space-6);">
+          <svg class="hw-diagram" viewBox="0 0 700 380" role="img"
+               aria-label="Computer internals diagram showing CPU, RAM, GPU, Storage, Motherboard, and Power Supply">
+
+            <!-- Background: computer case outline -->
+            <rect x="10" y="10" width="680" height="360" rx="12"
+                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+            <!-- MOTHERBOARD (large green board) -->
+            <rect x="40" y="40" width="450" height="300" rx="8"
+                  fill="#1a2e1a" stroke="#3fb950" stroke-width="1.5"/>
+            <text x="56" y="66" fill="#3fb950" font-size="11"
+                  font-family="Inter, sans-serif" font-weight="600">MOTHERBOARD</text>
+            <text x="56" y="82" fill="#8b949e" font-size="9"
+                  font-family="Inter, sans-serif">The main circuit board that connects everything</text>
+
+            <!-- CPU chip -->
+            <rect x="60" y="100" width="120" height="110" rx="6"
+                  fill="#21262d" stroke="#58a6ff" stroke-width="2"/>
+            <text x="120" y="148" fill="#58a6ff" font-size="12"
+                  text-anchor="middle" font-family="Inter, sans-serif" font-weight="700">CPU</text>
+            <text x="120" y="164" fill="#e6edf3" font-size="9"
+                  text-anchor="middle" font-family="Inter, sans-serif">Central Processing</text>
+            <text x="120" y="176" fill="#e6edf3" font-size="9"
+                  text-anchor="middle" font-family="Inter, sans-serif">Unit</text>
+            <!-- CPU grid lines to look like chip -->
+            <line x1="80" y1="100" x2="80" y2="210" stroke="#30363d" stroke-width="0.5"/>
+            <line x1="100" y1="100" x2="100" y2="210" stroke="#30363d" stroke-width="0.5"/>
+            <line x1="140" y1="100" x2="140" y2="210" stroke="#30363d" stroke-width="0.5"/>
+            <line x1="160" y1="100" x2="160" y2="210" stroke="#30363d" stroke-width="0.5"/>
+            <line x1="60" y1="120" x2="180" y2="120" stroke="#30363d" stroke-width="0.5"/>
+            <line x1="60" y1="140" x2="180" y2="140" stroke="#30363d" stroke-width="0.5"/>
+            <line x1="60" y1="180" x2="180" y2="180" stroke="#30363d" stroke-width="0.5"/>
+            <line x1="60" y1="200" x2="180" y2="200" stroke="#30363d" stroke-width="0.5"/>
+
+            <!-- RAM sticks -->
+            <rect x="210" y="100" width="40" height="110" rx="3"
+                  fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+            <rect x="260" y="100" width="40" height="110" rx="3"
+                  fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+            <text x="255" y="88" fill="#d29922" font-size="11"
+                  text-anchor="middle" font-family="Inter, sans-serif" font-weight="600">RAM</text>
+            <!-- RAM chip details -->
+            <rect x="216" y="112" width="28" height="8" rx="1" fill="#30363d"/>
+            <rect x="216" y="124" width="28" height="8" rx="1" fill="#30363d"/>
+            <rect x="266" y="112" width="28" height="8" rx="1" fill="#30363d"/>
+            <rect x="266" y="124" width="28" height="8" rx="1" fill="#30363d"/>
+
+            <!-- Storage (SSD) -->
+            <rect x="60" y="240" width="200" height="70" rx="5"
+                  fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
+            <text x="160" y="268" fill="#f0883e" font-size="11"
+                  text-anchor="middle" font-family="Inter, sans-serif" font-weight="600">STORAGE (SSD)</text>
+            <text x="160" y="284" fill="#8b949e" font-size="9"
+                  text-anchor="middle" font-family="Inter, sans-serif">Where your files are kept long-term</text>
+            <rect x="76" y="292" width="30" height="8" rx="2" fill="#30363d"/>
+            <rect x="114" y="292" width="30" height="8" rx="2" fill="#30363d"/>
+            <rect x="152" y="292" width="30" height="8" rx="2" fill="#30363d"/>
+
+            <!-- GPU -->
+            <rect x="320" y="100" width="150" height="120" rx="6"
+                  fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
+            <text x="395" y="155" fill="#bc8cff" font-size="12"
+                  text-anchor="middle" font-family="Inter, sans-serif" font-weight="700">GPU</text>
+            <text x="395" y="170" fill="#e6edf3" font-size="9"
+                  text-anchor="middle" font-family="Inter, sans-serif">Graphics Processing</text>
+            <text x="395" y="182" fill="#e6edf3" font-size="9"
+                  text-anchor="middle" font-family="Inter, sans-serif">Unit</text>
+            <!-- GPU fan circles -->
+            <circle cx="345" cy="135" r="18" fill="none" stroke="#30363d" stroke-width="1.5"/>
+            <circle cx="345" cy="135" r="8" fill="#30363d"/>
+            <circle cx="455" cy="135" r="18" fill="none" stroke="#30363d" stroke-width="1.5"/>
+            <circle cx="455" cy="135" r="8" fill="#30363d"/>
+
+            <!-- POWER SUPPLY -->
+            <rect x="520" y="40" width="150" height="150" rx="6"
+                  fill="#21262d" stroke="#f85149" stroke-width="1.5"/>
+            <text x="595" y="108" fill="#f85149" font-size="11"
+                  text-anchor="middle" font-family="Inter, sans-serif" font-weight="600">POWER</text>
+            <text x="595" y="122" fill="#f85149" font-size="11"
+                  text-anchor="middle" font-family="Inter, sans-serif">SUPPLY</text>
+            <text x="595" y="138" fill="#8b949e" font-size="9"
+                  text-anchor="middle" font-family="Inter, sans-serif">(PSU)</text>
+            <!-- PSU fan -->
+            <circle cx="595" cy="75" r="22" fill="none" stroke="#30363d" stroke-width="1.5"/>
+            <circle cx="595" cy="75" r="8" fill="#30363d"/>
+            <line x1="595" y1="53" x2="595" y2="97" stroke="#30363d" stroke-width="1"/>
+            <line x1="573" y1="75" x2="617" y2="75" stroke="#30363d" stroke-width="1"/>
+
+            <!-- Legend at bottom right -->
+            <g transform="translate(520, 215)">
+              <text x="0" y="0" fill="#8b949e" font-size="10"
+                    font-family="Inter, sans-serif" font-weight="600">LEGEND</text>
+              <rect x="0" y="10" width="10" height="10" rx="2" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+              <text x="16" y="20" fill="#8b949e" font-size="9" font-family="Inter, sans-serif">CPU — Brain of the computer</text>
+              <rect x="0" y="28" width="10" height="10" rx="2" fill="none" stroke="#d29922" stroke-width="1.5"/>
+              <text x="16" y="38" fill="#8b949e" font-size="9" font-family="Inter, sans-serif">RAM — Short-term memory</text>
+              <rect x="0" y="46" width="10" height="10" rx="2" fill="none" stroke="#f0883e" stroke-width="1.5"/>
+              <text x="16" y="56" fill="#8b949e" font-size="9" font-family="Inter, sans-serif">Storage — Long-term memory</text>
+              <rect x="0" y="64" width="10" height="10" rx="2" fill="none" stroke="#bc8cff" stroke-width="1.5"/>
+              <text x="16" y="74" fill="#8b949e" font-size="9" font-family="Inter, sans-serif">GPU — Graphics processor</text>
+              <rect x="0" y="82" width="10" height="10" rx="2" fill="none" stroke="#f85149" stroke-width="1.5"/>
+              <text x="16" y="92" fill="#8b949e" font-size="9" font-family="Inter, sans-serif">PSU — Power supply</text>
+            </g>
+
+          </svg>
+        </div>
+
+        <!-- Component summary cards -->
+        <div class="card-grid" style="margin-top: var(--space-8);">
+
+          <div class="card">
+            <div class="card__icon" style="background-color:rgba(88,166,255,0.15); color:#58a6ff;">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <rect x="9" y="9" width="6" height="6"/>
+                <line x1="9" y1="1" x2="9" y2="4"/>
+                <line x1="15" y1="1" x2="15" y2="4"/>
+                <line x1="9" y1="20" x2="9" y2="23"/>
+                <line x1="15" y1="20" x2="15" y2="23"/>
+                <line x1="20" y1="9" x2="23" y2="9"/>
+                <line x1="20" y1="14" x2="23" y2="14"/>
+                <line x1="1" y1="9" x2="4" y2="9"/>
+                <line x1="1" y1="14" x2="4" y2="14"/>
+              </svg>
+            </div>
+            <h3 class="card__title">CPU</h3>
+            <p class="card__body">
+              The <strong>Central Processing Unit</strong> is the brain. It carries out
+              every instruction a program gives — billions of times per second.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="background-color:rgba(210,153,34,0.15); color:#d29922;">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                <line x1="6" y1="10" x2="6" y2="14"/>
+                <line x1="10" y1="10" x2="10" y2="14"/>
+                <line x1="14" y1="10" x2="14" y2="14"/>
+                <line x1="18" y1="10" x2="18" y2="14"/>
+              </svg>
+            </div>
+            <h3 class="card__title">RAM</h3>
+            <p class="card__body">
+              <strong>Random Access Memory</strong> is your computer's short-term memory.
+              It holds programs you have open right now — and clears when you shut down.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="background-color:rgba(240,136,62,0.15); color:#f0883e;">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Storage</h3>
+            <p class="card__body">
+              <strong>SSD or HDD</strong> — this is where your files, photos, and programs
+              live permanently, even when the power is off.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" style="background-color:rgba(188,140,255,0.15); color:#bc8cff;">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="card__title">GPU</h3>
+            <p class="card__body">
+              The <strong>Graphics Processing Unit</strong> handles everything you see on
+              screen — from basic text to complex 3D game graphics.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2 — INPUT & OUTPUT DEVICES
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec2-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec2-title">Input &amp; Output Devices</h2>
+        <p class="section-subtitle">
+          Devices that send information <em>into</em> the computer are called
+          <strong>input</strong> devices. Devices that send information
+          <em>out</em> to you are called <strong>output</strong> devices.
+        </p>
+
+        <p>
+          A keyboard lets you type words — that's input. The monitor shows
+          those words — that's output. Some devices do both (a touchscreen,
+          for example, receives your taps and displays images).
+        </p>
+
+        <!-- Instruction note -->
+        <div class="callout callout-tip" role="note" style="margin-bottom: var(--space-2);">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
+            <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
+            <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Try it!</p>
+            <p class="callout__body">
+              Click or tap each card below to flip it and see what the device does.
+            </p>
+          </div>
+        </div>
+
+        <!-- INPUT devices row -->
+        <h3 style="margin: var(--space-6) 0 var(--space-4);">
+          <span class="badge badge-success" style="vertical-align:middle; margin-right:var(--space-2);">Input</span>
+          Devices that send data TO the computer
+        </h3>
+
+        <div class="flip-grid" role="list">
+
+          <!-- Keyboard -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="Keyboard — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="6" width="20" height="12" rx="2"/>
+                  <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/>
+                </svg>
+                <p class="flip-card__front-title">Keyboard</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Lets you type letters, numbers, and commands into the computer.
+                  One of the most important input devices ever made.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mouse -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="Mouse — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="7"/>
+                  <path d="M12 2v8"/>
+                  <path d="M5 10h14"/>
+                </svg>
+                <p class="flip-card__front-title">Mouse</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Moves the on-screen cursor so you can click, drag, and select
+                  things without using the keyboard.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Microphone -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="Microphone — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="23"/>
+                  <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+                <p class="flip-card__front-title">Microphone</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Captures your voice and converts it into digital audio
+                  data the computer can record or process.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /input flip-grid -->
+
+        <!-- OUTPUT devices row -->
+        <h3 style="margin: var(--space-8) 0 var(--space-4);">
+          <span class="badge badge-warning" style="vertical-align:middle; margin-right:var(--space-2);">Output</span>
+          Devices that send data FROM the computer to you
+        </h3>
+
+        <div class="flip-grid" role="list">
+
+          <!-- Monitor -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="Monitor — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+                <p class="flip-card__front-title">Monitor</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Displays everything visually — the desktop, websites, videos,
+                  and applications. Your window into the computer.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Printer -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="Printer — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 6 2 18 2 18 9"/>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                  <rect x="6" y="14" width="12" height="8"/>
+                </svg>
+                <p class="flip-card__front-title">Printer</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Turns digital documents into physical paper copies —
+                  useful for letters, photos, and reports.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Speakers -->
+          <div class="flip-card" role="listitem"
+               tabindex="0"
+               aria-label="Speakers — click to flip and learn more">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                </svg>
+                <p class="flip-card__front-title">Speakers</p>
+                <p class="flip-card__hint">Click to flip</p>
+              </div>
+              <div class="flip-card__back">
+                <p class="flip-card__back-text">
+                  Convert digital audio signals into sound waves you can hear —
+                  music, videos, alerts, and voice calls.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /output flip-grid -->
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 3 — STORAGE: RAM vs SSD vs HDD
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec3-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec3-title">Storage — RAM, SSD, and HDD</h2>
+        <p class="section-subtitle">
+          Computers use three very different types of storage, each with a
+          different job, speed, and lifespan.
+        </p>
+
+        <p>
+          Imagine your computer is a chef's kitchen. <strong>RAM</strong> is the
+          countertop — it's small but you can grab things instantly. The
+          <strong>SSD</strong> is the fridge — faster to reach and holds more.
+          The <strong>HDD</strong> is the pantry — slower but holds huge amounts
+          of food cheaply.
+        </p>
+
+        <div class="card-grid" style="margin-top: var(--space-8);">
+
+          <!-- RAM card -->
+          <div class="card">
+            <div class="card__icon" style="background-color:rgba(88,166,255,0.15); color:#58a6ff;">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                <line x1="6" y1="10" x2="6" y2="14"/>
+                <line x1="10" y1="10" x2="10" y2="14"/>
+                <line x1="14" y1="10" x2="14" y2="14"/>
+                <line x1="18" y1="10" x2="18" y2="14"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-accent">Fastest</span>
+              <span class="badge badge-neutral">Temporary</span>
+            </div>
+            <h3 class="card__title">RAM</h3>
+            <p class="card__body">
+              <strong>Random Access Memory.</strong> Holds programs and data
+              currently in use. Blazing fast but clears completely when you
+              turn the computer off.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-loose);">
+              <li>Typical size: 8 GB – 64 GB</li>
+              <li>Speed: Extremely fast</li>
+              <li>Keeps data when off: <strong style="color:var(--color-danger);">No</strong></li>
+            </ul>
+          </div>
+
+          <!-- SSD card -->
+          <div class="card">
+            <div class="card__icon" style="background-color:rgba(63,185,80,0.15); color:#3fb950;">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                <circle cx="7" cy="12" r="1" fill="currentColor"/>
+                <rect x="10" y="9" width="8" height="6" rx="1"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-success">Fast</span>
+              <span class="badge badge-neutral">Permanent</span>
+            </div>
+            <h3 class="card__title">SSD</h3>
+            <p class="card__body">
+              <strong>Solid State Drive.</strong> Uses flash chips (like a giant
+              USB stick) to store your files permanently. Much faster than an
+              HDD and has no moving parts.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-loose);">
+              <li>Typical size: 256 GB – 4 TB</li>
+              <li>Speed: Very fast</li>
+              <li>Keeps data when off: <strong style="color:var(--color-success);">Yes</strong></li>
+            </ul>
+          </div>
+
+          <!-- HDD card -->
+          <div class="card">
+            <div class="card__icon" style="background-color:rgba(210,153,34,0.15); color:#d29922;">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3"/>
+                <line x1="12" y1="2" x2="12" y2="4"/>
+                <line x1="18.66" y1="5.34" x2="17.26" y2="6.74"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-warning">Slower</span>
+              <span class="badge badge-neutral">Permanent</span>
+            </div>
+            <h3 class="card__title">HDD</h3>
+            <p class="card__body">
+              <strong>Hard Disk Drive.</strong> Uses spinning magnetic disks to
+              store data. Slower than an SSD but much cheaper per gigabyte —
+              great for bulk storage.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-loose);">
+              <li>Typical size: 1 TB – 20 TB</li>
+              <li>Speed: Moderate</li>
+              <li>Keeps data when off: <strong style="color:var(--color-success);">Yes</strong></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="callout callout-warning" role="note" style="margin-top: var(--space-8);">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <div class="callout__content">
+            <p class="callout__title">Common mix-up</p>
+            <p class="callout__body">
+              People often confuse RAM with storage. Remember: RAM is
+              <em>temporary</em> (your desk) — storage is <em>permanent</em>
+              (your filing cabinet). More RAM means more programs open at once;
+              more storage means more files saved.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 4 — SOFTWARE vs HARDWARE
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec4-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec4-title">Software vs Hardware</h2>
+        <p class="section-subtitle">
+          Hardware is everything you can touch. Software is every set of
+          instructions that tells hardware what to do.
+        </p>
+
+        <p>
+          Think of hardware as a piano and software as sheet music. The piano
+          (hardware) can make sound, but it needs the music (software) to tell
+          it which keys to press and when. Without software, hardware does
+          nothing. Without hardware, software has nothing to run on.
+        </p>
+
+        <!-- Accordion with examples -->
+        <div class="accordion" style="margin-top: var(--space-8);"
+             role="list">
+
+          <!-- Hardware examples -->
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-hardware">
+              <span>Hardware examples — things you can physically touch</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-hardware">
+              <div class="accordion-body">
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>CPU</strong> — the processor chip inside your computer</li>
+                  <li><strong>RAM sticks</strong> — the memory modules plugged into the motherboard</li>
+                  <li><strong>SSD / HDD</strong> — the physical drive that stores your files</li>
+                  <li><strong>Keyboard &amp; mouse</strong> — physical input devices</li>
+                  <li><strong>Monitor</strong> — the physical screen</li>
+                  <li><strong>Motherboard</strong> — the circuit board that connects everything</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- System software examples -->
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-syssoftware">
+              <span>System Software — runs the hardware itself</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-syssoftware">
+              <div class="accordion-body">
+                <p style="margin-bottom: var(--space-3);">
+                  System software manages the hardware and provides a platform
+                  for application software to run on.
+                </p>
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>Operating System (OS)</strong> — Windows, macOS, Linux (see next section!)</li>
+                  <li><strong>Device drivers</strong> — software that lets your OS talk to hardware like printers</li>
+                  <li><strong>BIOS / UEFI</strong> — the very first software that runs when you press the power button</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Application software examples -->
+          <div class="accordion-item" role="listitem">
+            <button class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="acc-appsoftware">
+              <span>Application Software — the programs you use every day</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="accordion-content" id="acc-appsoftware">
+              <div class="accordion-body">
+                <p style="margin-bottom: var(--space-3);">
+                  Application software is built on top of the operating system
+                  and is what most people think of when they hear "software."
+                </p>
+                <ul style="list-style: disc; padding-left: var(--space-5); line-height: var(--leading-loose);">
+                  <li><strong>Web browsers</strong> — Chrome, Firefox, Safari</li>
+                  <li><strong>Office apps</strong> — Microsoft Word, Google Docs</li>
+                  <li><strong>Media players</strong> — Spotify, VLC</li>
+                  <li><strong>Games</strong> — any game you install and play</li>
+                  <li><strong>This website</strong> — an app that runs inside your browser</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /accordion -->
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 5 — OPERATING SYSTEMS
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="sec5-title">
+      <div class="container">
+
+        <h2 class="section-title" id="sec5-title">Operating Systems</h2>
+        <p class="section-subtitle">
+          An operating system (OS) is the master program that manages all the
+          hardware and lets you run other software.
+        </p>
+
+        <p>
+          Without an OS your computer would be a blank, unresponsive box.
+          The OS starts up when you press power, shows you the desktop, manages
+          files, and makes sure programs can share the CPU and RAM fairly.
+          The three most common operating systems are below.
+        </p>
+
+        <div class="card-grid" style="margin-top: var(--space-8);">
+
+          <!-- Windows -->
+          <div class="card">
+            <div class="card__icon">
+              <!-- Windows logo approximation (four squares) -->
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                   xmlns="http://www.w3.org/2000/svg"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="9" height="9" rx="1"/>
+                <rect x="13" y="2" width="9" height="9" rx="1"/>
+                <rect x="2" y="13" width="9" height="9" rx="1"/>
+                <rect x="13" y="13" width="9" height="9" rx="1"/>
+              </svg>
+            </div>
+            <h3 class="card__title">Windows</h3>
+            <p class="card__body">
+              Made by <strong>Microsoft</strong>. The most widely used OS in
+              the world — you'll find it on the majority of office and home PCs.
+              Great software support and very beginner-friendly.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-loose);">
+              <li>Cost: Paid (often included with new PCs)</li>
+              <li>Market share: ~72% of desktops</li>
+              <li>Best for: Everyday use, gaming, business</li>
+            </ul>
+          </div>
+
+          <!-- macOS -->
+          <div class="card">
+            <div class="card__icon">
+              <!-- Apple-like icon: circle with leaf -->
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                   xmlns="http://www.w3.org/2000/svg"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a7 7 0 0 1 7 7c0 5-4 9-7 13C9 18 5 14 5 9a7 7 0 0 1 7-7z"/>
+                <path d="M12 2 Q15 6 13 9"/>
+              </svg>
+            </div>
+            <h3 class="card__title">macOS</h3>
+            <p class="card__body">
+              Made by <strong>Apple</strong>, exclusively for Mac computers.
+              Known for its sleek design, stability, and tight integration with
+              iPhones and iPads. Popular with creative professionals.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-loose);">
+              <li>Cost: Free (comes with Mac hardware)</li>
+              <li>Market share: ~16% of desktops</li>
+              <li>Best for: Design, video editing, Apple users</li>
+            </ul>
+          </div>
+
+          <!-- Linux -->
+          <div class="card">
+            <div class="card__icon" style="color: var(--color-success); background-color:rgba(63,185,80,0.15);">
+              <!-- Terminal icon for Linux -->
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 17 10 11 4 5"/>
+                <line x1="12" y1="19" x2="20" y2="19"/>
+              </svg>
+            </div>
+            <div class="page-hero__tags">
+              <span class="badge badge-success">Free &amp; Open Source</span>
+            </div>
+            <h3 class="card__title">Linux</h3>
+            <p class="card__body">
+              Built by a global community of volunteers. Completely free and
+              open-source — anyone can view, modify, and share the code.
+              Powers most of the world's servers and the Android OS.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-loose);">
+              <li>Cost: Free</li>
+              <li>Market share: ~4% desktop, ~96% servers</li>
+              <li>Best for: Developers, servers, privacy</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 6 — MINI QUIZ
+         ========================================================= -->
+    <section class="content-section" aria-labelledby="quiz-title">
+      <div class="container">
+
+        <h2 class="section-title" id="quiz-title">Test Yourself</h2>
+        <p class="section-subtitle">
+          Five quick questions to check what you've learned. Pick an answer
+          and get instant feedback — no sign-up needed.
+        </p>
+
+        <!-- Quiz shell — JS renders questions inside here -->
+        <div class="quiz-block" id="quiz"
+             role="form"
+             aria-label="IT Basics quiz">
+
+          <!-- Progress bar (JS updates the width) -->
+          <div class="quiz-progress" role="progressbar"
+               aria-valuenow="0" aria-valuemin="0" aria-valuemax="5"
+               aria-label="Quiz progress">
+            <div class="quiz-progress__fill" id="quiz-progress-fill"
+                 style="width: 0%;"></div>
+          </div>
+
+          <!-- Question area (JS injects content here) -->
+          <div id="quiz-question-area">
+            <!-- Populated by interactions.js -->
+          </div>
+
+        </div><!-- /quiz-block -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="../index.html">Home</a>
+        <a href="it-basics.html">IT Basics</a>
+        <a href="wifi-networking.html">Wi-Fi</a>
+        <a href="computer-networks.html">Networks</a>
+        <a href="electrical-systems.html">Electrical</a>
+      </nav>
+      <p class="footer-copy">
+        &copy; 2026 TechLearn &mdash; Free educational resources for everyone.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts at end of body so HTML is fully parsed first -->
+  <script src="../js/nav.js"></script>
+  <script src="../js/interactions.js"></script>
+
+</body>
+</html>
