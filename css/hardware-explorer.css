@@ -820,6 +820,118 @@
   90%,100% { height: 0;   bottom: -1px; }
 }
 
+/* --- GPU --- */
+.gpu-model {
+  width: 150px;
+  height: 80px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spin-gpu 10s linear infinite;
+}
+
+@keyframes spin-gpu {
+  from { transform: rotateX(14deg) rotateY(0deg);   }
+  to   { transform: rotateX(14deg) rotateY(360deg); }
+}
+
+.gpu-pcb {
+  width: 150px;
+  height: 58px;
+  background: linear-gradient(180deg, #0b1a1f 0%, #0d1117 100%);
+  border: 1.5px solid #39d0d8;
+  border-radius: 3px;
+  position: relative;
+  box-shadow: 0 0 18px rgba(57,208,216,0.3);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+/* Bottom depth edge */
+.gpu-pcb::after {
+  content: '';
+  position: absolute;
+  left: 3px; right: -5px;
+  bottom: -5px;
+  height: 5px;
+  background: linear-gradient(180deg, rgba(57,208,216,0.25), transparent);
+  border-radius: 0 0 2px 0;
+  transform: skewX(2deg);
+  pointer-events: none;
+}
+
+.gpu-fan {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(57,208,216,0.55);
+  background: radial-gradient(circle at 50% 50%, #1a2a2e 0%, #0d1117 100%);
+  flex-shrink: 0;
+  position: relative;
+  animation: gpu-fan-spin 1.0s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px rgba(57,208,216,0.3);
+  z-index: 1;
+}
+
+@keyframes gpu-fan-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Fan blades via conic gradient */
+.gpu-fan::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: conic-gradient(
+    rgba(57,208,216,0.55) 0deg,   transparent 45deg,
+    rgba(57,208,216,0.55) 60deg,  transparent 105deg,
+    rgba(57,208,216,0.55) 120deg, transparent 165deg,
+    rgba(57,208,216,0.55) 180deg, transparent 225deg,
+    rgba(57,208,216,0.55) 240deg, transparent 285deg,
+    rgba(57,208,216,0.55) 300deg, transparent 345deg
+  );
+}
+
+.gpu-fan-hub {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #3a3a3a, #111);
+  border: 1px solid rgba(57,208,216,0.6);
+  z-index: 1;
+  position: relative;
+}
+
+.gpu-heatsink {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex: 1;
+  height: 40px;
+}
+
+.gpu-fin {
+  flex: 1;
+  height: 36px;
+  background: linear-gradient(180deg, rgba(57,208,216,0.55), rgba(57,208,216,0.12));
+  border-radius: 1px;
+}
+
+.gpu-connector {
+  position: absolute;
+  bottom: -10px;
+  left: 4px; right: 4px;
+  height: 10px;
+  background: linear-gradient(180deg, #a06810, #6b4508);
+  border-radius: 0 0 1px 1px;
+}
+
 /* ------------------------------------------------------------------
    FUNCTION DEMO ANIMATIONS
    ------------------------------------------------------------------ */
@@ -1023,6 +1135,57 @@
 @keyframes print-line {
   0%,  5%  { width: 0%; }
   70%, 100% { width: 100%; }
+}
+
+/* GPU — pixel rendering grid */
+.demo-gpu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.demo-gpu-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  flex: 1;
+}
+
+.demo-gpu-pixel {
+  height: 14px;
+  border-radius: 2px;
+  background: rgba(57,208,216,0.1);
+  border: 1px solid rgba(57,208,216,0.2);
+  animation: gpu-pixel 2.5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.08s);
+}
+
+@keyframes gpu-pixel {
+  0%, 100% { background: rgba(57,208,216,0.1); }
+  50%       { background: rgba(57,208,216,0.7); box-shadow: 0 0 4px rgba(57,208,216,0.5); }
+}
+
+.demo-gpu-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.demo-gpu-fps {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: #39d0d8;
+  text-shadow: 0 0 10px rgba(57,208,216,0.5);
+  line-height: 1;
+}
+
+.demo-gpu-fps-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-text-secondary);
 }
 
 /* ------------------------------------------------------------------

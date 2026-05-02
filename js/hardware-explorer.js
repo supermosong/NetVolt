@@ -75,6 +75,16 @@
       tagline: 'Output device. Converts a digital document into a physical paper copy by spraying ink or fusing toner onto the page.',
       demoLabel: 'Printing a Document',
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>'
+    },
+    {
+      id: 'gpu',
+      name: 'GPU',
+      fullName: 'Graphics Processing Unit',
+      color: '#39d0d8',
+      colorRgb: '57,208,216',
+      tagline: 'Handles all graphics rendering. Thousands of tiny parallel cores draw every pixel on screen — from a simple desktop to complex 3D games and AI workloads.',
+      demoLabel: 'Rendering Pixels',
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="17" height="13" rx="2"/><circle cx="9" cy="12" r="3"/><line x1="14" y1="9" x2="14" y2="15"/><line x1="16" y1="9" x2="16" y2="15"/><line x1="19" y1="9" x2="22" y2="9"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="19" y1="15" x2="22" y2="15"/></svg>'
     }
   ];
 
@@ -272,6 +282,7 @@
       case 'keyboard': return getKeyboardModel();
       case 'mouse':    return getMouseModel();
       case 'printer':  return getPrinterModel();
+      case 'gpu':      return getGPUModel();
       default:         return '';
     }
   }
@@ -362,6 +373,21 @@
     );
   }
 
+  function getGPUModel() {
+    var fins = repeat(5, function () { return '<div class="gpu-fin"></div>'; });
+    return (
+      '<div class="gpu-model">' +
+        '<div class="gpu-pcb">' +
+          '<div class="gpu-fan">' +
+            '<div class="gpu-fan-hub"></div>' +
+          '</div>' +
+          '<div class="gpu-heatsink">' + fins + '</div>' +
+          '<div class="gpu-connector"></div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
   /* ------------------------------------------------------------------
      FUNCTION DEMOS  (HTML for demo area, animated by CSS + JS)
      ------------------------------------------------------------------ */
@@ -438,6 +464,21 @@
           );
         });
         return '<div class="demo-printer-lines">' + lines + '</div>';
+      }
+
+      case 'gpu': {
+        var pixels = repeat(25, function (i) {
+          return '<div class="demo-gpu-pixel" style="--i:' + i + '"></div>';
+        });
+        return (
+          '<div class="demo-gpu">' +
+            '<div class="demo-gpu-grid">' + pixels + '</div>' +
+            '<div class="demo-gpu-info">' +
+              '<span class="demo-gpu-fps">60</span>' +
+              '<span class="demo-gpu-fps-label">FPS</span>' +
+            '</div>' +
+          '</div>'
+        );
       }
 
       default: return '';
