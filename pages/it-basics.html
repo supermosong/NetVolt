@@ -204,7 +204,94 @@
     </section>
 
     <!-- =========================================================
-         SECTION 1 — WHAT IS A COMPUTER?
+         SECTION 1 — INTERACTIVE HARDWARE EXPLORER
+         ========================================================= -->
+    <section class="content-section hw-explorer-section"
+             aria-labelledby="explorer-title">
+      <div class="container">
+
+        <h2 class="section-title" id="explorer-title">Explore Hardware in 3D</h2>
+        <p class="section-subtitle">
+          Six components orbit the computer. Click — or press
+          <kbd style="font-family:var(--font-mono);font-size:0.8em;padding:1px 5px;border:1px solid var(--color-border);border-radius:3px;">Enter</kbd>
+          — on any one to inspect it in 3D and watch what it does.
+        </p>
+
+        <noscript>
+          <div class="hw-noscript-fallback">
+            <p>Enable JavaScript to use the interactive hardware explorer.</p>
+          </div>
+        </noscript>
+
+        <!-- Main explorer layout: orbit scene + detail panel -->
+        <div class="hw-explorer-container">
+
+          <!-- ORBIT SCENE -->
+          <div class="hw-orbit-scene" id="hwOrbitScene"
+               aria-label="Computer hardware components orbiting a central display">
+
+            <!-- Dashed orbit ring (decorative) -->
+            <div class="hw-orbit-ring" aria-hidden="true"></div>
+
+            <!-- Centre hub: monitor icon -->
+            <div class="hw-center-hub" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+
+            <!-- Orbit items injected by hardware-explorer.js -->
+            <div class="hw-orbit-items"
+                 id="hwOrbitItems"
+                 role="list"
+                 aria-label="Hardware components — click to explore"></div>
+
+          </div><!-- /hw-orbit-scene -->
+
+          <!-- DETAIL PANEL (hidden until a component is selected) -->
+          <div class="hw-detail-panel"
+               id="hwDetailPanel"
+               role="region"
+               aria-label="Component detail"
+               aria-live="polite"
+               hidden>
+
+            <button class="hw-close-btn"
+                    id="hwCloseBtn"
+                    aria-label="Close component detail and return to orbit view">
+              <svg viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round"
+                   style="width:13px;height:13px;flex-shrink:0;">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+              Back to orbit
+            </button>
+
+            <!-- Content injected by hardware-explorer.js -->
+            <div id="hwDetailContent"></div>
+
+          </div><!-- /hw-detail-panel -->
+
+        </div><!-- /hw-explorer-container -->
+
+        <p class="hw-keyboard-hint" aria-hidden="true">
+          Tip: use <kbd style="font-family:var(--font-mono);font-size:0.8em;padding:1px 4px;border:1px solid var(--color-border);border-radius:3px;">Tab</kbd> +
+          <kbd style="font-family:var(--font-mono);font-size:0.8em;padding:1px 4px;border:1px solid var(--color-border);border-radius:3px;">Enter</kbd>
+          to explore with keyboard &nbsp;·&nbsp;
+          <kbd style="font-family:var(--font-mono);font-size:0.8em;padding:1px 4px;border:1px solid var(--color-border);border-radius:3px;">Esc</kbd>
+          to close
+        </p>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2 — WHAT IS A COMPUTER?
          ========================================================= -->
     <section class="content-section" aria-labelledby="sec1-title">
       <div class="container">
@@ -438,93 +525,6 @@
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         SECTION 1b — INTERACTIVE HARDWARE EXPLORER
-         ========================================================= -->
-    <section class="content-section hw-explorer-section"
-             aria-labelledby="explorer-title">
-      <div class="container">
-
-        <h2 class="section-title" id="explorer-title">Explore Hardware in 3D</h2>
-        <p class="section-subtitle">
-          Six components orbit the computer. Click — or press
-          <kbd style="font-family:var(--font-mono);font-size:0.8em;padding:1px 5px;border:1px solid var(--color-border);border-radius:3px;">Enter</kbd>
-          — on any one to inspect it in 3D and watch what it does.
-        </p>
-
-        <noscript>
-          <div class="hw-noscript-fallback">
-            <p>Enable JavaScript to use the interactive hardware explorer.</p>
-          </div>
-        </noscript>
-
-        <!-- Main explorer layout: orbit scene + detail panel -->
-        <div class="hw-explorer-container">
-
-          <!-- ORBIT SCENE -->
-          <div class="hw-orbit-scene" id="hwOrbitScene"
-               aria-label="Computer hardware components orbiting a central display">
-
-            <!-- Dashed orbit ring (decorative) -->
-            <div class="hw-orbit-ring" aria-hidden="true"></div>
-
-            <!-- Centre hub: monitor icon -->
-            <div class="hw-center-hub" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-            </div>
-
-            <!-- Orbit items injected by hardware-explorer.js -->
-            <div class="hw-orbit-items"
-                 id="hwOrbitItems"
-                 role="list"
-                 aria-label="Hardware components — click to explore"></div>
-
-          </div><!-- /hw-orbit-scene -->
-
-          <!-- DETAIL PANEL (hidden until a component is selected) -->
-          <div class="hw-detail-panel"
-               id="hwDetailPanel"
-               role="region"
-               aria-label="Component detail"
-               aria-live="polite"
-               hidden>
-
-            <button class="hw-close-btn"
-                    id="hwCloseBtn"
-                    aria-label="Close component detail and return to orbit view">
-              <svg viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round"
-                   style="width:13px;height:13px;flex-shrink:0;">
-                <polyline points="15 18 9 12 15 6"/>
-              </svg>
-              Back to orbit
-            </button>
-
-            <!-- Content injected by hardware-explorer.js -->
-            <div id="hwDetailContent"></div>
-
-          </div><!-- /hw-detail-panel -->
-
-        </div><!-- /hw-explorer-container -->
-
-        <p class="hw-keyboard-hint" aria-hidden="true">
-          Tip: use <kbd style="font-family:var(--font-mono);font-size:0.8em;padding:1px 4px;border:1px solid var(--color-border);border-radius:3px;">Tab</kbd> +
-          <kbd style="font-family:var(--font-mono);font-size:0.8em;padding:1px 4px;border:1px solid var(--color-border);border-radius:3px;">Enter</kbd>
-          to explore with keyboard &nbsp;·&nbsp;
-          <kbd style="font-family:var(--font-mono);font-size:0.8em;padding:1px 4px;border:1px solid var(--color-border);border-radius:3px;">Esc</kbd>
-          to close
-        </p>
-
       </div>
     </section>
 
