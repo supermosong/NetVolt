@@ -42,36 +42,37 @@ project-root/
 
 ---
 
-## Phase 2 — IT Basics Page
+## Phase 2 — IT Basics Page ✅
 
-- [ ] 7. Write `pages/it-basics.html` with five content sections:
+- [x] 7. Write `pages/it-basics.html` with five content sections:
   - What is a Computer? (hardware overview with labeled diagram)
   - Input & Output Devices
   - Storage — RAM vs SSD vs HDD
   - Software vs Hardware
   - Operating Systems (Windows / macOS / Linux)
-- [ ] 8. Add flip-card interaction — click a component card to reveal its definition
-- [ ] 9. Add end-of-page mini quiz (5 questions, instant feedback, no backend)
-- [ ] 10. Extend `css/components.css` and `js/interactions.js` for the above
+- [x] 8. Add flip-card interaction — click a component card to reveal its definition
+- [x] 9. Add end-of-page mini quiz (5 questions, instant feedback, no backend)
+- [x] 10. Extend `css/components.css` and `js/interactions.js` for the above
+- [x] UI refresh on `it-basics.html` — hardware section redesigned (2026-05-01); orbital 3D explorer moved to top of page
 
 ---
 
-## Phase 3 — Remaining Topic Pages
+## Phase 3 — Remaining Topic Pages ✅
 
-- [ ] 11. `pages/wifi-networking.html`
-- [ ] 12. `pages/computer-networks.html`
-- [ ] 13. `pages/electrical-systems.html`
+- [x] 11. `pages/wifi-networking.html`
+- [x] 12. `pages/computer-networks.html`
+- [x] 13. `pages/electrical-systems.html`
 
 *Each page follows the same structure as Phase 2, built one at a time.*
 
 ---
 
-## Phase 4 — Accessibility & Polish
+## Phase 4 — Accessibility & Polish ✅
 
-- [ ] 14. ARIA labels, keyboard navigation, focus indicators (WCAG 2.1 AA)
-- [ ] 15. Full mobile responsiveness pass on all pages
-- [ ] 16. Contrast ratio audit on all text/background combinations
-- [ ] 17. Final cross-browser smoke test
+- [x] 14. ARIA labels, keyboard navigation, focus indicators (WCAG 2.1 AA)
+- [x] 15. Full mobile responsiveness pass on all pages
+- [x] 16. Contrast ratio audit on all text/background combinations
+- [x] 17. Final cross-browser smoke test
 
 ---
 
