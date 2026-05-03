@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Tells mobile browsers to use the device width, not zoom out -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-        content="TechLearn — interactive lessons on IT basics, Wi-Fi, computer networks, and electrical systems. Designed for total beginners." />
+        content="NetVolt — interactive lessons on IT basics, Wi-Fi, computer networks, and electrical systems. Designed for total beginners." />
 
-  <title>TechLearn — Learn Technology From Scratch</title>
+  <title>NetVolt — Learn Technology From Scratch</title>
 
   <!-- Stylesheets: global tokens first, then layout, then components -->
   <link rel="stylesheet" href="css/global.css" />
@@ -17,7 +16,7 @@
 
 <body>
 
-  <!-- Skip link — first focusable element; lets keyboard users jump past nav (WCAG 2.4.1) -->
+  <!-- Skip link — WCAG 2.4.1 -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- =========================================================
@@ -26,18 +25,15 @@
   <nav class="site-nav" aria-label="Main navigation">
     <div class="container">
 
-      <!-- Logo -->
-      <a href="index.html" class="nav-logo" aria-label="TechLearn home">
-        <!-- Monitor / screen icon -->
+      <!-- Logo — NetVolt in Space Grotesk, coral -->
+      <a href="index.html" class="nav-logo" aria-label="NetVolt home">
         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2"/>
-          <line x1="8" y1="21" x2="16" y2="21"/>
-          <line x1="12" y1="17" x2="12" y2="21"/>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
         </svg>
-        TechLearn
+        NetVolt
       </a>
 
       <!-- Desktop nav links -->
@@ -124,7 +120,7 @@
     </div>
   </nav>
 
-  <!-- Mobile dropdown menu -->
+  <!-- Mobile slide-in drawer -->
   <div class="nav-mobile-menu" id="nav-mobile-menu" role="dialog"
        aria-modal="true" aria-label="Navigation menu">
     <a href="index.html">
@@ -190,10 +186,12 @@
        ========================================================= -->
   <main class="site-main" id="main-content">
 
-    <!-- Hero Section -->
+    <!-- -------------------------------------------------------
+         HERO SECTION
+    ------------------------------------------------------------ -->
     <section class="page-hero" aria-labelledby="hero-title">
       <div class="container">
-        <p class="page-hero__eyebrow">Free &amp; Interactive</p>
+        <span class="label-tag">FREE &middot; INTERACTIVE</span>
         <h1 class="page-hero__title" id="hero-title">
           Learn Technology<br />From Scratch
         </h1>
@@ -207,83 +205,91 @@
           <span class="badge badge-neutral">No Sign-up Required</span>
           <span class="badge badge-neutral">Works Offline</span>
         </div>
+
+        <!-- Overview node diagram — shows how the topics connect -->
+        <div id="homepage-diagram" style="margin-top: var(--space-10);"
+             aria-label="Diagram showing the five learning topics and how they connect">
+        </div>
       </div>
     </section>
 
-    <!-- How to Use This Site -->
+    <!-- -------------------------------------------------------
+         SCROLL VIDEO — scrub forward on scroll-down, reverse on scroll-up
+    ------------------------------------------------------------ -->
+    <section class="scroll-video-section" aria-label="Interactive scroll animation">
+      <div class="scroll-video-sticky">
+        <video
+          class="scroll-video-el"
+          src="assets/scroll-intro.mp4"
+          muted
+          preload="auto"
+          playsinline
+          aria-hidden="true"
+        ></video>
+        <div class="scroll-video-overlay">
+          <span class="scroll-video-hint" aria-hidden="true">↓ Scroll to explore</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         HOW THIS SITE WORKS
+    ------------------------------------------------------------ -->
     <section class="content-section" aria-labelledby="how-title">
       <div class="container">
+        <span class="label-tag">GETTING STARTED</span>
         <h2 class="section-title" id="how-title">How This Site Works</h2>
         <p class="section-subtitle">
           Each topic is its own page. Read the lessons, interact with the
           diagrams, then test yourself with a short quiz at the end.
         </p>
 
-        <div class="card-grid" style="margin-top: var(--space-6);">
+        <!-- Step list — animates in on scroll -->
+        <ol class="step-list" style="margin-top: var(--space-8);" aria-label="Three steps to learning">
 
-          <div class="card">
-            <div class="card__icon">
-              <!-- Book icon -->
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                   viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-              </svg>
+          <li class="step-item">
+            <div class="step-number" aria-hidden="true">1</div>
+            <div class="step-content">
+              <p class="step-title">Read &amp; Learn</p>
+              <p class="step-subtitle">
+                Each lesson explains concepts in plain language with real-world
+                examples — no jargon left unexplained.
+              </p>
             </div>
-            <h3 class="card__title">1. Read &amp; Learn</h3>
-            <p class="card__body">
-              Each lesson explains concepts in plain language with real-world
-              examples — no jargon left unexplained.
-            </p>
-          </div>
+          </li>
 
-          <div class="card">
-            <div class="card__icon">
-              <!-- Hand / click icon -->
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                   viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
-                <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
-                <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
-                <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
-              </svg>
+          <li class="step-item">
+            <div class="step-number" aria-hidden="true">2</div>
+            <div class="step-content">
+              <p class="step-title">Try It Yourself</p>
+              <p class="step-subtitle">
+                Click flip-cards, expand accordion panels, and interact with
+                labelled diagrams to build understanding hands-on.
+              </p>
             </div>
-            <h3 class="card__title">2. Try It Yourself</h3>
-            <p class="card__body">
-              Click flip-cards, expand accordion panels, and interact with
-              labelled diagrams to build understanding hands-on.
-            </p>
-          </div>
+          </li>
 
-          <div class="card">
-            <div class="card__icon">
-              <!-- Check / quiz icon -->
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                   viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 11l3 3L22 4"/>
-                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-              </svg>
+          <li class="step-item">
+            <div class="step-number" aria-hidden="true">3</div>
+            <div class="step-content">
+              <p class="step-title">Test Yourself</p>
+              <p class="step-subtitle">
+                Each page ends with a short quiz. Get instant feedback and see
+                your score — no account or sign-up needed.
+              </p>
             </div>
-            <h3 class="card__title">3. Test Yourself</h3>
-            <p class="card__body">
-              Each page ends with a short quiz. Get instant feedback and see
-              your score — no account or sign-up needed.
-            </p>
-          </div>
+          </li>
 
-        </div>
+        </ol>
       </div>
     </section>
 
-    <!-- Topic Cards -->
+    <!-- -------------------------------------------------------
+         TOPIC CARDS
+    ------------------------------------------------------------ -->
     <section class="content-section" aria-labelledby="topics-title">
       <div class="container">
+        <span class="label-tag">CURRICULUM</span>
         <h2 class="section-title" id="topics-title">Choose a Topic</h2>
         <p class="section-subtitle">
           Start anywhere — each topic is self-contained and designed to be
@@ -407,13 +413,41 @@
         <a href="pages/electrical-systems.html">Electrical</a>
       </nav>
       <p class="footer-copy">
-        &copy; 2026 TechLearn &mdash; Free educational resources for everyone.
+        &copy; 2026 NetVolt &mdash; Free educational resources for everyone.
       </p>
     </div>
   </footer>
 
-  <!-- Scripts loaded at the end so HTML is parsed before JS runs -->
+  <!-- Scripts at end so HTML is parsed before JS runs -->
   <script src="js/nav.js"></script>
+  <script src="js/interactions.js"></script>
+
+  <!-- Node diagram data for the homepage overview -->
+  <script>
+    /* Five topic nodes arranged in a loose network layout.
+       x/y are percentage positions within the SVG viewBox. */
+    var HOME_NODES = [
+      { id: 'it',          label: 'IT Basics',   x: 50,  y: 15,  color: '#ff5533' },
+      { id: 'wifi',        label: 'Wi-Fi',        x: 82,  y: 42,  color: '#00e5ff' },
+      { id: 'networks',    label: 'Networks',     x: 68,  y: 78,  color: '#8b5cf6' },
+      { id: 'electrical',  label: 'Electrical',   x: 32,  y: 78,  color: '#ffd700' },
+      { id: 'overview',    label: 'Technology',   x: 18,  y: 42,  color: '#ff2d9b' }
+    ];
+
+    var HOME_EDGES = [
+      ['overview', 'it'],
+      ['it',       'wifi'],
+      ['wifi',     'networks'],
+      ['networks', 'electrical'],
+      ['electrical','overview'],
+      ['overview', 'networks']
+    ];
+
+    /* Runs after DOMContentLoaded because interactions.js is deferred */
+    document.addEventListener('DOMContentLoaded', function () {
+      initNodeDiagram('homepage-diagram', HOME_NODES, HOME_EDGES);
+    });
+  </script>
 
 </body>
 </html>

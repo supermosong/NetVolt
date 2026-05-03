@@ -1,105 +1,116 @@
 /* =============================================================
    global.css
-   Purpose: CSS custom properties (design tokens), a minimal
-   reset, and base typography for the entire site.
-   All other CSS files import values from here via var().
+   Purpose: CSS custom properties (design tokens), minimal reset,
+   base typography, utility classes, label-tag, step-list, and
+   button overrides for the cinematic dark-mode visual system.
    ============================================================= */
 
 /* -------------------------------------------------------------
    1. DESIGN TOKENS
-   These variables are the single source of truth for colors,
-   fonts, spacing, and border-radius across every page.
    ------------------------------------------------------------- */
 :root {
-  /* -- Colour palette: dark-mode first ------------------------ */
-  --color-bg-primary:    #0d1117;   /* main page background     */
-  --color-bg-secondary:  #161b22;   /* cards, nav, sidebar      */
-  --color-bg-tertiary:   #21262d;   /* hover states, dividers   */
+  /* -- Background ------------------------------------------- */
+  --color-bg-primary:   #0a0a0f;   /* deepest page background    */
+  --color-bg-secondary: #0d0d1a;   /* cards, nav, elevated areas */
+  --color-bg-tertiary:  #141428;   /* hover states, dividers     */
 
-  --color-accent:        #58a6ff;   /* primary interactive blue */
-  --color-accent-hover:  #79b8ff;   /* lighter on hover         */
-  --color-accent-glow:   rgba(88, 166, 255, 0.15); /* subtle glow  */
+  /* -- Accent palette --------------------------------------- */
+  --color-coral:   #ff5533;
+  --color-cyan:    #00e5ff;
+  --color-magenta: #ff2d9b;
+  --color-gold:    #ffd700;
+  --color-purple:  #8b5cf6;
 
-  --color-success:       #3fb950;   /* correct answer / ok      */
-  --color-warning:       #d29922;   /* caution notices          */
-  --color-danger:        #f85149;   /* wrong answer / error     */
+  /* Backwards-compat alias so existing code still compiles   */
+  --color-accent:       var(--color-coral);
+  --color-accent-hover: #ff7755;
+  --color-accent-glow:  rgba(255, 85, 51, 0.15);
 
-  --color-text-primary:  #e6edf3;   /* body copy                */
-  --color-text-secondary:#8b949e;   /* captions, meta info      */
-  --color-text-muted:    #484f58;   /* placeholder, disabled    */
+  /* -- Semantic colours ------------------------------------- */
+  --color-success: #3fb950;
+  --color-warning: #ffd700;
+  --color-danger:  #f85149;
 
-  --color-border:        #30363d;   /* card and section borders */
+  /* -- Text ------------------------------------------------- */
+  --color-text-primary:   #ffffff;
+  --color-text-secondary: #a0a0b8;   /* muted — 4.6:1 on #0a0a0f ✓ */
+  --color-text-subtle:    #e0e0ff;
 
-  /* -- Typography -------------------------------------------- */
-  --font-heading: 'Inter', system-ui, sans-serif;
+  /* -- Borders ---------------------------------------------- */
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  /* -- Typography ------------------------------------------- */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --font-body:    'Inter', system-ui, sans-serif;
   --font-mono:    'Fira Code', 'Courier New', monospace;
 
-  --text-xs:   0.75rem;    /* 12px */
-  --text-sm:   0.875rem;   /* 14px */
-  --text-base: 1rem;       /* 16px */
-  --text-lg:   1.125rem;   /* 18px */
-  --text-xl:   1.25rem;    /* 20px */
-  --text-2xl:  1.5rem;     /* 24px */
-  --text-3xl:  1.875rem;   /* 30px */
-  --text-4xl:  2.25rem;    /* 36px */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
 
   --weight-normal: 400;
   --weight-medium: 500;
   --weight-bold:   700;
+  --weight-black:  900;
 
   --leading-tight:  1.25;
   --leading-normal: 1.6;
   --leading-loose:  1.8;
 
-  /* -- Spacing scale (multiples of 4px) ---------------------- */
-  --space-1:  0.25rem;   /*  4px */
-  --space-2:  0.5rem;    /*  8px */
-  --space-3:  0.75rem;   /* 12px */
-  --space-4:  1rem;      /* 16px */
-  --space-5:  1.25rem;   /* 20px */
-  --space-6:  1.5rem;    /* 24px */
-  --space-8:  2rem;      /* 32px */
-  --space-10: 2.5rem;    /* 40px */
-  --space-12: 3rem;      /* 48px */
-  --space-16: 4rem;      /* 64px */
-  --space-20: 5rem;      /* 80px */
+  /* -- Spacing (4px grid) ----------------------------------- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
 
-  /* -- Borders & shadows ------------------------------------- */
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
-  --radius-xl:  20px;
+  /* -- Borders & shadows ------------------------------------ */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;   /* cards use 16px per spec             */
+  --radius-xl:   20px;
   --radius-full: 9999px;
 
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+  --shadow-sm: 0 1px 3px  rgba(0,0,0,0.6);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.7);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.8);
 
-  /* -- Transitions ------------------------------------------- */
+  /* -- Transitions ------------------------------------------ */
   --transition-fast:   150ms ease;
   --transition-normal: 250ms ease;
   --transition-slow:   400ms ease;
 
-  /* -- Layout ------------------------------------------------ */
-  --max-width: 1100px;   /* maximum content width             */
-  --nav-height: 64px;    /* used to offset sticky-nav padding */
+  /* -- Layout ----------------------------------------------- */
+  --max-width:  1100px;
+  --nav-height: 64px;
+
+  /* -- Gradient definition (reused on headings + buttons) --- */
+  --gradient-hero: linear-gradient(135deg, var(--color-coral) 0%, var(--color-magenta) 50%, var(--color-purple) 100%);
+  --gradient-btn:  linear-gradient(135deg, var(--color-coral), var(--color-magenta));
 }
 
 /* -------------------------------------------------------------
    2. MINIMAL RESET
-   Removes browser inconsistencies without nuking everything.
    ------------------------------------------------------------- */
 *, *::before, *::after {
-  box-sizing: border-box;  /* padding/border included in width */
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-  /* Smooth scrolling for anchor links */
   scroll-behavior: smooth;
-  /* Prevent font size inflation on mobile after orientation change */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -112,95 +123,78 @@ body {
   min-height: 100vh;
 }
 
-/* Remove list styles when a <ul>/<ol> is inside a nav or has
-   a role — keeps semantic HTML without bullet-point noise */
-nav ul,
-nav ol,
-[role="list"] {
-  list-style: none;
-}
+nav ul, nav ol, [role="list"] { list-style: none; }
 
-/* Make images responsive and block by default */
-img,
-svg {
-  display: block;
-  max-width: 100%;
-}
+img, svg { display: block; max-width: 100%; }
 
-/* Inherit fonts for form elements (browsers reset these) */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
+input, button, textarea, select { font: inherit; }
 
-/* Remove default button appearance */
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-}
+button { cursor: pointer; border: none; background: none; }
 
-/* Prevent overly long words from overflowing narrow containers */
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-}
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 
 /* -------------------------------------------------------------
    3. BASE TYPOGRAPHY
-   Heading sizes and line-heights for consistent rhythm.
    ------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-black);
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
 }
 
-h1 { font-size: var(--text-4xl); }
-h2 { font-size: var(--text-3xl); }
+/* Gradient text for page-level headings — applied via .heading-gradient */
+.heading-gradient {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Fallback for browsers without background-clip:text support */
+  color: var(--color-text-primary);
+}
+
+h1 { font-size: clamp(var(--text-3xl), 6vw, 3.5rem); }
+h2 { font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl)); }
 h3 { font-size: var(--text-2xl); }
 h4 { font-size: var(--text-xl);  }
 h5 { font-size: var(--text-lg);  }
 h6 { font-size: var(--text-base);}
 
 p {
+  font-family: var(--font-body);
+  font-weight: var(--weight-normal);
   line-height: var(--leading-loose);
   color: var(--color-text-primary);
-  max-width: 68ch; /* ~optimal reading width */
+  max-width: 68ch;
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-coral);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-a:hover,
-a:focus-visible {
+a:hover, a:focus-visible {
   color: var(--color-accent-hover);
   text-decoration: underline;
 }
 
-/* Visible focus ring for keyboard users (WCAG 2.1 AA) */
+/* Keyboard focus ring (WCAG 2.1 AA) */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-coral);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
 
-/* Inline code snippets */
 code {
   font-family: var(--font-mono);
   font-size: 0.9em;
   background-color: var(--color-bg-tertiary);
-  color: var(--color-accent-hover);
+  color: var(--color-cyan);
   padding: 0.1em 0.4em;
   border-radius: var(--radius-sm);
 }
 
-/* Horizontal rule */
 hr {
   border: none;
   border-top: 1px solid var(--color-border);
@@ -209,67 +203,247 @@ hr {
 
 /* -------------------------------------------------------------
    4. UTILITY CLASSES
-   Small, single-purpose helpers used throughout all pages.
    ------------------------------------------------------------- */
-
-/* Visually hide an element but keep it accessible to screen readers */
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
   overflow: hidden;
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border: 0;
 }
 
-/* Constrain content width and centre it */
 .container {
   width: 100%;
   max-width: var(--max-width);
-  margin-inline: auto;           /* shorthand for left+right auto */
+  margin-inline: auto;
   padding-inline: var(--space-6);
 }
 
-/* Simple flex row helper */
 .flex { display: flex; }
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.flex-center { display: flex; align-items: center; justify-content: center; }
 
-/* Text colour helpers */
-.text-accent   { color: var(--color-accent); }
+.text-accent   { color: var(--color-coral); }
 .text-muted    { color: var(--color-text-secondary); }
 .text-success  { color: var(--color-success); }
 .text-danger   { color: var(--color-danger); }
 
-/* Spacing helpers */
 .mt-auto { margin-top: auto; }
 .mb-4    { margin-bottom: var(--space-4); }
 .mb-8    { margin-bottom: var(--space-8); }
 
-/* Skip-to-content link (WCAG 2.4.1)
-   Visually hidden until focused — lets keyboard users jump past the nav */
+/* Skip-to-content (WCAG 2.4.1) */
 .skip-link {
   position: absolute;
-  top: -100%;          /* off-screen by default */
+  top: -100%;
   left: var(--space-4);
-  z-index: 200;        /* above the sticky nav */
+  z-index: 200;
   padding: var(--space-2) var(--space-5);
-  background-color: var(--color-accent);
-  color: #0d1117;
+  background: var(--gradient-btn);
+  color: #fff;
   font-weight: var(--weight-bold);
   font-size: var(--text-sm);
   border-radius: var(--radius-md);
   text-decoration: none;
   transition: top var(--transition-fast);
 }
+.skip-link:focus { top: var(--space-2); }
 
-/* Becomes visible when keyboard-focused */
-.skip-link:focus {
-  top: var(--space-2);
+/* -------------------------------------------------------------
+   5. LABEL TAG  — pill above section headings
+   Usage: <span class="label-tag">TOPIC · SUBTOPIC</span>
+   ------------------------------------------------------------- */
+.label-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-body);
+  font-size: 0.75rem;           /* 12px */
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+/* -------------------------------------------------------------
+   6. STEP LIST  — numbered steps with scroll-in animation
+   Usage:
+     <ol class="step-list">
+       <li class="step-item">
+         <div class="step-number" aria-hidden="true">1</div>
+         <div class="step-content">
+           <p class="step-title">Title</p>
+           <p class="step-subtitle">Description</p>
+         </div>
+       </li>
+     </ol>
+   JS in interactions.js adds .step-visible via IntersectionObserver.
+   ------------------------------------------------------------- */
+.step-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  /* Start hidden; JS adds .step-visible to trigger the animation */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.step-item.step-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-number {
+  /* 32px colored circle */
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-btn);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  margin-top: 3px; /* optical alignment with text */
+}
+
+.step-content { display: flex; flex-direction: column; gap: var(--space-1); }
+
+.step-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--leading-tight);
+  max-width: none; /* override p max-width */
+}
+
+.step-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-loose);
+  max-width: none;
+}
+
+/* -------------------------------------------------------------
+   7. BUTTONS  — redesigned with gradient primary
+   ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: box-shadow var(--transition-fast),
+              opacity var(--transition-fast),
+              background var(--transition-fast),
+              color var(--transition-fast);
+}
+
+/* Primary: coral→magenta gradient */
+.btn-primary {
+  background: var(--gradient-btn);
+  color: #fff;
+  border-color: transparent;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  box-shadow: 0 0 20px rgba(255, 85, 51, 0.4);
+  opacity: 0.92;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Secondary: transparent, accent border, fills on hover */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-coral);
+  border-color: var(--color-coral);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: rgba(255, 85, 51, 0.12);
+  color: var(--color-accent-hover);
+  text-decoration: none;
+}
+
+/* Ghost */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* -------------------------------------------------------------
+   8. BADGES / TAGS  (existing — updated colors)
+   ------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-accent {
+  background-color: rgba(255, 85, 51, 0.12);
+  color: var(--color-coral);
+  border: 1px solid var(--color-coral);
+}
+
+.badge-success {
+  background-color: rgba(63, 185, 80, 0.15);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.badge-warning {
+  background-color: rgba(255, 215, 0, 0.15);
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+}
+
+.badge-neutral {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
 }
