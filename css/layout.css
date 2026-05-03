@@ -219,7 +219,7 @@
    ------------------------------------------------------------- */
 .page-hero {
   position: relative;
-  padding: var(--space-16) 0 var(--space-12);
+  padding: var(--space-20) 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   overflow: hidden; /* contain the glow blobs */
 }
@@ -234,28 +234,28 @@
   z-index: 0;
 }
 
-/* Purple-blue blob — top right */
+/* Purple-blue blob — top right, 15% from edge, size reduced 20%, opacity lowered to 0.12 */
 .page-hero::before {
-  width: 600px;
-  height: 600px;
-  top: -200px;
-  right: -150px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, transparent 70%);
+  width: 480px;
+  height: 480px;
+  top: 15%;
+  right: 15%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
 }
 
-/* Coral-orange blob — bottom left */
+/* Coral-orange blob — bottom left, 15% from edge, size reduced 20% */
 .page-hero::after {
-  width: 500px;
-  height: 500px;
-  bottom: -180px;
-  left: -100px;
+  width: 400px;
+  height: 400px;
+  bottom: 15%;
+  left: 15%;
   background: radial-gradient(circle, rgba(255, 85, 51, 0.14) 0%, transparent 70%);
 }
 
 /* Keep all hero content above the pseudo-element blobs */
-.page-hero .container { position: relative; z-index: 1; }
-
 .page-hero .container {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -287,7 +287,6 @@
   color: var(--color-text-secondary);
   max-width: 55ch;
   line-height: var(--leading-loose);
-  max-width: 55ch;
 }
 
 .page-hero__tags {
@@ -305,35 +304,35 @@
 /* Content sections with atmospheric glow backgrounds */
 .content-section {
   position: relative;
-  padding: var(--space-12) 0;
+  padding: var(--space-20) 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
 }
 
 .content-section:last-of-type { border-bottom: none; }
 
-/* Alternate sections get a subtle purple glow top-right */
+/* Alternate sections — purple glow top-right, 15% from edge, size reduced 20% */
 .content-section:nth-child(even)::before {
   content: '';
   position: absolute;
-  width: 500px;
-  height: 500px;
-  top: -200px;
-  right: -150px;
+  width: 400px;
+  height: 400px;
+  top: 15%;
+  right: 15%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Odd sections get a cyan glow bottom-left */
+/* Odd sections — cyan glow bottom-left, 15% from edge, size reduced 20% */
 .content-section:nth-child(odd)::after {
   content: '';
   position: absolute;
-  width: 400px;
-  height: 400px;
-  bottom: -160px;
-  left: -100px;
+  width: 320px;
+  height: 320px;
+  bottom: 15%;
+  left: 15%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
   pointer-events: none;
@@ -411,10 +410,12 @@
   .nav-mobile-menu { display: none !important; }
 }
 
-/* Mobile: hide desktop links, show hamburger */
+/* Mobile: hide desktop links, show hamburger, reduce section padding to 48px min */
 @media (max-width: 767px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   /* Restore the flex drawer for mobile — the !important above hides it on desktop */
   .nav-mobile-menu { display: flex !important; }
+  .page-hero { padding: var(--space-12) 0; }
+  .content-section { padding: var(--space-12) 0; }
 }

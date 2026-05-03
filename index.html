@@ -3,86 +3,896 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-        content="NetVolt — interactive lessons on IT basics, Wi-Fi, computer networks, and electrical systems. Designed for total beginners." />
+  <meta name="description" content="NetVolt — master technology from the ground up. Interactive lessons on IT, networks, Wi-Fi, and electrical systems." />
+  <title>NetVolt — Technology Mastery</title>
 
-  <title>NetVolt — Learn Technology From Scratch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Stylesheets: global tokens first, then layout, then components -->
-  <link rel="stylesheet" href="css/global.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:        #000000;
+      --bg-primary:   #0a0a0f;
+      --bg-secondary: #0d0d1a;
+      --bg-tertiary:  #141428;
+      --white:        #ffffff;
+      --gray-300:     #a0a0b8;
+      --gray-500:     #555570;
+      --coral:        #ff5533;
+      --coral-hover:  #ff7755;
+      --coral-dim:    rgba(255, 85, 51, 0.12);
+      --coral-glow:   rgba(255, 85, 51, 0.25);
+      --magenta:      #ff2d9b;
+      --purple:       #8b5cf6;
+      --cyan:         #00e5ff;
+      --gradient:     linear-gradient(135deg, #ff5533 0%, #ff2d9b 50%, #8b5cf6 100%);
+      --gradient-btn: linear-gradient(135deg, #ff5533, #ff2d9b);
+      --border:       rgba(255, 255, 255, 0.08);
+      --font-sans:    'Inter', system-ui, sans-serif;
+      --font-head:    'Space Grotesk', system-ui, sans-serif;
+      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--white);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Scrollbar ─────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gray-500); border-radius: 2px; }
+
+    /* ─── Nav ───────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s var(--ease-out), backdrop-filter 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo svg {
+      width: 22px; height: 22px;
+      color: var(--coral);
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+    }
+    .nav-links a {
+      color: var(--gray-300);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--gradient-btn);
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--coral-glow);
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg-primary);
+    }
+
+    /* The product video fills the hero */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75);
+      z-index: 1;
+    }
+
+    /* Top vignette — fades the very top edge to the dark background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 30%;
+      background: linear-gradient(to bottom, rgba(10,10,15,0.7) 0%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Bottom gradient — seamlessly merges video into the dark sections below */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 55%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(10,10,15,0.4) 30%,
+        rgba(10,10,15,0.88) 65%,
+        #0a0a0f 100%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 860px;
+      padding: 0 24px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral);
+      background: var(--coral-dim);
+      border: 1px solid rgba(255, 85, 51, 0.3);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--coral);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeUp 0.9s var(--ease-out) 0.5s forwards;
+    }
+    .hero-title .accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.9s var(--ease-out) 0.7s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.9s var(--ease-out) 0.9s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient-btn);
+      color: #fff;
+      padding: 15px 32px;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--coral-glow);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--coral);
+      padding: 15px 32px;
+      border-radius: 100px;
+      border: 1px solid var(--coral);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      background: var(--coral-dim);
+      transform: translateY(-2px);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s var(--ease-out) 1.5s forwards;
+    }
+    .scroll-indicator span {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ─── Stats Strip ───────────────────────────────────────────── */
+    .stats {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 52px 48px;
+    }
+    .stats-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 0 24px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-family: var(--font-head);
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-value span { color: var(--coral); }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--gray-300);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+      max-width: none;
+    }
+
+    /* ─── Section layout ────────────────────────────────────────── */
+    .section {
+      padding: 120px 48px;
+      background: var(--bg-primary);
+      position: relative;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      max-width: 500px;
+    }
+
+    /* ─── Features Grid ─────────────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+      margin-top: 64px;
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--bg-secondary);
+      padding: 40px 36px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,85,51,0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .feature-card:hover { background: var(--bg-tertiary); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: var(--coral-dim);
+      border: 1px solid rgba(255, 85, 51, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--coral);
+    }
+    .feature-icon svg { width: 22px; height: 22px; }
+
+    .feature-title {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .feature-body {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+
+    /* ─── Split Section ─────────────────────────────────────────── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .split.reverse { direction: rtl; }
+    .split.reverse > * { direction: ltr; }
+
+    .split-visual {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+    }
+    .split-visual video,
+    .split-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .split-visual::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: var(--coral-glow);
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* ─── Steps ─────────────────────────────────────────────────── */
+    .steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 56px;
+    }
+
+    .step {
+      display: flex;
+      gap: 28px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .step:first-child { padding-top: 0; }
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--coral);
+      min-width: 36px;
+      padding-top: 4px;
+    }
+
+    .step-content h3 {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .step-content p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+
+    /* ─── Marquee ───────────────────────────────────────────────── */
+    .marquee-section {
+      background: var(--bg-secondary);
+      padding: 48px 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 64px;
+      white-space: nowrap;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+    .marquee-item {
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+    .marquee-item .sep {
+      width: 4px; height: 4px;
+      background: var(--coral);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    /* ─── CTA Section ───────────────────────────────────────────── */
+    .cta-section {
+      padding: 140px 48px;
+      background: var(--bg-primary);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at center, rgba(255,85,51,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-section .section-title {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      max-width: 740px;
+      margin: 0 auto 24px;
+    }
+    .cta-section .section-body {
+      margin: 0 auto 48px;
+      max-width: 420px;
+      text-align: center;
+    }
+    .cta-section .hero-actions {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.02em;
+    }
+    .footer-logo svg { width: 18px; height: 18px; color: var(--coral); }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.825rem;
+      color: var(--gray-300);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+
+    /* ─── Animations ────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    @keyframes scrollPulse {
+      0%   { transform: scaleY(1); transform-origin: top; }
+      50%  { transform: scaleY(0.6); transform-origin: top; }
+      100% { transform: scaleY(1); transform-origin: top; }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Scroll-reveal base state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children */
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+    }
+    .reveal-stagger.is-visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0ms; }
+    .reveal-stagger.is-visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 80ms; }
+    .reveal-stagger.is-visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 160ms; }
+    .reveal-stagger.is-visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 240ms; }
+    .reveal-stagger.is-visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 320ms; }
+    .reveal-stagger.is-visible > *:nth-child(6) { opacity:1; transform:none; transition-delay: 400ms; }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .section { padding: 80px 24px; }
+      .stats { padding: 40px 24px; }
+      .split { grid-template-columns: 1fr; gap: 40px; }
+      .split.reverse { direction: ltr; }
+      .cta-section { padding: 100px 24px; }
+      .footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
+      .stat-item:last-child { border-bottom: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-ghost { text-align: center; justify-content: center; }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Skip link — WCAG 2.4.1 -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- ─── NAV ──────────────────────────────────────────────────── -->
+  <nav class="nav" id="main-nav" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="NetVolt home">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+      NetVolt
+    </a>
 
-  <!-- =========================================================
-       NAVIGATION
-       ========================================================= -->
-  <nav class="site-nav" aria-label="Main navigation">
+    <ul class="nav-links" role="list">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#topics">Topics</a></li>
+      <li><a href="#topics">Courses</a></li>
+    </ul>
+
+    <a href="pages/it-basics.html" class="nav-cta">NetVolt</a>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section class="hero" aria-labelledby="hero-title">
+    <video
+      class="hero-video"
+      src="f32fe7b9bc955a26d9e30f77d6dc966f_1_1777781245_4697.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    ></video>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Interactive Learning Platform
+      </div>
+
+      <h1 class="hero-title" id="hero-title">
+        Master Technology<br /><span class="accent">From the Ground Up</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Hands-on, beginner-friendly lessons in IT fundamentals,
+        networking, Wi-Fi, and electrical systems — built for curious minds.
+      </p>
+
+      <div class="hero-actions">
+        <a href="pages/it-basics.html" class="btn-primary">
+          Start for Free
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#features" class="btn-ghost">
+          See Features
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── STATS ────────────────────────────────────────────────── -->
+  <div class="stats">
+    <div class="stats-grid reveal-stagger">
+      <div class="stat-item">
+        <div class="stat-value">4<span>+</span></div>
+        <div class="stat-label">Learning Topics</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">20<span>min</span></div>
+        <div class="stat-label">Per Lesson</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">0<span>$</span></div>
+        <div class="stat-label">Always Free</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">100<span>%</span></div>
+        <div class="stat-label">No Sign-up Needed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FEATURES ─────────────────────────────────────────────── -->
+  <section class="section" id="features" aria-labelledby="features-title">
     <div class="container">
+      <div class="reveal">
+        <span class="section-tag">What You Get</span>
+        <h2 class="section-title" id="features-title">
+          Built for how people<br />actually learn
+        </h2>
+        <p class="section-body">
+          No fluff, no jargon. Every lesson is designed to take you
+          from zero to confident in under 20 minutes.
+        </p>
+      </div>
 
-      <!-- Logo — NetVolt in Space Grotesk, coral -->
-      <a href="index.html" class="nav-logo" aria-label="NetVolt home">
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-        </svg>
-        NetVolt
-      </a>
+      <div class="features-grid reveal-stagger">
 
-      <!-- Desktop nav links -->
-      <ul class="nav-links" role="list">
-        <li>
-          <a href="index.html">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="pages/it-basics.html">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
               <rect x="2" y="3" width="20" height="14" rx="2"/>
               <line x1="8" y1="21" x2="16" y2="21"/>
               <line x1="12" y1="17" x2="12" y2="21"/>
             </svg>
-            IT Basics
-          </a>
-        </li>
-        <li>
-          <a href="pages/wifi-networking.html">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
+          </div>
+          <h3 class="feature-title">Interactive Diagrams</h3>
+          <p class="feature-body">
+            Click, explore, and interact with live diagrams that make
+            abstract concepts tangible and memorable.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Instant Quizzes</h3>
+          <p class="feature-body">
+            Test yourself at the end of every lesson. Get immediate
+            feedback — no account, no waiting, no sign-up.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Zero to Expert Path</h3>
+          <p class="feature-body">
+            Topics are structured from foundational to advanced,
+            so there's always a clear next step on your journey.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
               <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
               <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
               <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
               <circle cx="12" cy="20" r="1" fill="currentColor"/>
             </svg>
-            Wi-Fi
-          </a>
-        </li>
-        <li>
-          <a href="pages/computer-networks.html">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
+          </div>
+          <h3 class="feature-title">Works Offline</h3>
+          <p class="feature-body">
+            No internet connection required after the first load.
+            Learn anywhere, any time, on any device.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
               <circle cx="12" cy="5" r="3"/>
               <circle cx="5" cy="19" r="3"/>
               <circle cx="19" cy="19" r="3"/>
@@ -90,362 +900,290 @@
               <line x1="12" y1="8" x2="18.5" y2="16"/>
               <line x1="8" y1="19" x2="16" y2="19"/>
             </svg>
-            Networks
-          </a>
-        </li>
-        <li>
-          <a href="pages/electrical-systems.html">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
+          </div>
+          <h3 class="feature-title">Visual Network Maps</h3>
+          <p class="feature-body">
+            See how concepts connect with real-time node diagrams
+            and animated data-flow visualisations.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+              <line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Mobile Responsive</h3>
+          <p class="feature-body">
+            Fully optimised for phones, tablets, and desktops. Learn
+            on your couch, commute, or classroom.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MARQUEE ───────────────────────────────────────────────── -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">IT Basics <span class="sep"></span></div>
+      <div class="marquee-item">Wi-Fi &amp; Wireless <span class="sep"></span></div>
+      <div class="marquee-item">Computer Networks <span class="sep"></span></div>
+      <div class="marquee-item">Electrical Systems <span class="sep"></span></div>
+      <div class="marquee-item">TCP / IP <span class="sep"></span></div>
+      <div class="marquee-item">LAN &amp; WAN <span class="sep"></span></div>
+      <div class="marquee-item">AC &amp; DC Circuits <span class="sep"></span></div>
+      <div class="marquee-item">Hardware &amp; Software <span class="sep"></span></div>
+      <div class="marquee-item">IT Basics <span class="sep"></span></div>
+      <div class="marquee-item">Wi-Fi &amp; Wireless <span class="sep"></span></div>
+      <div class="marquee-item">Computer Networks <span class="sep"></span></div>
+      <div class="marquee-item">Electrical Systems <span class="sep"></span></div>
+      <div class="marquee-item">TCP / IP <span class="sep"></span></div>
+      <div class="marquee-item">LAN &amp; WAN <span class="sep"></span></div>
+      <div class="marquee-item">AC &amp; DC Circuits <span class="sep"></span></div>
+      <div class="marquee-item">Hardware &amp; Software <span class="sep"></span></div>
+    </div>
+  </div>
+
+  <!-- ─── HOW IT WORKS ──────────────────────────────────────────── -->
+  <section class="section" id="how-it-works" aria-labelledby="how-title">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <span class="section-tag">The Process</span>
+          <h2 class="section-title" id="how-title">
+            Three steps to<br />real understanding
+          </h2>
+          <p class="section-body">
+            Each lesson follows the same simple rhythm — read, explore,
+            then test — so there's never any confusion about what to do next.
+          </p>
+
+          <ol class="steps-list reveal-stagger" style="margin-top:40px;">
+            <li class="step">
+              <span class="step-num">01</span>
+              <div class="step-content">
+                <h3>Read &amp; Learn</h3>
+                <p>Plain-language explanations with real-world examples. No jargon left undefined.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-num">02</span>
+              <div class="step-content">
+                <h3>Try It Yourself</h3>
+                <p>Flip cards, expand accordions, interact with labelled diagrams and 3D explorers.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-num">03</span>
+              <div class="step-content">
+                <h3>Test Your Knowledge</h3>
+                <p>Instant-feedback quiz at the end of every lesson. Your score shows up immediately.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="split-visual reveal">
+          <video
+            src="f32fe7b9bc955a26d9e30f77d6dc966f_1_1777781245_4697.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+          ></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TOPICS ────────────────────────────────────────────────── -->
+  <section class="section" id="topics" aria-labelledby="topics-title">
+    <div class="container">
+      <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto 60px;">
+        <span class="section-tag">Curriculum</span>
+        <h2 class="section-title" id="topics-title">Four topics.<br />All the fundamentals.</h2>
+        <p class="section-body" style="margin:0 auto;">
+          Self-contained lessons — start anywhere, finish whenever.
+        </p>
+      </div>
+
+      <div class="features-grid reveal-stagger">
+
+        <a href="pages/it-basics.html" class="feature-card"
+           style="text-decoration:none; cursor:pointer;" aria-label="Go to IT Basics">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+            <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral);background:var(--coral-dim);border:1px solid var(--coral);padding:3px 10px;border-radius:100px;">Available Now</span>
+          </div>
+          <h3 class="feature-title">IT Basics</h3>
+          <p class="feature-body">
+            What is a computer? Hardware, software, storage, and operating systems — the full foundation.
+          </p>
+          <div style="margin-top:20px;display:flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--coral);">
+            Start Lesson
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+              <circle cx="12" cy="20" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-300);background:rgba(255,255,255,0.06);border:1px solid var(--border);padding:3px 10px;border-radius:100px;">Coming Soon</span>
+          </div>
+          <h3 class="feature-title">Wi-Fi &amp; Wireless</h3>
+          <p class="feature-body">
+            Signals, frequencies, routers, and how your phone connects to the internet.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <circle cx="12" cy="5" r="3"/>
+              <circle cx="5" cy="19" r="3"/>
+              <circle cx="19" cy="19" r="3"/>
+              <line x1="12" y1="8" x2="5.5" y2="16"/>
+              <line x1="12" y1="8" x2="18.5" y2="16"/>
+              <line x1="8" y1="19" x2="16" y2="19"/>
+            </svg>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-300);background:rgba(255,255,255,0.06);border:1px solid var(--border);padding:3px 10px;border-radius:100px;">Coming Soon</span>
+          </div>
+          <h3 class="feature-title">Computer Networks</h3>
+          <p class="feature-body">
+            LANs, WANs, TCP/IP, and how data travels across the globe in milliseconds.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
-            Electrical
-          </a>
-        </li>
-      </ul>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-300);background:rgba(255,255,255,0.06);border:1px solid var(--border);padding:3px 10px;border-radius:100px;">Coming Soon</span>
+          </div>
+          <h3 class="feature-title">Electrical Systems</h3>
+          <p class="feature-body">
+            Circuits, AC vs DC, resistors, capacitors — the electricity that powers all technology.
+          </p>
+        </div>
 
-      <!-- Hamburger button (mobile only) -->
-      <button class="nav-hamburger"
-              id="nav-hamburger"
-              aria-controls="nav-mobile-menu"
-              aria-expanded="false"
-              aria-label="Open navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
+      </div>
     </div>
-  </nav>
+  </section>
 
-  <!-- Mobile slide-in drawer -->
-  <div class="nav-mobile-menu" id="nav-mobile-menu" role="dialog"
-       aria-modal="true" aria-label="Navigation menu">
-    <a href="index.html">
-      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <polyline points="9 22 9 12 15 12 15 22"/>
-      </svg>
-      Home
-    </a>
-    <a href="pages/it-basics.html">
-      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2"/>
-        <line x1="8" y1="21" x2="16" y2="21"/>
-        <line x1="12" y1="17" x2="12" y2="21"/>
-      </svg>
-      IT Basics
-    </a>
-    <a href="pages/wifi-networking.html">
-      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-        <circle cx="12" cy="20" r="1" fill="currentColor"/>
-      </svg>
-      Wi-Fi &amp; Wireless
-    </a>
-    <a href="pages/computer-networks.html">
-      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="5" r="3"/>
-        <circle cx="5" cy="19" r="3"/>
-        <circle cx="19" cy="19" r="3"/>
-        <line x1="12" y1="8" x2="5.5" y2="16"/>
-        <line x1="12" y1="8" x2="18.5" y2="16"/>
-        <line x1="8" y1="19" x2="16" y2="19"/>
-      </svg>
-      Computer Networks
-    </a>
-    <a href="pages/electrical-systems.html">
-      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2"
+  <!-- ─── CTA ───────────────────────────────────────────────────── -->
+  <section class="cta-section" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">Get Started</span>
+        <h2 class="section-title" id="cta-title">
+          Start learning today.<br />No sign-up required.
+        </h2>
+        <p class="section-body">
+          Open your first lesson in seconds and begin building
+          real knowledge from scratch — completely free.
+        </p>
+        <div class="hero-actions" style="margin-top:0;">
+          <a href="pages/it-basics.html" class="btn-primary">
+            Begin IT Basics
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#topics" class="btn-ghost">View All Topics</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <a href="index.html" class="footer-logo" aria-label="NetVolt home">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
       </svg>
-      Electrical Systems
+      NetVolt
     </a>
-  </div>
 
-  <!-- =========================================================
-       MAIN CONTENT
-       ========================================================= -->
-  <main class="site-main" id="main-content">
+    <ul class="footer-links" role="list">
+      <li><a href="pages/it-basics.html">IT Basics</a></li>
+      <li><a href="pages/wifi-networking.html">Wi-Fi</a></li>
+      <li><a href="pages/computer-networks.html">Networks</a></li>
+      <li><a href="pages/electrical-systems.html">Electrical</a></li>
+    </ul>
 
-    <!-- -------------------------------------------------------
-         HERO SECTION
-    ------------------------------------------------------------ -->
-    <section class="page-hero" aria-labelledby="hero-title">
-      <div class="container">
-        <span class="label-tag">FREE &middot; INTERACTIVE</span>
-        <h1 class="page-hero__title" id="hero-title">
-          Learn Technology<br />From Scratch
-        </h1>
-        <p class="page-hero__subtitle">
-          No experience needed. Explore how computers work, how the internet
-          connects us, and how electricity powers it all — one clear lesson
-          at a time.
-        </p>
-        <div class="page-hero__tags">
-          <span class="badge badge-accent">Beginner Friendly</span>
-          <span class="badge badge-neutral">No Sign-up Required</span>
-          <span class="badge badge-neutral">Works Offline</span>
-        </div>
-
-        <!-- Overview node diagram — shows how the topics connect -->
-        <div id="homepage-diagram" style="margin-top: var(--space-10);"
-             aria-label="Diagram showing the five learning topics and how they connect">
-        </div>
-      </div>
-    </section>
-
-    <!-- -------------------------------------------------------
-         SCROLL VIDEO — scrub forward on scroll-down, reverse on scroll-up
-    ------------------------------------------------------------ -->
-    <section class="scroll-video-section" aria-label="Interactive scroll animation">
-      <div class="scroll-video-sticky">
-        <video
-          class="scroll-video-el"
-          src="assets/scroll-intro.mp4"
-          muted
-          preload="auto"
-          playsinline
-          aria-hidden="true"
-        ></video>
-        <div class="scroll-video-overlay">
-          <span class="scroll-video-hint" aria-hidden="true">↓ Scroll to explore</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- -------------------------------------------------------
-         HOW THIS SITE WORKS
-    ------------------------------------------------------------ -->
-    <section class="content-section" aria-labelledby="how-title">
-      <div class="container">
-        <span class="label-tag">GETTING STARTED</span>
-        <h2 class="section-title" id="how-title">How This Site Works</h2>
-        <p class="section-subtitle">
-          Each topic is its own page. Read the lessons, interact with the
-          diagrams, then test yourself with a short quiz at the end.
-        </p>
-
-        <!-- Step list — animates in on scroll -->
-        <ol class="step-list" style="margin-top: var(--space-8);" aria-label="Three steps to learning">
-
-          <li class="step-item">
-            <div class="step-number" aria-hidden="true">1</div>
-            <div class="step-content">
-              <p class="step-title">Read &amp; Learn</p>
-              <p class="step-subtitle">
-                Each lesson explains concepts in plain language with real-world
-                examples — no jargon left unexplained.
-              </p>
-            </div>
-          </li>
-
-          <li class="step-item">
-            <div class="step-number" aria-hidden="true">2</div>
-            <div class="step-content">
-              <p class="step-title">Try It Yourself</p>
-              <p class="step-subtitle">
-                Click flip-cards, expand accordion panels, and interact with
-                labelled diagrams to build understanding hands-on.
-              </p>
-            </div>
-          </li>
-
-          <li class="step-item">
-            <div class="step-number" aria-hidden="true">3</div>
-            <div class="step-content">
-              <p class="step-title">Test Yourself</p>
-              <p class="step-subtitle">
-                Each page ends with a short quiz. Get instant feedback and see
-                your score — no account or sign-up needed.
-              </p>
-            </div>
-          </li>
-
-        </ol>
-      </div>
-    </section>
-
-    <!-- -------------------------------------------------------
-         TOPIC CARDS
-    ------------------------------------------------------------ -->
-    <section class="content-section" aria-labelledby="topics-title">
-      <div class="container">
-        <span class="label-tag">CURRICULUM</span>
-        <h2 class="section-title" id="topics-title">Choose a Topic</h2>
-        <p class="section-subtitle">
-          Start anywhere — each topic is self-contained and designed to be
-          completed in about 20 minutes.
-        </p>
-
-        <div class="card-grid" style="margin-top: var(--space-6);">
-
-          <!-- IT Basics card -->
-          <a href="pages/it-basics.html" class="card card-link"
-             aria-label="Go to IT Basics lesson">
-            <div class="card__icon">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                   viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-            </div>
-            <div class="page-hero__tags">
-              <span class="badge badge-accent">Available Now</span>
-            </div>
-            <h3 class="card__title">IT Basics</h3>
-            <p class="card__body">
-              What is a computer? Learn about hardware, software, storage,
-              and operating systems from the ground up.
-            </p>
-            <div class="card__footer">
-              <span class="btn btn-primary" style="pointer-events:none;">
-                Start Lesson →
-              </span>
-            </div>
-          </a>
-
-          <!-- Wi-Fi card -->
-          <div class="card" aria-label="Wi-Fi lesson — coming soon">
-            <div class="card__icon">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                   viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-                <circle cx="12" cy="20" r="1" fill="currentColor"/>
-              </svg>
-            </div>
-            <div class="page-hero__tags">
-              <span class="badge badge-neutral">Coming Soon</span>
-            </div>
-            <h3 class="card__title">Wi-Fi &amp; Wireless</h3>
-            <p class="card__body">
-              How does Wi-Fi work? Discover signals, frequencies, routers,
-              and how your phone connects to the internet.
-            </p>
-          </div>
-
-          <!-- Networks card -->
-          <div class="card" aria-label="Computer Networks lesson — coming soon">
-            <div class="card__icon">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                   viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="5" r="3"/>
-                <circle cx="5" cy="19" r="3"/>
-                <circle cx="19" cy="19" r="3"/>
-                <line x1="12" y1="8" x2="5.5" y2="16"/>
-                <line x1="12" y1="8" x2="18.5" y2="16"/>
-                <line x1="8" y1="19" x2="16" y2="19"/>
-              </svg>
-            </div>
-            <div class="page-hero__tags">
-              <span class="badge badge-neutral">Coming Soon</span>
-            </div>
-            <h3 class="card__title">Computer Networks</h3>
-            <p class="card__body">
-              Explore LANs, WANs, TCP/IP, and how data travels across the
-              globe in milliseconds.
-            </p>
-          </div>
-
-          <!-- Electrical card -->
-          <div class="card" aria-label="Electrical Systems lesson — coming soon">
-            <div class="card__icon">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                   viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
-            </div>
-            <div class="page-hero__tags">
-              <span class="badge badge-neutral">Coming Soon</span>
-            </div>
-            <h3 class="card__title">Electrical Systems</h3>
-            <p class="card__body">
-              Circuits, AC vs DC, resistors, capacitors — understand the
-              electricity that powers all technology.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- =========================================================
-       FOOTER
-       ========================================================= -->
-  <footer class="site-footer">
-    <div class="container">
-      <nav class="footer-links" aria-label="Footer navigation">
-        <a href="index.html">Home</a>
-        <a href="pages/it-basics.html">IT Basics</a>
-        <a href="pages/wifi-networking.html">Wi-Fi</a>
-        <a href="pages/computer-networks.html">Networks</a>
-        <a href="pages/electrical-systems.html">Electrical</a>
-      </nav>
-      <p class="footer-copy">
-        &copy; 2026 NetVolt &mdash; Free educational resources for everyone.
-      </p>
-    </div>
+    <p class="footer-copy">&copy; 2026 NetVolt — Free for everyone.</p>
   </footer>
 
-  <!-- Scripts at end so HTML is parsed before JS runs -->
-  <script src="js/nav.js"></script>
-  <script src="js/interactions.js"></script>
-
-  <!-- Node diagram data for the homepage overview -->
   <script>
-    /* Five topic nodes arranged in a loose network layout.
-       x/y are percentage positions within the SVG viewBox. */
-    var HOME_NODES = [
-      { id: 'it',          label: 'IT Basics',   x: 50,  y: 15,  color: '#ff5533' },
-      { id: 'wifi',        label: 'Wi-Fi',        x: 82,  y: 42,  color: '#00e5ff' },
-      { id: 'networks',    label: 'Networks',     x: 68,  y: 78,  color: '#8b5cf6' },
-      { id: 'electrical',  label: 'Electrical',   x: 32,  y: 78,  color: '#ffd700' },
-      { id: 'overview',    label: 'Technology',   x: 18,  y: 42,  color: '#ff2d9b' }
-    ];
+    /* ── Nav scroll effect ─────────────────────────────────────── */
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
 
-    var HOME_EDGES = [
-      ['overview', 'it'],
-      ['it',       'wifi'],
-      ['wifi',     'networks'],
-      ['networks', 'electrical'],
-      ['electrical','overview'],
-      ['overview', 'networks']
-    ];
+    /* ── Scroll-reveal via IntersectionObserver ────────────────── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    /* Runs after DOMContentLoaded because interactions.js is deferred */
-    document.addEventListener('DOMContentLoaded', function () {
-      initNodeDiagram('homepage-diagram', HOME_NODES, HOME_EDGES);
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    /* ── Smooth scroll for anchor links ────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
   </script>
 
