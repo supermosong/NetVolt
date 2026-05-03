@@ -1,29 +1,29 @@
 /* =============================================================
    layout.css
-   Purpose: The persistent top navigation, page-level wrappers,
-   section headers, and the footer. All pages share these styles.
-   Depends on: global.css (must be loaded first)
+   Purpose: Persistent navigation, page-level wrappers, section
+   glow pseudo-elements, and the footer.
+   Depends on: global.css (loaded first)
    ============================================================= */
 
 /* -------------------------------------------------------------
    1. GOOGLE FONTS IMPORT
-   Inter for UI text, Fira Code for code snippets.
-   Loaded here once so every page gets it via layout.css.
+   Inter (body) + Space Grotesk (headings) + Fira Code (mono)
    ------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;500&display=swap');
 
 /* -------------------------------------------------------------
-   2. TOP NAVIGATION BAR
-   Sticky so it stays visible while scrolling.
+   2. TOP NAVIGATION BAR  — glassmorphism, sticky
    ------------------------------------------------------------- */
 .site-nav {
   position: sticky;
   top: 0;
-  z-index: 100;               /* sits above all page content    */
+  z-index: 100;
   height: var(--nav-height);
-  background-color: var(--color-bg-secondary);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  /* Semi-transparent dark bg + blur = glass nav */
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .site-nav .container {
@@ -33,31 +33,29 @@
   justify-content: space-between;
 }
 
-/* Site logo / brand name */
+/* Logo — Space Grotesk, coral accent */
 .nav-logo {
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  font-family: var(--font-heading);
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  color: var(--color-text-primary);
+  color: var(--color-coral);   /* coral per spec */
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: opacity var(--transition-fast);
 }
 
 .nav-logo:hover,
 .nav-logo:focus-visible {
-  color: var(--color-accent);
+  opacity: 0.85;
   text-decoration: none;
+  color: var(--color-coral);
 }
 
-.nav-logo svg {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-}
+.nav-logo svg { width: 28px; height: 28px; flex-shrink: 0; }
 
-/* Desktop nav links list */
+/* Desktop nav links */
 .nav-links {
   display: flex;
   align-items: center;
@@ -65,11 +63,13 @@
 }
 
 .nav-links a {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-md);
+  font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--color-text-secondary);
@@ -78,31 +78,45 @@
               background-color var(--transition-fast);
 }
 
+/* Coral underline slides in on hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: var(--space-3);
+  right: var(--space-3);
+  height: 2px;
+  background: var(--color-coral);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-fast);
+}
+
 .nav-links a:hover,
 .nav-links a:focus-visible {
   color: var(--color-text-primary);
-  background-color: var(--color-bg-tertiary);
+  background: rgba(255, 255, 255, 0.04);
   text-decoration: none;
 }
 
-/* Active link — highlights the current page */
-.nav-links a.active {
-  color: var(--color-accent);
-  background-color: var(--color-accent-glow);
-}
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after { transform: scaleX(1); }
 
-.nav-links a svg {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
+/* Active page link */
+.nav-links a.active {
+  color: var(--color-coral);
+  background: rgba(255, 85, 51, 0.08);
 }
+.nav-links a.active::after { transform: scaleX(1); }
+
+.nav-links a svg { width: 16px; height: 16px; flex-shrink: 0; }
 
 /* -------------------------------------------------------------
    3. HAMBURGER BUTTON (mobile only)
-   Hidden on desktop; shown via media query below.
    ------------------------------------------------------------- */
 .nav-hamburger {
-  display: none;              /* hidden on desktop              */
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -111,55 +125,64 @@
   height: 40px;
   border-radius: var(--radius-md);
   background: none;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: pointer;
   transition: background-color var(--transition-fast);
 }
 
-.nav-hamburger:hover {
-  background-color: var(--color-bg-tertiary);
-}
+.nav-hamburger:hover { background: rgba(255, 255, 255, 0.06); }
 
-/* The three bars of the hamburger icon */
 .nav-hamburger span {
   display: block;
   width: 20px;
   height: 2px;
-  background-color: var(--color-text-primary);
+  background: var(--color-text-primary);
   border-radius: 2px;
   transition: transform var(--transition-normal),
               opacity var(--transition-normal);
 }
 
-/* Animate into an X when menu is open */
+/* Animate bars into an X when expanded */
 .nav-hamburger[aria-expanded="true"] span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-.nav-hamburger[aria-expanded="true"] span:nth-child(2) {
-  opacity: 0;
-}
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-hamburger[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
 /* -------------------------------------------------------------
-   4. MOBILE NAV MENU (drawer that drops below the nav bar)
+   4. MOBILE NAV DRAWER  — slides in from the right
    ------------------------------------------------------------- */
 .nav-mobile-menu {
-  display: none;              /* JS toggles .is-open            */
+  /* Hidden by default; JS adds .is-open */
+  display: block;
   position: fixed;
   top: var(--nav-height);
-  left: 0;
-  right: 0;
+  /* Start off-screen to the right */
+  right: -100%;
+  bottom: 0;
+  width: min(320px, 85vw);
   z-index: 99;
-  background-color: var(--color-bg-secondary);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--shadow-md);
-  padding: var(--space-4);
+  background: rgba(10, 10, 15, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  /* Slide transition */
+  transition: right var(--transition-normal);
+  /* Start invisible until opened */
+  pointer-events: none;
+  opacity: 0;
 }
 
 .nav-mobile-menu.is-open {
-  display: block;
+  right: 0;
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .nav-mobile-menu a {
@@ -168,6 +191,7 @@
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
+  font-family: var(--font-body);
   font-size: var(--text-base);
   font-weight: var(--weight-medium);
   color: var(--color-text-secondary);
@@ -177,48 +201,85 @@
 }
 
 .nav-mobile-menu a:hover,
-.nav-mobile-menu a.active {
+.nav-mobile-menu a:focus-visible {
   color: var(--color-text-primary);
-  background-color: var(--color-bg-tertiary);
+  background: rgba(255, 255, 255, 0.06);
+  text-decoration: none;
 }
 
 .nav-mobile-menu a.active {
-  color: var(--color-accent);
-  background-color: var(--color-accent-glow);
+  color: var(--color-coral);
+  background: rgba(255, 85, 51, 0.08);
 }
 
-.nav-mobile-menu a svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
+.nav-mobile-menu a svg { width: 18px; height: 18px; flex-shrink: 0; }
 
 /* -------------------------------------------------------------
    5. PAGE HERO / SECTION HEADER
-   Used at the top of each topic page and the home hero.
    ------------------------------------------------------------- */
 .page-hero {
-  padding: var(--space-16) 0 var(--space-12);
-  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  padding: var(--space-20) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden; /* contain the glow blobs */
 }
 
+/* Atmospheric glow blobs — purely decorative, behind content */
+.page-hero::before,
+.page-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Purple-blue blob — top right, 15% from edge, size reduced 20%, opacity lowered to 0.12 */
+.page-hero::before {
+  width: 480px;
+  height: 480px;
+  top: 15%;
+  right: 15%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+}
+
+/* Coral-orange blob — bottom left, 15% from edge, size reduced 20% */
+.page-hero::after {
+  width: 400px;
+  height: 400px;
+  bottom: 15%;
+  left: 15%;
+  background: radial-gradient(circle, rgba(255, 85, 51, 0.14) 0%, transparent 70%);
+}
+
+/* Keep all hero content above the pseudo-element blobs */
 .page-hero .container {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
 
 .page-hero__eyebrow {
+  font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
-  color: var(--color-accent);
+  color: var(--color-coral);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .page-hero__title {
-  font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
-  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-3xl), 5vw, 3.5rem);
+  font-weight: var(--weight-black);
+  /* Gradient text for hero titles */
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--color-text-primary); /* fallback */
 }
 
 .page-hero__subtitle {
@@ -228,7 +289,6 @@
   line-height: var(--leading-loose);
 }
 
-/* Tag/badge row below the subtitle */
 .page-hero__tags {
   display: flex;
   flex-wrap: wrap;
@@ -238,26 +298,56 @@
 
 /* -------------------------------------------------------------
    6. MAIN CONTENT AREA
-   Wraps everything between the nav and the footer.
    ------------------------------------------------------------- */
-.site-main {
-  /* Push content down so sticky nav doesn't overlap page-hero */
-  padding-bottom: var(--space-20);
-}
+.site-main { padding-bottom: var(--space-20); }
 
-/* Section dividers within a page */
+/* Content sections with atmospheric glow backgrounds */
 .content-section {
-  padding: var(--space-12) 0;
-  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  padding: var(--space-20) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
-.content-section:last-of-type {
-  border-bottom: none;
+.content-section:last-of-type { border-bottom: none; }
+
+/* Alternate sections — purple glow top-right, 15% from edge, size reduced 20% */
+.content-section:nth-child(even)::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 15%;
+  right: 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
+
+/* Odd sections — cyan glow bottom-left, 15% from edge, size reduced 20% */
+.content-section:nth-child(odd)::after {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  bottom: 15%;
+  left: 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep section content above glow blobs */
+.content-section .container { position: relative; z-index: 1; }
 
 .section-title {
+  font-family: var(--font-heading);
   font-size: var(--text-2xl);
+  font-weight: var(--weight-black);
   margin-bottom: var(--space-2);
+  color: var(--color-text-primary);
 }
 
 .section-subtitle {
@@ -271,8 +361,8 @@
    7. SITE FOOTER
    ------------------------------------------------------------- */
 .site-footer {
-  background-color: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border);
+  background: rgba(10, 10, 15, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   padding: var(--space-8) 0;
 }
 
@@ -294,24 +384,16 @@
 .footer-links a {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
 }
 
-.footer-links a:hover {
-  color: var(--color-accent);
-}
+.footer-links a:hover { color: var(--color-coral); text-decoration: none; }
 
-.footer-copy {
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary); /* muted failed AA contrast; secondary = 5.6:1 ✓ */
-}
+.footer-copy { font-size: var(--text-sm); color: var(--color-text-secondary); }
 
 /* -------------------------------------------------------------
    8. RESPONSIVE BREAKPOINTS
-   Mobile-first: base styles above are for small screens.
-   We EXPAND the layout at wider viewports.
    ------------------------------------------------------------- */
-
-/* Tablet and up: 640px */
 @media (min-width: 640px) {
   .site-footer .container {
     flex-direction: row;
@@ -320,29 +402,20 @@
   }
 }
 
-/* Desktop: 768px — show full nav, hide hamburger */
+/* Desktop (768px+): show desktop nav, hide hamburger */
 @media (min-width: 768px) {
-  .nav-hamburger {
-    display: none !important;
-  }
-
-  .nav-links {
-    display: flex;
-  }
-
-  /* Safety: ensure mobile menu never shows on desktop */
-  .nav-mobile-menu {
-    display: none !important;
-  }
+  .nav-hamburger { display: none !important; }
+  .nav-links { display: flex; }
+  /* Never show mobile drawer on desktop regardless of JS state */
+  .nav-mobile-menu { display: none !important; }
 }
 
-/* Mobile only: hide desktop nav links, show hamburger */
+/* Mobile: hide desktop links, show hamburger, reduce section padding to 48px min */
 @media (max-width: 767px) {
-  .nav-links {
-    display: none;
-  }
-
-  .nav-hamburger {
-    display: flex;
-  }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  /* Restore the flex drawer for mobile — the !important above hides it on desktop */
+  .nav-mobile-menu { display: flex !important; }
+  .page-hero { padding: var(--space-12) 0; }
+  .content-section { padding: var(--space-12) 0; }
 }

@@ -76,6 +76,22 @@ project-root/
 
 ---
 
+## Phase 5 — it-basics.html Background Improvements
+
+> Goal: make the it-basics page background feel more polished, immersive, and visually cohesive — without touching layout, fonts, or colors.
+
+- [ ] 1. Audit current background layers — identify any visible seams, clashing glow blobs, or flat/empty areas between sections
+- [ ] 2. Improve section-to-section transitions — ensure adjacent sections flow smoothly without a hard split line
+- [ ] 3. Refine glow blob placement — reposition any atmospheric radial gradients so they feel intentional (anchored near section edges, not floating in the middle)
+- [ ] 4. Add subtle depth variation — alternate section backgrounds using existing CSS variables (`--color-bg-primary` / `--color-bg-secondary`) to create rhythm without borders
+- [ ] 5. Tune glow intensity — lower any glow opacity that feels too heavy or competes with content readability
+- [ ] 6. Verify noise texture renders correctly on the page and does not create a visible two-layer effect
+- [ ] 7. Final visual check — scroll full page and confirm background looks like one continuous, cohesive surface
+
+*Files to touch: `css/global.css`, `css/layout.css`, `css/components.css` only. No HTML or JS changes.*
+
+---
+
 ## Approved Decisions
 
 | Decision | Choice |
