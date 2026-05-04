@@ -1,6 +1,6 @@
 /* =============================================================
    global.css — Design tokens, reset, base typography, utilities
-   Neon Circuit redesign — Syne / Plus Jakarta Sans / Fira Code
+   Neon Circuit redesign — Chakra Petch / Plus Jakarta Sans / Fira Code
    ============================================================= */
 
 /* -------------------------------------------------------------
@@ -43,7 +43,7 @@
   --color-border: rgba(255, 255, 255, 0.07);
 
   /* Typography */
-  --font-heading: 'Syne', system-ui, sans-serif;
+  --font-heading: 'Chakra Petch', system-ui, sans-serif;
   --font-body:    'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono:    'Fira Code', 'Courier New', monospace;
 
