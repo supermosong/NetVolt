@@ -1,29 +1,26 @@
 /* =============================================================
    layout.css
-   Purpose: Persistent navigation, page-level wrappers, section
-   glow pseudo-elements, and the footer.
+   Purpose: Navigation, page-level wrappers, section glows, footer.
    Depends on: global.css (loaded first)
    ============================================================= */
 
 /* -------------------------------------------------------------
-   1. GOOGLE FONTS IMPORT
-   Inter (body) + Space Grotesk (headings) + Fira Code (mono)
+   1. GOOGLE FONTS — Chakra Petch + Plus Jakarta Sans + Fira Code
    ------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap');
 
 /* -------------------------------------------------------------
-   2. TOP NAVIGATION BAR  — glassmorphism, sticky
+   2. TOP NAVIGATION BAR
    ------------------------------------------------------------- */
 .site-nav {
   position: sticky;
   top: 0;
   z-index: 100;
   height: var(--nav-height);
-  /* Semi-transparent dark bg + blur = glass nav */
-  background: rgba(10, 10, 15, 0.85);
+  background: rgba(7, 9, 15, 0.90);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(200, 255, 0, 0.08);
 }
 
 .site-nav .container {
@@ -33,33 +30,34 @@
   justify-content: space-between;
 }
 
-/* Logo — Space Grotesk, coral accent */
+/* Logo */
 .nav-logo {
   display: flex;
   align-items: center;
   gap: var(--space-2);
   font-family: var(--font-heading);
   font-size: var(--text-lg);
-  font-weight: var(--weight-bold);
-  color: var(--color-coral);   /* coral per spec */
+  font-weight: var(--weight-black);
+  color: var(--color-lime);
   text-decoration: none;
+  letter-spacing: -0.01em;
   transition: opacity var(--transition-fast);
 }
 
 .nav-logo:hover,
 .nav-logo:focus-visible {
-  opacity: 0.85;
+  opacity: 0.8;
   text-decoration: none;
-  color: var(--color-coral);
+  color: var(--color-lime);
 }
 
-.nav-logo svg { width: 28px; height: 28px; flex-shrink: 0; }
+.nav-logo svg { width: 22px; height: 22px; flex-shrink: 0; }
 
 /* Desktop nav links */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
 
 .nav-links a {
@@ -78,16 +76,15 @@
               background-color var(--transition-fast);
 }
 
-/* Coral underline slides in on hover */
+/* Lime bottom line slides in on hover */
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 4px;
+  bottom: 3px;
   left: var(--space-3);
   right: var(--space-3);
-  height: 2px;
-  background: var(--color-coral);
-  border-radius: 2px;
+  height: 1px;
+  background: var(--color-lime);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-fast);
@@ -96,7 +93,7 @@
 .nav-links a:hover,
 .nav-links a:focus-visible {
   color: var(--color-text-primary);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(200, 255, 0, 0.04);
   text-decoration: none;
 }
 
@@ -105,12 +102,12 @@
 
 /* Active page link */
 .nav-links a.active {
-  color: var(--color-coral);
-  background: rgba(255, 85, 51, 0.08);
+  color: var(--color-lime);
+  background: var(--color-lime-dim);
 }
 .nav-links a.active::after { transform: scaleX(1); }
 
-.nav-links a svg { width: 16px; height: 16px; flex-shrink: 0; }
+.nav-links a svg { width: 15px; height: 15px; flex-shrink: 0; }
 
 /* -------------------------------------------------------------
    3. HAMBURGER BUTTON (mobile only)
@@ -125,56 +122,53 @@
   height: 40px;
   border-radius: var(--radius-md);
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--color-border);
   cursor: pointer;
-  transition: background-color var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.nav-hamburger:hover { background: rgba(255, 255, 255, 0.06); }
+.nav-hamburger:hover {
+  background: rgba(200, 255, 0, 0.05);
+  border-color: rgba(200, 255, 0, 0.2);
+}
 
 .nav-hamburger span {
   display: block;
-  width: 20px;
-  height: 2px;
+  width: 18px;
+  height: 1.5px;
   background: var(--color-text-primary);
-  border-radius: 2px;
-  transition: transform var(--transition-normal),
-              opacity var(--transition-normal);
+  border-radius: 1px;
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
 }
 
-/* Animate bars into an X when expanded */
 .nav-hamburger[aria-expanded="true"] span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(6.5px) rotate(45deg);
 }
 .nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-hamburger[aria-expanded="true"] span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-6.5px) rotate(-45deg);
 }
 
 /* -------------------------------------------------------------
-   4. MOBILE NAV DRAWER  — slides in from the right
+   4. MOBILE NAV DRAWER
    ------------------------------------------------------------- */
 .nav-mobile-menu {
-  /* Hidden by default; JS adds .is-open */
   display: block;
   position: fixed;
   top: var(--nav-height);
-  /* Start off-screen to the right */
   right: -100%;
   bottom: 0;
-  width: min(320px, 85vw);
+  width: min(300px, 85vw);
   z-index: 99;
-  background: rgba(10, 10, 15, 0.97);
+  background: rgba(7, 9, 15, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 1px solid var(--color-border);
   padding: var(--space-6) var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  /* Slide transition */
+  gap: var(--space-1);
   transition: right var(--transition-normal);
-  /* Start invisible until opened */
   pointer-events: none;
   opacity: 0;
 }
@@ -196,20 +190,19 @@
   font-weight: var(--weight-medium);
   color: var(--color-text-secondary);
   text-decoration: none;
-  transition: color var(--transition-fast),
-              background-color var(--transition-fast);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .nav-mobile-menu a:hover,
 .nav-mobile-menu a:focus-visible {
   color: var(--color-text-primary);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
   text-decoration: none;
 }
 
 .nav-mobile-menu a.active {
-  color: var(--color-coral);
-  background: rgba(255, 85, 51, 0.08);
+  color: var(--color-lime);
+  background: var(--color-lime-dim);
 }
 
 .nav-mobile-menu a svg { width: 18px; height: 18px; flex-shrink: 0; }
@@ -219,40 +212,39 @@
    ------------------------------------------------------------- */
 .page-hero {
   position: relative;
-  padding: var(--space-20) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  overflow: hidden; /* contain the glow blobs */
+  padding: var(--space-20) 0 var(--space-16);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
 }
 
-/* Atmospheric glow blobs — purely decorative, behind content */
-.page-hero::before,
-.page-hero::after {
+/* Lime glow blob — bottom left */
+.page-hero::before {
   content: '';
   position: absolute;
+  width: 500px;
+  height: 300px;
+  bottom: -60px;
+  left: -80px;
   border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 255, 0, 0.07) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Purple-blue blob — top right, 15% from edge, size reduced 20%, opacity lowered to 0.12 */
-.page-hero::before {
-  width: 480px;
-  height: 480px;
-  top: 15%;
-  right: 15%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
-}
-
-/* Coral-orange blob — bottom left, 15% from edge, size reduced 20% */
+/* Cyan glow blob — top right */
 .page-hero::after {
+  content: '';
+  position: absolute;
   width: 400px;
   height: 400px;
-  bottom: 15%;
-  left: 15%;
-  background: radial-gradient(circle, rgba(255, 85, 51, 0.14) 0%, transparent 70%);
+  top: -60px;
+  right: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Keep all hero content above the pseudo-element blobs */
 .page-hero .container {
   position: relative;
   z-index: 1;
@@ -262,11 +254,11 @@
 }
 
 .page-hero__eyebrow {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: var(--weight-medium);
-  color: var(--color-coral);
-  letter-spacing: 0.08em;
+  color: var(--color-lime);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -274,12 +266,12 @@
   font-family: var(--font-heading);
   font-size: clamp(var(--text-3xl), 5vw, 3.5rem);
   font-weight: var(--weight-black);
-  /* Gradient text for hero titles */
   background: var(--gradient-hero);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: var(--color-text-primary); /* fallback */
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
 }
 
 .page-hero__subtitle {
@@ -301,45 +293,43 @@
    ------------------------------------------------------------- */
 .site-main { padding-bottom: var(--space-20); }
 
-/* Content sections with atmospheric glow backgrounds */
 .content-section {
   position: relative;
   padding: var(--space-20) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   overflow: hidden;
 }
 
 .content-section:last-of-type { border-bottom: none; }
 
-/* Alternate sections — purple glow top-right, 15% from edge, size reduced 20% */
+/* Even sections — lime glow top-right */
 .content-section:nth-child(even)::before {
   content: '';
   position: absolute;
   width: 400px;
   height: 400px;
-  top: 15%;
-  right: 15%;
+  top: -60px;
+  right: -60px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200, 255, 0, 0.05) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Odd sections — cyan glow bottom-left, 15% from edge, size reduced 20% */
+/* Odd sections — cyan glow bottom-left */
 .content-section:nth-child(odd)::after {
   content: '';
   position: absolute;
   width: 320px;
   height: 320px;
-  bottom: 15%;
-  left: 15%;
+  bottom: -40px;
+  left: -40px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Keep section content above glow blobs */
 .content-section .container { position: relative; z-index: 1; }
 
 .section-title {
@@ -348,6 +338,7 @@
   font-weight: var(--weight-black);
   margin-bottom: var(--space-2);
   color: var(--color-text-primary);
+  letter-spacing: -0.02em;
 }
 
 .section-subtitle {
@@ -355,14 +346,15 @@
   color: var(--color-text-secondary);
   margin-bottom: var(--space-8);
   max-width: 60ch;
+  line-height: var(--leading-loose);
 }
 
 /* -------------------------------------------------------------
    7. SITE FOOTER
    ------------------------------------------------------------- */
 .site-footer {
-  background: rgba(10, 10, 15, 0.95);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
   padding: var(--space-8) 0;
 }
 
@@ -378,18 +370,42 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-4);
+  gap: var(--space-6);
 }
 
 .footer-links a {
+  font-family: var(--font-body);
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+  text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-.footer-links a:hover { color: var(--color-coral); text-decoration: none; }
+.footer-links a:hover {
+  color: var(--color-lime);
+  text-decoration: none;
+}
 
-.footer-copy { font-size: var(--text-sm); color: var(--color-text-secondary); }
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* Footer nav-logo variant */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--weight-black);
+  color: var(--color-lime);
+  text-decoration: none;
+}
+.footer-logo svg { width: 18px; height: 18px; }
+.footer-logo:hover { opacity: 0.8; text-decoration: none; color: var(--color-lime); }
 
 /* -------------------------------------------------------------
    8. RESPONSIVE BREAKPOINTS
@@ -402,20 +418,16 @@
   }
 }
 
-/* Desktop (768px+): show desktop nav, hide hamburger */
 @media (min-width: 768px) {
   .nav-hamburger { display: none !important; }
   .nav-links { display: flex; }
-  /* Never show mobile drawer on desktop regardless of JS state */
   .nav-mobile-menu { display: none !important; }
 }
 
-/* Mobile: hide desktop links, show hamburger, reduce section padding to 48px min */
 @media (max-width: 767px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  /* Restore the flex drawer for mobile — the !important above hides it on desktop */
   .nav-mobile-menu { display: flex !important; }
-  .page-hero { padding: var(--space-12) 0; }
+  .page-hero { padding: var(--space-12) 0 var(--space-10); }
   .content-section { padding: var(--space-12) 0; }
 }

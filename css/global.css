@@ -1,47 +1,50 @@
 /* =============================================================
-   global.css
-   Purpose: CSS custom properties (design tokens), minimal reset,
-   base typography, utility classes, label-tag, step-list, and
-   button overrides for the cinematic dark-mode visual system.
+   global.css — Design tokens, reset, base typography, utilities
+   Neon Circuit redesign — Chakra Petch / Plus Jakarta Sans / Fira Code
    ============================================================= */
 
 /* -------------------------------------------------------------
    1. DESIGN TOKENS
    ------------------------------------------------------------- */
 :root {
-  /* -- Background ------------------------------------------- */
-  --color-bg-primary:   #0a0a0f;   /* deepest page background    */
-  --color-bg-secondary: #0d0d1a;   /* cards, nav, elevated areas */
-  --color-bg-tertiary:  #141428;   /* hover states, dividers     */
+  /* Backgrounds */
+  --color-bg-primary:   #07090f;
+  --color-bg-secondary: #0d1117;
+  --color-bg-tertiary:  #141c24;
 
-  /* -- Accent palette --------------------------------------- */
-  --color-coral:   #ff5533;
-  --color-cyan:    #00e5ff;
-  --color-magenta: #ff2d9b;
-  --color-gold:    #ffd700;
-  --color-purple:  #8b5cf6;
+  /* Accent palette — electric lime + cyan */
+  --color-lime:         #c8ff00;
+  --color-lime-dim:     rgba(200, 255, 0, 0.07);
+  --color-lime-glow:    rgba(200, 255, 0, 0.20);
+  --color-cyan:         #00e5ff;
+  --color-cyan-dim:     rgba(0, 229, 255, 0.07);
 
-  /* Backwards-compat alias so existing code still compiles   */
-  --color-accent:       var(--color-coral);
-  --color-accent-hover: #ff7755;
-  --color-accent-glow:  rgba(255, 85, 51, 0.15);
+  /* Backwards-compat aliases (content pages use these names) */
+  --color-coral:        #c8ff00;
+  --color-magenta:      #c8ff00;
+  --color-purple:       #00e5ff;
+  --color-gold:         #ffb800;
+  --color-accent:       #c8ff00;
+  --color-accent-hover: #d4ff26;
+  --color-accent-glow:  rgba(200, 255, 0, 0.20);
 
-  /* -- Semantic colours ------------------------------------- */
-  --color-success: #3fb950;
-  --color-warning: #ffd700;
-  --color-danger:  #f85149;
+  /* Semantic */
+  --color-success: #00d68f;
+  --color-warning: #ffb800;
+  --color-danger:  #ff4757;
 
-  /* -- Text ------------------------------------------------- */
-  --color-text-primary:   #ffffff;
-  --color-text-secondary: #a0a0b8;   /* muted — 4.6:1 on #0a0a0f ✓ */
-  --color-text-subtle:    #e0e0ff;
+  /* Text */
+  --color-text-primary:   #eef2ff;
+  --color-text-secondary: #6b7a9a;
+  --color-text-subtle:    #a0b0c8;
+  --color-text-muted:     #3d4a60;
 
-  /* -- Borders ---------------------------------------------- */
-  --color-border: rgba(255, 255, 255, 0.08);
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.07);
 
-  /* -- Typography ------------------------------------------- */
-  --font-heading: 'Space Grotesk', system-ui, sans-serif;
-  --font-body:    'Inter', system-ui, sans-serif;
+  /* Typography */
+  --font-heading: 'Chakra Petch', system-ui, sans-serif;
+  --font-body:    'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono:    'Fira Code', 'Courier New', monospace;
 
   --text-xs:   0.75rem;
@@ -56,13 +59,13 @@
   --weight-normal: 400;
   --weight-medium: 500;
   --weight-bold:   700;
-  --weight-black:  900;
+  --weight-black:  800;
 
-  --leading-tight:  1.25;
+  --leading-tight:  1.2;
   --leading-normal: 1.6;
   --leading-loose:  1.8;
 
-  /* -- Spacing (4px grid) ----------------------------------- */
+  /* Spacing (4px grid) */
   --space-1:  0.25rem;
   --space-2:  0.5rem;
   --space-3:  0.75rem;
@@ -75,29 +78,30 @@
   --space-16: 4rem;
   --space-20: 5rem;
 
-  /* -- Borders & shadows ------------------------------------ */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   16px;   /* cards use 16px per spec             */
-  --radius-xl:   20px;
+  /* Radius — sharp technical aesthetic */
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   6px;
+  --radius-xl:   8px;
   --radius-full: 9999px;
 
-  --shadow-sm: 0 1px 3px  rgba(0,0,0,0.6);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.7);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.8);
+  /* Shadows */
+  --shadow-sm: 0 1px 3px  rgba(0,0,0,0.7);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.7);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.8);
 
-  /* -- Transitions ------------------------------------------ */
+  /* Transitions */
   --transition-fast:   150ms ease;
   --transition-normal: 250ms ease;
   --transition-slow:   400ms ease;
 
-  /* -- Layout ----------------------------------------------- */
+  /* Layout */
   --max-width:  1100px;
-  --nav-height: 64px;
+  --nav-height: 60px;
 
-  /* -- Gradient definition (reused on headings + buttons) --- */
-  --gradient-hero: linear-gradient(135deg, var(--color-coral) 0%, var(--color-magenta) 50%, var(--color-purple) 100%);
-  --gradient-btn:  linear-gradient(135deg, var(--color-coral), var(--color-magenta));
+  /* Gradients — lime → cyan */
+  --gradient-hero: linear-gradient(135deg, #c8ff00 0%, #00e5ff 100%);
+  --gradient-btn:  linear-gradient(135deg, #c8ff00, #00e5ff);
 }
 
 /* -------------------------------------------------------------
@@ -121,19 +125,19 @@ body {
   font-size: var(--text-base);
   line-height: var(--leading-normal);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle SVG noise texture overlay — adds micro-depth without changing base color */
+/* Subtle dot-grid texture overlay */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 300px 300px;
+  opacity: 0.018;
+  background-image: radial-gradient(circle, rgba(200,255,0,0.9) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 nav ul, nav ol, [role="list"] { list-style: none; }
@@ -146,6 +150,11 @@ button { cursor: pointer; border: none; background: none; }
 
 p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--color-bg-tertiary); border-radius: 2px; }
+
 /* -------------------------------------------------------------
    3. BASE TYPOGRAPHY
    ------------------------------------------------------------- */
@@ -156,22 +165,21 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-primary);
 }
 
-/* Gradient text for page-level headings — applied via .heading-gradient */
+/* Gradient text utility — lime → cyan */
 .heading-gradient {
   background: var(--gradient-hero);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  /* Fallback for browsers without background-clip:text support */
   color: var(--color-text-primary);
 }
 
 h1 { font-size: clamp(var(--text-3xl), 6vw, 3.5rem); }
 h2 { font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl)); }
-h3 { font-size: var(--text-2xl); }
-h4 { font-size: var(--text-xl);  }
-h5 { font-size: var(--text-lg);  }
-h6 { font-size: var(--text-base);}
+h3 { font-size: var(--text-xl); }
+h4 { font-size: var(--text-lg);  }
+h5 { font-size: var(--text-base); }
+h6 { font-size: var(--text-sm); }
 
 p {
   font-family: var(--font-body);
@@ -182,7 +190,7 @@ p {
 }
 
 a {
-  color: var(--color-coral);
+  color: var(--color-lime);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -194,7 +202,7 @@ a:hover, a:focus-visible {
 
 /* Keyboard focus ring (WCAG 2.1 AA) */
 :focus-visible {
-  outline: 2px solid var(--color-coral);
+  outline: 2px solid var(--color-lime);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -237,7 +245,7 @@ hr {
 .flex { display: flex; }
 .flex-center { display: flex; align-items: center; justify-content: center; }
 
-.text-accent   { color: var(--color-coral); }
+.text-accent   { color: var(--color-lime); }
 .text-muted    { color: var(--color-text-secondary); }
 .text-success  { color: var(--color-success); }
 .text-danger   { color: var(--color-danger); }
@@ -253,8 +261,8 @@ hr {
   left: var(--space-4);
   z-index: 200;
   padding: var(--space-2) var(--space-5);
-  background: var(--gradient-btn);
-  color: #fff;
+  background: var(--color-lime);
+  color: #07090f;
   font-weight: var(--weight-bold);
   font-size: var(--text-sm);
   border-radius: var(--radius-md);
@@ -264,38 +272,26 @@ hr {
 .skip-link:focus { top: var(--space-2); }
 
 /* -------------------------------------------------------------
-   5. LABEL TAG  — pill above section headings
-   Usage: <span class="label-tag">TOPIC · SUBTOPIC</span>
+   5. LABEL TAG — pill above section headings
    ------------------------------------------------------------- */
 .label-tag {
   display: inline-flex;
   align-items: center;
-  padding: var(--space-1) var(--space-4);
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-family: var(--font-body);
-  font-size: 0.75rem;           /* 12px */
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-lime-dim);
+  border: 1px solid rgba(200, 255, 0, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: var(--weight-medium);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-text-secondary);
+  color: var(--color-lime);
   margin-bottom: var(--space-3);
 }
 
 /* -------------------------------------------------------------
-   6. STEP LIST  — numbered steps with scroll-in animation
-   Usage:
-     <ol class="step-list">
-       <li class="step-item">
-         <div class="step-number" aria-hidden="true">1</div>
-         <div class="step-content">
-           <p class="step-title">Title</p>
-           <p class="step-subtitle">Description</p>
-         </div>
-       </li>
-     </ol>
-   JS in interactions.js adds .step-visible via IntersectionObserver.
+   6. STEP LIST — numbered steps
    ------------------------------------------------------------- */
 .step-list {
   list-style: none;
@@ -308,7 +304,6 @@ hr {
   display: flex;
   align-items: flex-start;
   gap: var(--space-5);
-  /* Start hidden; JS adds .step-visible to trigger the animation */
   opacity: 0;
   transform: translateY(20px);
   transition: opacity var(--transition-slow), transform var(--transition-slow);
@@ -320,21 +315,20 @@ hr {
 }
 
 .step-number {
-  /* 32px colored circle */
   flex-shrink: 0;
   width: 32px;
   height: 32px;
-  border-radius: var(--radius-full);
-  background: var(--gradient-btn);
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background: var(--color-lime);
+  color: #07090f;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading);
+  font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: var(--weight-bold);
   line-height: 1;
-  margin-top: 3px; /* optical alignment with text */
+  margin-top: 3px;
 }
 
 .step-content { display: flex; flex-direction: column; gap: var(--space-1); }
@@ -345,7 +339,7 @@ hr {
   font-weight: var(--weight-bold);
   color: var(--color-text-primary);
   line-height: var(--leading-tight);
-  max-width: none; /* override p max-width */
+  max-width: none;
 }
 
 .step-subtitle {
@@ -357,7 +351,7 @@ hr {
 }
 
 /* -------------------------------------------------------------
-   7. BUTTONS  — redesigned with gradient primary
+   7. BUTTONS
    ------------------------------------------------------------- */
 .btn {
   display: inline-flex;
@@ -378,32 +372,34 @@ hr {
               color var(--transition-fast);
 }
 
-/* Primary: coral→magenta gradient */
+/* Primary: lime fill, dark text */
 .btn-primary {
-  background: var(--gradient-btn);
-  color: #fff;
+  background: var(--color-lime);
+  color: #07090f;
   border-color: transparent;
+  font-weight: var(--weight-bold);
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  box-shadow: 0 0 20px rgba(255, 85, 51, 0.4);
-  opacity: 0.92;
+  background: var(--color-accent-hover);
+  box-shadow: 0 0 24px var(--color-lime-glow);
   text-decoration: none;
-  color: #fff;
+  color: #07090f;
 }
 
-/* Secondary: transparent, accent border, fills on hover */
+/* Secondary: outline lime */
 .btn-secondary {
   background-color: transparent;
-  color: var(--color-coral);
-  border-color: var(--color-coral);
+  color: var(--color-lime);
+  border-color: rgba(200, 255, 0, 0.4);
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus-visible {
-  background-color: rgba(255, 85, 51, 0.12);
-  color: var(--color-accent-hover);
+  background-color: var(--color-lime-dim);
+  border-color: var(--color-lime);
+  color: var(--color-lime);
   text-decoration: none;
 }
 
@@ -418,45 +414,47 @@ hr {
 .btn-ghost:focus-visible {
   background-color: var(--color-bg-tertiary);
   color: var(--color-text-primary);
+  border-color: rgba(255,255,255,0.15);
   text-decoration: none;
 }
 
 .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
 /* -------------------------------------------------------------
-   8. BADGES / TAGS  (existing — updated colors)
+   8. BADGES / TAGS
    ------------------------------------------------------------- */
 .badge {
   display: inline-flex;
   align-items: center;
   padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
-  font-size: var(--text-xs);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: var(--weight-medium);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .badge-accent {
-  background-color: rgba(255, 85, 51, 0.12);
-  color: var(--color-coral);
-  border: 1px solid var(--color-coral);
+  background-color: var(--color-lime-dim);
+  color: var(--color-lime);
+  border: 1px solid rgba(200, 255, 0, 0.35);
 }
 
 .badge-success {
-  background-color: rgba(63, 185, 80, 0.15);
+  background-color: rgba(0, 214, 143, 0.1);
   color: var(--color-success);
-  border: 1px solid var(--color-success);
+  border: 1px solid rgba(0, 214, 143, 0.35);
 }
 
 .badge-warning {
-  background-color: rgba(255, 215, 0, 0.15);
-  color: var(--color-gold);
-  border: 1px solid var(--color-gold);
+  background-color: rgba(255, 184, 0, 0.1);
+  color: var(--color-warning);
+  border: 1px solid rgba(255, 184, 0, 0.35);
 }
 
 .badge-neutral {
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 255, 255, 0.04);
   color: var(--color-text-secondary);
   border: 1px solid var(--color-border);
 }
