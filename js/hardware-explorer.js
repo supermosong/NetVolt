@@ -98,11 +98,16 @@
   /* ------------------------------------------------------------------
      STATE
      ------------------------------------------------------------------ */
-  var rafId         = null;   // requestAnimationFrame handle
-  var startTime     = null;   // timestamp of first frame
-  var paused        = false;  // true while detail panel is open
-  var frozenAngle   = 0;      // orbit angle captured when pausing
-  var activeTimers  = [];     // interval / timeout IDs cleared on close
+  var rafId            = null;   // requestAnimationFrame handle
+  var startTime        = null;   // timestamp of first frame
+  var paused           = false;  // true while detail panel is open
+  var frozenBaseAngle  = 0;      // baseAngle captured at pause time
+  var activeTimers     = [];     // interval / timeout IDs cleared on close
+
+  /* Snap-rotate state */
+  var angleOffset  = 0;      // added to baseAngle every frame
+  var snapTarget   = null;   // lerp target for angleOffset; null = idle
+  var currentAngle = 0;      // last computed total angle, read by openDetail
 
   /* DOM references (set in init) */
   var scene, orbitItems, detailPanel, detailContent, closeBtn;
@@ -193,10 +198,22 @@
   function tick(ts) {
     if (!startTime) startTime = ts;
 
-    if (!paused) {
-      var elapsed = ts - startTime;
-      placeItems(elapsed * ORBIT_SPEED);
+    /* Always lerp snap every frame, even while paused */
+    if (snapTarget !== null) {
+      angleOffset += (snapTarget - angleOffset) * 0.10;
+      if (Math.abs(snapTarget - angleOffset) < 0.001) {
+        angleOffset = snapTarget;
+        snapTarget  = null;
+      }
     }
+
+    var baseAngle = paused
+      ? frozenBaseAngle
+      : (ts - startTime) * ORBIT_SPEED;
+
+    currentAngle = baseAngle + angleOffset;
+    placeItems(currentAngle);
+
     rafId = requestAnimationFrame(tick);
   }
 
@@ -207,11 +224,18 @@
     var n     = items.length;
 
     items.forEach(function (item, i) {
-      var theta = angle + (i * (2 * Math.PI / n));
-      var x     = cx + Math.cos(theta) * ORBIT_RADIUS;
-      var y     = cy + Math.sin(theta) * ORBIT_RADIUS;
-      /* Position the item so the centre of the 68×68 bubble sits on (x, y) */
-      item.style.transform = 'translate(' + (x - 34) + 'px, ' + (y - 34) + 'px)';
+      var theta   = angle + (i * (2 * Math.PI / n));
+      var x       = cx + Math.cos(theta) * ORBIT_RADIUS;
+      var y       = cy + Math.sin(theta) * ORBIT_RADIUS;
+
+      /* Depth: sin(θ)=+1 at bottom (front), −1 at top (back) */
+      var depth   = (1 + Math.sin(theta)) / 2;
+      var opacity = (0.35 + 0.65 * depth).toFixed(3);
+      var scale   = (0.82 + 0.18 * depth).toFixed(3);
+
+      item.style.transform = 'translate(' + (x - 34) + 'px, ' + (y - 34) + 'px) scale(' + scale + ')';
+      item.style.opacity   = opacity;
+      item.style.zIndex    = Math.round(depth * 10);
     });
   }
 
