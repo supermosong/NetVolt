@@ -9,6 +9,12 @@ Wi-Fi & wireless networking, computer networks, and electrical systems.
 
 No installs needed. Just open a terminal in this folder and run:
 
+**macOS (Python 3):**
+```bash
+python3 -m http.server 8080
+```
+
+**Windows / older systems (Python 2):**
 ```bash
 python -m http.server 8080
 ```

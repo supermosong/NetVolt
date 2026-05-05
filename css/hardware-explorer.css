@@ -117,7 +117,7 @@
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 38%, #141c10 0%, #07090f 100%);
+  background: radial-gradient(circle at 50% 50%, #141c10 0%, #07090f 100%);
   border: 2px solid rgba(200,255,0,0.45);
   box-shadow:
     0 0 0 4px rgba(200,255,0,0.03),
@@ -185,7 +185,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%,
+  background: radial-gradient(circle at 50% 50%,
     var(--hw-color-t, rgba(88,166,255,0.18)), transparent 65%);
   opacity: 0.6;
 }
