@@ -508,6 +508,315 @@
     }
     </style>
 
+    <script>
+    (function () {
+      'use strict';
+
+      /* ── Node centre X positions — must match SVG viewBox coords ── */
+      var NODE_X = { device: 66, router: 242, modem: 422, internet: 610 };
+      var NODE_Y = 65;
+
+      /* ── Node border elements and their dim/bright stroke colours ── */
+      var NODE_BORDER = {
+        device:   { el: null, dim: 'rgba(0,229,255,0.25)',   bright: 'rgba(0,229,255,0.9)'   },
+        router:   { el: null, dim: 'rgba(200,255,0,0.25)',   bright: 'rgba(200,255,0,0.9)'   },
+        modem:    { el: null, dim: 'rgba(255,184,0,0.25)',   bright: 'rgba(255,184,0,0.9)'   },
+        internet: { el: null, dim: 'rgba(188,140,255,0.25)', bright: 'rgba(188,140,255,0.9)' }
+      };
+
+      /* ── 7 step definitions ── */
+      var STEPS = [
+        /* 0 — Device idle */
+        {
+          from: 'device', to: 'device', segments: [],
+          activeNodes: ['device'],
+          labelColor: '#00e5ff',
+          label: 'STEP 1 OF 7 — OUTGOING REQUEST',
+          text: 'Your device (phone or laptop) prepares a <strong>request</strong> — for example, "load this webpage." It converts the request into radio waves and broadcasts them into the air.',
+          packetFill: '#00e5ff', glowFill: 'rgba(0,229,255,0.2)'
+        },
+        /* 1 — Device → Router */
+        {
+          from: 'device', to: 'router', segments: ['dr'],
+          activeNodes: ['device', 'router'],
+          labelColor: '#00e5ff',
+          label: 'STEP 2 OF 7 — RADIO WAVES TO ROUTER',
+          text: 'The <strong>radio waves</strong> travel through the air at the speed of light and are picked up by your router\'s antenna — no cable needed.',
+          packetFill: '#00e5ff', glowFill: 'rgba(0,229,255,0.2)'
+        },
+        /* 2 — Router idle */
+        {
+          from: 'router', to: 'router', segments: [],
+          activeNodes: ['router'],
+          labelColor: '#c8ff00',
+          label: 'STEP 3 OF 7 — ROUTER ROUTES THE REQUEST',
+          text: 'The <strong>router</strong> receives your request and decides where to send it — like a traffic controller. It forwards your packets toward the modem via a physical cable.',
+          packetFill: '#c8ff00', glowFill: 'rgba(200,255,0,0.2)'
+        },
+        /* 3 — Router → Modem */
+        {
+          from: 'router', to: 'modem', segments: ['rm'],
+          activeNodes: ['router', 'modem'],
+          labelColor: '#c8ff00',
+          label: 'STEP 4 OF 7 — ROUTER → MODEM (CABLE)',
+          text: 'Your request travels down a <strong>cable</strong> from the router to the modem. The modem then translates it into a signal your ISP\'s network can understand.',
+          packetFill: '#c8ff00', glowFill: 'rgba(200,255,0,0.2)'
+        },
+        /* 4 — Modem → Internet */
+        {
+          from: 'modem', to: 'internet', segments: ['mi'],
+          activeNodes: ['modem', 'internet'],
+          labelColor: '#bc8cff',
+          label: 'STEP 5 OF 7 — MODEM → INTERNET (FIBRE)',
+          text: 'The modem sends your request through your ISP\'s <strong>fibre or cable</strong> line — out of your home and onto the global internet, reaching the destination server in milliseconds.',
+          packetFill: '#bc8cff', glowFill: 'rgba(188,140,255,0.2)'
+        },
+        /* 5 — Internet → Modem (response) */
+        {
+          from: 'internet', to: 'modem', segments: ['mi'],
+          activeNodes: ['internet', 'modem'],
+          labelColor: '#bc8cff',
+          label: 'STEP 6 OF 7 — RESPONSE TRAVELS BACK',
+          text: 'The web server sends the <strong>response</strong> (the webpage data) back along the same path — through the internet, down the fibre line, arriving at your modem.',
+          packetFill: '#bc8cff', glowFill: 'rgba(188,140,255,0.2)'
+        },
+        /* 6 — Modem → Device (modem→router→device combined) */
+        {
+          from: 'modem', to: 'device', segments: ['rm', 'dr'],
+          activeNodes: ['modem', 'router', 'device'],
+          labelColor: '#00e5ff',
+          label: 'STEP 7 OF 7 — DATA ARRIVES AT YOUR DEVICE',
+          text: 'The response travels modem → router → back to your device over <strong>Wi‑Fi</strong>. Your browser receives the packets and assembles the page — done, in under a second.',
+          packetFill: '#00e5ff', glowFill: 'rgba(0,229,255,0.2)'
+        }
+      ];
+
+      /* ── Timing constants (milliseconds) ── */
+      var HOLD_MS   = 1400; /* pause at idle node before advancing */
+      var TRAVEL_MS = 900;  /* time to travel one segment          */
+      var LOOP_MS   = 1800; /* pause before looping back to step 1 */
+
+      /* ── Animation state ── */
+      var currentStep    = 0;
+      var playing        = true;
+      var speeds         = [1, 2, 0.5];
+      var speedIdx       = 0;
+      var traveling      = false;
+      var travelProgress = 0;
+      var lastRafTime    = null;
+      var holdTimer      = null;
+
+      /* ── DOM references ── */
+      var packetEl    = document.getElementById('wf-packet');
+      var glowEl      = document.getElementById('wf-packet-glow');
+      var stepLabelEl = document.getElementById('wf-step-label');
+      var stepTextEl  = document.getElementById('wf-step-text');
+      var ppBtn       = document.getElementById('wf-playpause');
+      var speedBtn    = document.getElementById('wf-speed');
+      var dots        = document.querySelectorAll('.wf-dot');
+      var glowLines   = {
+        dr: document.getElementById('wf-glow-dr'),
+        rm: document.getElementById('wf-glow-rm'),
+        mi: document.getElementById('wf-glow-mi')
+      };
+
+      /* Cache node border elements */
+      Object.keys(NODE_BORDER).forEach(function (key) {
+        NODE_BORDER[key].el = document.getElementById('wf-nr-' + key);
+      });
+
+      /* ── Helpers ── */
+      function easeInOut(t) {
+        /* Quadratic ease-in/out: slow start, fast middle, slow end */
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      }
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function setPacketPos(x, stepIdx) {
+        var s = STEPS[stepIdx];
+        packetEl.setAttribute('cx', x);
+        packetEl.setAttribute('cy', NODE_Y);
+        packetEl.setAttribute('fill', s.packetFill);
+        glowEl.setAttribute('cx', x);
+        glowEl.setAttribute('cy', NODE_Y);
+        glowEl.setAttribute('fill', s.glowFill);
+      }
+
+      function setGlowLines(segments) {
+        /* Light up only the listed segments; dim all others */
+        Object.keys(glowLines).forEach(function (key) {
+          glowLines[key].setAttribute('opacity',
+            segments.indexOf(key) !== -1 ? '1' : '0');
+        });
+      }
+
+      function updateNodeBorders(stepIdx) {
+        var active = STEPS[stepIdx].activeNodes;
+        Object.keys(NODE_BORDER).forEach(function (key) {
+          var nb     = NODE_BORDER[key];
+          var stroke = active.indexOf(key) !== -1 ? nb.bright : nb.dim;
+          nb.el.setAttribute('stroke', stroke);
+        });
+      }
+
+      function updateDots(stepIdx) {
+        dots.forEach(function (d, i) {
+          d.className = 'wf-dot' +
+            (i === stepIdx ? ' wf-dot--active'
+              : i < stepIdx ? ' wf-dot--done' : '');
+        });
+      }
+
+      function updateStepUI(stepIdx) {
+        var s = STEPS[stepIdx];
+        stepLabelEl.textContent = s.label;
+        stepLabelEl.style.color = s.labelColor;
+        stepTextEl.innerHTML    = s.text;
+        setGlowLines(s.segments);
+        updateNodeBorders(stepIdx);
+        updateDots(stepIdx);
+      }
+
+      /* ── Advance logic ── */
+      function startHold(ms) {
+        holdTimer = setTimeout(function () {
+          if (playing) advanceStep();
+        }, ms / speeds[speedIdx]);
+      }
+
+      function advanceStep() {
+        clearTimeout(holdTimer);
+        if (currentStep < STEPS.length - 1) {
+          currentStep++;
+          applyStep(currentStep);
+        } else {
+          /* End of sequence — loop after a pause */
+          holdTimer = setTimeout(function () {
+            if (playing) { currentStep = 0; applyStep(0); }
+          }, LOOP_MS / speeds[speedIdx]);
+        }
+      }
+
+      function applyStep(stepIdx) {
+        var s = STEPS[stepIdx];
+        updateStepUI(stepIdx);
+        if (s.from === s.to) {
+          /* Stationary at node: snap packet, clear glow lines, schedule advance */
+          setPacketPos(NODE_X[s.to], stepIdx);
+          setGlowLines([]);
+          traveling = false;
+          if (playing) startHold(HOLD_MS);
+        } else {
+          /* Traveling: start interpolation loop */
+          traveling      = true;
+          travelProgress = 0;
+          lastRafTime    = null;
+          setPacketPos(NODE_X[s.from], stepIdx);
+        }
+      }
+
+      /* ── Jump to step (node click / dot click) ── */
+      function jumpTo(stepIdx) {
+        clearTimeout(holdTimer);
+        traveling  = false;
+        currentStep = stepIdx;
+        applyStep(currentStep);
+      }
+
+      /* ── requestAnimationFrame loop ── */
+      function rafLoop(ts) {
+        if (traveling && playing) {
+          if (!lastRafTime) lastRafTime = ts;
+          var dt = (ts - lastRafTime) * speeds[speedIdx];
+          lastRafTime = ts;
+          travelProgress += dt / TRAVEL_MS;
+
+          if (travelProgress >= 1) {
+            /* Arrived at destination */
+            travelProgress = 1;
+            traveling      = false;
+            var s = STEPS[currentStep];
+            setPacketPos(NODE_X[s.to], currentStep);
+            if (playing) startHold(300);
+          } else {
+            /* Interpolate packet position */
+            var s2   = STEPS[currentStep];
+            var fromX = NODE_X[s2.from];
+            var toX   = NODE_X[s2.to];
+            setPacketPos(lerp(fromX, toX, easeInOut(travelProgress)), currentStep);
+          }
+        }
+        requestAnimationFrame(rafLoop);
+      }
+
+      /* ── Control: Pause / Play ── */
+      ppBtn.addEventListener('click', function () {
+        playing = !playing;
+        if (playing) {
+          ppBtn.textContent = '⏸ Pause';
+          ppBtn.setAttribute('aria-label', 'Pause animation');
+          if (traveling) {
+            lastRafTime = null; /* resume from current position */
+          } else {
+            startHold(HOLD_MS);
+          }
+        } else {
+          ppBtn.textContent = '▶ Play';
+          ppBtn.setAttribute('aria-label', 'Play animation');
+          clearTimeout(holdTimer);
+        }
+      });
+
+      /* ── Control: Restart ── */
+      document.getElementById('wf-restart').addEventListener('click', function () {
+        clearTimeout(holdTimer);
+        traveling   = false;
+        playing     = true;
+        currentStep = 0;
+        ppBtn.textContent = '⏸ Pause';
+        ppBtn.setAttribute('aria-label', 'Pause animation');
+        applyStep(0);
+      });
+
+      /* ── Control: Speed ── */
+      document.getElementById('wf-speed').addEventListener('click', function () {
+        speedIdx = (speedIdx + 1) % speeds.length;
+        speedBtn.textContent = speeds[speedIdx] + '×';
+      });
+
+      /* ── Progress dots ── */
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          jumpTo(parseInt(dot.dataset.step, 10));
+        });
+      });
+
+      /* ── Node clicks + keyboard activation ── */
+      var nodeClickMap = [
+        { id: 'wf-node-device',   step: 0 },
+        { id: 'wf-node-router',   step: 2 },
+        { id: 'wf-node-modem',    step: 4 },
+        { id: 'wf-node-internet', step: 5 }
+      ];
+      nodeClickMap.forEach(function (pair) {
+        var el = document.getElementById(pair.id);
+        el.addEventListener('click', function () { jumpTo(pair.step); });
+        el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            jumpTo(pair.step);
+          }
+        });
+      });
+
+      /* ── Initialise ── */
+      applyStep(0);
+      requestAnimationFrame(rafLoop);
+
+    }());
+    </script>
+
     <!-- =========================================================
          SECTION 2 — RADIO WAVES & FREQUENCIES
          ========================================================= -->
