@@ -247,22 +247,59 @@
      OPEN DETAIL
      ------------------------------------------------------------------ */
   function openDetail(comp) {
-    /* Capture angle so the orbit stays frozen at the right position */
+    /* Clear any running demo timers from a prior open (badge navigation) */
+    activeTimers.forEach(function (id) {
+      clearInterval(id);
+      clearTimeout(id);
+    });
+    activeTimers = [];
+
+    /* Freeze the base angle so snap can animate while orbit is paused */
+    frozenBaseAngle = currentAngle - angleOffset;
     paused = true;
+
+    /* Snap: rotate this item to the front (bottom of orbit, θ = π/2) */
+    var idx = COMPONENTS.findIndex(function (c) { return c.id === comp.id; });
+    if (idx >= 0) {
+      var n         = COMPONENTS.length;
+      var itemAngle = idx * (2 * Math.PI / n);
+      var raw       = Math.PI / 2 - frozenBaseAngle - itemAngle;
+      /* Normalise to shortest angular path from current angleOffset */
+      while (raw - angleOffset >  Math.PI) { raw -= 2 * Math.PI; }
+      while (raw - angleOffset < -Math.PI) { raw += 2 * Math.PI; }
+      snapTarget = raw;
+    }
+
+    /* Clear previous related highlights, add new ones */
+    orbitItems.querySelectorAll('.hw-orbit-item--related').forEach(function (el) {
+      el.classList.remove('hw-orbit-item--related');
+    });
+    comp.relatedIds.forEach(function (relId) {
+      var el = orbitItems.querySelector('[data-comp-id="' + relId + '"]');
+      if (el) { el.classList.add('hw-orbit-item--related'); }
+    });
+
     scene.classList.add('dim');
 
     detailPanel.hidden = false;
     detailPanel.style.setProperty('--hw-panel-color', comp.color);
 
-    /* Re-trigger the entry animation by cloning (simple approach) */
     detailPanel.style.animation = 'none';
-    /* Force reflow */
     void detailPanel.offsetWidth; /* jshint ignore:line */
     detailPanel.style.animation = '';
 
     renderDetail(comp);
 
-    /* Move focus to the close button after animation completes */
+    /* Wire "Connected to:" badge clicks */
+    detailContent.querySelectorAll('.hw-connected-badge').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var relId = btn.dataset.relatedId;
+        var rel   = COMPONENTS.find(function (c) { return c.id === relId; });
+        if (rel) { openDetail(rel); }
+      });
+    });
+
     setTimeout(function () { closeBtn.focus(); }, 430);
   }
 
@@ -274,6 +311,11 @@
     scene.classList.remove('dim');
     detailPanel.hidden = true;
     detailContent.innerHTML = '';
+
+    /* Remove related-item glow */
+    orbitItems.querySelectorAll('.hw-orbit-item--related').forEach(function (el) {
+      el.classList.remove('hw-orbit-item--related');
+    });
 
     /* Clear all running timers started by the demo */
     activeTimers.forEach(function (id) {
