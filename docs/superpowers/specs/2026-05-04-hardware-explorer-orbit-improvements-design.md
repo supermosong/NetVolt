@@ -34,7 +34,9 @@ The selected item is forced to `opacity:1, scale:1, z-index:20` while its panel 
 ### 2. Snap-rotate
 
 Clicking a component smoothly rotates the orbit so that component arrives at the front
-position (bottom of the orbit ring) before the panel opens.
+position (bottom of the orbit ring). The snap and the panel entry animation run **in
+parallel** — the panel opens immediately on click; the snap lerp (~200 ms at 60 fps)
+completes before the 420 ms panel animation finishes, so both feel simultaneous.
 
 **New state variables (module-level):**
 
@@ -60,8 +62,10 @@ currentAngle = baseAngle + angleOffset
 ```
 itemAngle  = idx × (2π / n)
 raw        = π/2 − currentAngle − itemAngle
-snapTarget = raw normalised to shortest angular path from current angleOffset
-             (add/subtract 2π until |snapTarget − angleOffset| ≤ π)
+// Normalise raw to shortest path from current angleOffset:
+while (raw - angleOffset >  Math.PI) raw -= 2 * Math.PI;
+while (raw - angleOffset < -Math.PI) raw += 2 * Math.PI;
+snapTarget = raw
 ```
 
 The orbit continues auto-rotating after snap completes. Closing the panel does not snap back.
@@ -130,7 +134,7 @@ Each component in the `COMPONENTS` array gains a `relatedIds` string array.
 ## Success Criteria
 
 1. Items visually dim and shrink as they rotate to the back of the orbit
-2. Clicking a component rotates it smoothly to the front before the panel slides in
+2. Clicking a component rotates it smoothly to the front; snap and panel entry run in parallel
 3. Related items glow/pulse while a component's panel is open
 4. "Connected to:" badges in the panel correctly navigate to related components
 5. All existing tests pass (keyboard nav, Escape, mobile layout)
