@@ -1249,3 +1249,85 @@
     height: 280px;
   }
 }
+
+/* ------------------------------------------------------------------
+   RELATED-ITEM GLOW  (orbit items connected to the selected component)
+   ------------------------------------------------------------------ */
+.hw-orbit-item--related .hw-orbit-bubble {
+  animation: related-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes related-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 10px var(--hw-color),
+      0 0 30px rgba(0,0,0,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  50% {
+    box-shadow:
+      0 0 28px var(--hw-color),
+      0 0 60px rgba(0,0,0,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+}
+
+.hw-orbit-item--related .hw-orbit-label {
+  opacity: 1;
+  text-shadow: 0 0 14px var(--hw-color);
+}
+
+/* ------------------------------------------------------------------
+   CONNECTED-TO ROW  (bottom of detail panel)
+   ------------------------------------------------------------------ */
+.hw-connected {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.hw-connected-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.hw-connected-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.hw-connected-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: 9999px;
+  border: 1px solid var(--hw-related-color, #58a6ff);
+  background: transparent;
+  color: var(--hw-related-color, #58a6ff);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.hw-connected-badge:hover,
+.hw-connected-badge:focus-visible {
+  box-shadow: 0 0 10px var(--hw-related-color, #58a6ff);
+  background: rgba(255,255,255,0.05);
+  outline: none;
+}
+
+.hw-connected-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--hw-related-color, #58a6ff);
+}

@@ -340,7 +340,8 @@
       '<div class="hw-function-demo">' +
         '<p class="hw-function-label">' + comp.demoLabel + '</p>' +
         getFunctionDemo(comp.id) +
-      '</div>';
+      '</div>' +
+      renderConnected(comp);
 
     startDemoAnimations(comp.id);
   }
@@ -557,6 +558,35 @@
 
       default: return '';
     }
+  }
+
+  /* ------------------------------------------------------------------
+     RENDER CONNECTED-TO ROW
+     ------------------------------------------------------------------ */
+  function renderConnected(comp) {
+    if (!comp.relatedIds || comp.relatedIds.length === 0) { return ''; }
+
+    var badges = comp.relatedIds.map(function (relId) {
+      var rel = COMPONENTS.find(function (c) { return c.id === relId; });
+      if (!rel) { return ''; }
+      var iconHtml = rel.icon.replace('<svg ', '<svg class="hw-connected-icon" ');
+      return (
+        '<button class="hw-connected-badge"' +
+                ' style="--hw-related-color:' + rel.color + '"' +
+                ' data-related-id="' + rel.id + '"' +
+                ' aria-label="Explore ' + rel.fullName + '">' +
+          iconHtml +
+          rel.name +
+        '</button>'
+      );
+    }).join('');
+
+    return (
+      '<div class="hw-connected">' +
+        '<p class="hw-connected-label">Connected to</p>' +
+        '<div class="hw-connected-badges">' + badges + '</div>' +
+      '</div>'
+    );
   }
 
   /* ------------------------------------------------------------------
