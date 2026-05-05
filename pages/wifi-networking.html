@@ -249,87 +249,264 @@
         <h3 style="margin: var(--space-8) 0 var(--space-4);">How a Wi-Fi Connection Works</h3>
         <p>Follow the path data takes from your device to the internet and back.</p>
 
-        <div style="margin-top: var(--space-6); overflow-x: auto;">
-          <svg class="hw-diagram" viewBox="0 0 700 200" role="img"
-               aria-label="Diagram: Device sends request via Wi-Fi to router, router sends to internet via modem, response travels back">
+        <div class="wf-wrap" style="margin-top: var(--space-6);">
 
-            <!-- Background -->
-            <rect x="0" y="0" width="700" height="200" rx="12"
-                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
+          <svg class="wf-svg" viewBox="0 0 680 140" xmlns="http://www.w3.org/2000/svg"
+               role="img"
+               aria-label="Animated diagram: data travels from your device to the internet and back">
 
-            <!-- DEVICE -->
-            <rect x="30" y="60" width="100" height="80" rx="8"
-                  fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
-            <rect x="40" y="68" width="80" height="50" rx="4" fill="#0d1117"/>
-            <rect x="55" y="122" width="50" height="5" rx="2" fill="#30363d"/>
-            <text x="80" y="148" text-anchor="middle" fill="#58a6ff"
-                  font-size="11" font-family="Inter,sans-serif" font-weight="600">Your Device</text>
-            <text x="80" y="160" text-anchor="middle" fill="#8b949e"
-                  font-size="9" font-family="Inter,sans-serif">phone / laptop / TV</text>
+            <!-- Base dim lines (always visible) -->
+            <line x1="114" y1="65" x2="208" y2="65"
+                  stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="276" y1="65" x2="388" y2="65"
+                  stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="456" y1="65" x2="564" y2="65"
+                  stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-linecap="round"/>
 
-            <!-- Arrow 1: device → router (radio waves) -->
-            <line x1="132" y1="100" x2="218" y2="100"
-                  stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="5,3"/>
-            <polygon points="218,96 228,100 218,104" fill="#58a6ff"/>
-            <!-- wave arcs above arrow -->
-            <path d="M152 90 Q162 80 172 90 Q182 100 192 90 Q202 80 212 90"
-                  fill="none" stroke="#58a6ff" stroke-width="1" opacity="0.5"/>
-            <text x="180" y="76" text-anchor="middle" fill="#8b949e"
-                  font-size="9" font-family="Inter,sans-serif">radio waves</text>
+            <!-- Glow lines (opacity toggled by JS to highlight active segment) -->
+            <line id="wf-glow-dr" x1="114" y1="65" x2="208" y2="65"
+                  stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round" opacity="0"/>
+            <line id="wf-glow-rm" x1="276" y1="65" x2="388" y2="65"
+                  stroke="#c8ff00" stroke-width="2.5" stroke-linecap="round" opacity="0"/>
+            <line id="wf-glow-mi" x1="456" y1="65" x2="564" y2="65"
+                  stroke="#bc8cff" stroke-width="2.5" stroke-linecap="round" opacity="0"/>
 
-            <!-- ROUTER -->
-            <rect x="230" y="60" width="100" height="80" rx="8"
-                  fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
-            <!-- Antenna -->
-            <line x1="255" y1="60" x2="255" y2="42" stroke="#3fb950" stroke-width="1.5"/>
-            <line x1="280" y1="60" x2="280" y2="38" stroke="#3fb950" stroke-width="1.5"/>
-            <line x1="305" y1="60" x2="305" y2="42" stroke="#3fb950" stroke-width="1.5"/>
-            <!-- Wi-Fi symbol on router -->
-            <path d="M263 88 Q280 74 297 88" fill="none" stroke="#3fb950" stroke-width="1.5"/>
-            <path d="M269 94 Q280 84 291 94" fill="none" stroke="#3fb950" stroke-width="1.5"/>
-            <circle cx="280" cy="100" r="3" fill="#3fb950"/>
-            <text x="280" y="148" text-anchor="middle" fill="#3fb950"
-                  font-size="11" font-family="Inter,sans-serif" font-weight="600">Router</text>
-            <text x="280" y="160" text-anchor="middle" fill="#8b949e"
-                  font-size="9" font-family="Inter,sans-serif">your home hub</text>
+            <!-- Connection type labels -->
+            <text x="161" y="50" text-anchor="middle"
+                  fill="rgba(255,255,255,0.2)" font-size="9"
+                  font-family="'Fira Code','Courier New',monospace">radio waves</text>
+            <text x="332" y="50" text-anchor="middle"
+                  fill="rgba(255,255,255,0.2)" font-size="9"
+                  font-family="'Fira Code','Courier New',monospace">cable</text>
+            <text x="510" y="50" text-anchor="middle"
+                  fill="rgba(255,255,255,0.2)" font-size="9"
+                  font-family="'Fira Code','Courier New',monospace">fibre / cable</text>
 
-            <!-- Arrow 2: router → modem (cable) -->
-            <line x1="332" y1="100" x2="418" y2="100"
-                  stroke="#d29922" stroke-width="2"/>
-            <polygon points="418,96 428,100 418,104" fill="#d29922"/>
-            <text x="380" y="88" text-anchor="middle" fill="#8b949e"
-                  font-size="9" font-family="Inter,sans-serif">cable</text>
+            <!-- NODE: Device (center x=66) -->
+            <g id="wf-node-device" tabindex="0" role="button"
+               aria-label="Your device — click to jump to step 1">
+              <rect id="wf-nr-device" x="18" y="35" width="96" height="60" rx="7"
+                    fill="#111820" stroke="rgba(0,229,255,0.25)" stroke-width="1.5"/>
+              <!-- laptop screen -->
+              <rect x="28" y="43" width="76" height="30" rx="3" fill="#0a0e16"/>
+              <!-- laptop base -->
+              <rect x="43" y="75" width="46" height="5" rx="2" fill="#1e2a3a"/>
+              <text x="66" y="100" text-anchor="middle"
+                    fill="rgba(0,229,255,0.65)" font-size="9"
+                    font-family="'Fira Code','Courier New',monospace" font-weight="700">YOUR DEVICE</text>
+              <text x="66" y="111" text-anchor="middle"
+                    fill="#3d4a60" font-size="8"
+                    font-family="'Fira Code','Courier New',monospace">phone / laptop</text>
+            </g>
 
-            <!-- MODEM -->
-            <rect x="430" y="60" width="100" height="80" rx="8"
-                  fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
-            <rect x="445" y="80" width="70" height="8" rx="3" fill="#30363d"/>
-            <rect x="445" y="96" width="70" height="8" rx="3" fill="#30363d"/>
-            <text x="480" y="148" text-anchor="middle" fill="#d29922"
-                  font-size="11" font-family="Inter,sans-serif" font-weight="600">Modem</text>
-            <text x="480" y="160" text-anchor="middle" fill="#8b949e"
-                  font-size="9" font-family="Inter,sans-serif">ISP gateway</text>
+            <!-- NODE: Router (center x=242) -->
+            <g id="wf-node-router" tabindex="0" role="button"
+               aria-label="Router — click to jump to step 3">
+              <rect id="wf-nr-router" x="208" y="35" width="68" height="60" rx="7"
+                    fill="#111820" stroke="rgba(200,255,0,0.25)" stroke-width="1.5"/>
+              <!-- antennas -->
+              <line x1="224" y1="35" x2="222" y2="20"
+                    stroke="rgba(200,255,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="242" y1="35" x2="242" y2="16"
+                    stroke="rgba(200,255,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="260" y1="35" x2="262" y2="20"
+                    stroke="rgba(200,255,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Wi-Fi arcs -->
+              <path d="M226 58 Q242 47 258 58"
+                    fill="none" stroke="rgba(200,255,0,0.5)" stroke-width="1.5"/>
+              <path d="M232 64 Q242 57 252 64"
+                    fill="none" stroke="rgba(200,255,0,0.5)" stroke-width="1.5"/>
+              <circle cx="242" cy="69" r="2.5" fill="rgba(200,255,0,0.7)"/>
+              <text x="242" y="100" text-anchor="middle"
+                    fill="rgba(200,255,0,0.65)" font-size="9"
+                    font-family="'Fira Code','Courier New',monospace" font-weight="700">ROUTER</text>
+              <text x="242" y="111" text-anchor="middle"
+                    fill="#3d4a60" font-size="8"
+                    font-family="'Fira Code','Courier New',monospace">home hub</text>
+            </g>
 
-            <!-- Arrow 3: modem → internet -->
-            <line x1="532" y1="100" x2="608" y2="100"
-                  stroke="#bc8cff" stroke-width="2"/>
-            <polygon points="608,96 618,100 608,104" fill="#bc8cff"/>
-            <text x="570" y="88" text-anchor="middle" fill="#8b949e"
-                  font-size="9" font-family="Inter,sans-serif">fibre / cable</text>
+            <!-- NODE: Modem (center x=422) -->
+            <g id="wf-node-modem" tabindex="0" role="button"
+               aria-label="Modem — click to jump to step 5">
+              <rect id="wf-nr-modem" x="388" y="35" width="68" height="60" rx="7"
+                    fill="#111820" stroke="rgba(255,184,0,0.25)" stroke-width="1.5"/>
+              <!-- modem indicator bars -->
+              <rect x="400" y="48" width="44" height="6" rx="2" fill="#1a2030"/>
+              <rect x="400" y="60" width="44" height="6" rx="2" fill="#1a2030"/>
+              <!-- LEDs -->
+              <circle cx="403" cy="51" r="2" fill="rgba(255,184,0,0.6)"/>
+              <circle cx="403" cy="63" r="2" fill="rgba(0,214,143,0.6)"/>
+              <text x="422" y="100" text-anchor="middle"
+                    fill="rgba(255,184,0,0.65)" font-size="9"
+                    font-family="'Fira Code','Courier New',monospace" font-weight="700">MODEM</text>
+              <text x="422" y="111" text-anchor="middle"
+                    fill="#3d4a60" font-size="8"
+                    font-family="'Fira Code','Courier New',monospace">ISP gateway</text>
+            </g>
 
-            <!-- INTERNET CLOUD -->
-            <ellipse cx="650" cy="100" rx="38" ry="26"
-                     fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
-            <text x="650" y="97" text-anchor="middle" fill="#bc8cff"
-                  font-size="11" font-family="Inter,sans-serif" font-weight="600">Inter-</text>
-            <text x="650" y="110" text-anchor="middle" fill="#bc8cff"
-                  font-size="11" font-family="Inter,sans-serif" font-weight="600">net</text>
+            <!-- NODE: Internet cloud (center x=610) -->
+            <g id="wf-node-internet" tabindex="0" role="button"
+               aria-label="Internet — click to jump to step 6">
+              <ellipse id="wf-nr-internet" cx="610" cy="65" rx="44" ry="32"
+                       fill="#111820" stroke="rgba(188,140,255,0.25)" stroke-width="1.5"/>
+              <!-- globe lines -->
+              <ellipse cx="610" cy="65" rx="16" ry="30"
+                       fill="none" stroke="rgba(188,140,255,0.25)" stroke-width="1"/>
+              <line x1="566" y1="65" x2="654" y2="65"
+                    stroke="rgba(188,140,255,0.25)" stroke-width="1"/>
+              <ellipse cx="610" cy="65" rx="44" ry="14"
+                       fill="none" stroke="rgba(188,140,255,0.25)" stroke-width="1"/>
+              <text x="610" y="95" text-anchor="middle"
+                    fill="rgba(188,140,255,0.65)" font-size="9"
+                    font-family="'Fira Code','Courier New',monospace" font-weight="700">INTERNET</text>
+              <text x="610" y="106" text-anchor="middle"
+                    fill="#3d4a60" font-size="8"
+                    font-family="'Fira Code','Courier New',monospace">the web</text>
+            </g>
+
+            <!-- Packet glow halo (behind dot) -->
+            <circle id="wf-packet-glow" cx="66" cy="65" r="11"
+                    fill="rgba(0,229,255,0.18)"/>
+            <!-- Packet dot -->
+            <circle id="wf-packet" cx="66" cy="65" r="5" fill="#00e5ff"/>
 
           </svg>
+
+          <!-- Step description — role="status" so screen readers announce changes -->
+          <div class="wf-step-box" role="status" aria-live="polite">
+            <div class="wf-step-label" id="wf-step-label">STEP 1 OF 7 — OUTGOING REQUEST</div>
+            <div class="wf-step-text" id="wf-step-text">
+              Your device (phone or laptop) prepares a <strong>request</strong> — for example,
+              "load this webpage." It converts the request into radio waves and broadcasts
+              them into the air.
+            </div>
+          </div>
+
+          <!-- Progress dots — one per step, clickable -->
+          <div class="wf-dots" role="group" aria-label="Animation progress — click a dot to jump to that step">
+            <button class="wf-dot wf-dot--active" data-step="0" aria-label="Step 1: Outgoing request"></button>
+            <button class="wf-dot" data-step="1" aria-label="Step 2: Radio waves to router"></button>
+            <button class="wf-dot" data-step="2" aria-label="Step 3: Router routes request"></button>
+            <button class="wf-dot" data-step="3" aria-label="Step 4: Router to modem via cable"></button>
+            <button class="wf-dot" data-step="4" aria-label="Step 5: Modem to internet via fibre"></button>
+            <button class="wf-dot" data-step="5" aria-label="Step 6: Response travels back"></button>
+            <button class="wf-dot" data-step="6" aria-label="Step 7: Data arrives at your device"></button>
+          </div>
+
+          <!-- Controls -->
+          <div class="wf-controls">
+            <button class="wf-btn wf-btn--ghost" id="wf-restart"
+                    aria-label="Restart animation from the beginning">&#8635; Restart</button>
+            <button class="wf-btn" id="wf-playpause"
+                    aria-label="Pause animation">&#9208; Pause</button>
+            <span class="wf-speed-label">Speed</span>
+            <button class="wf-btn wf-btn--ghost" id="wf-speed"
+                    aria-label="Change animation speed">1&times;</button>
+          </div>
+
         </div>
 
       </div>
     </section>
+
+    <style>
+    /* ── Wi-Fi flow animation ── */
+    .wf-wrap {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 20px 16px 16px;
+      overflow: hidden;
+    }
+    .wf-svg {
+      width: 100%;
+      display: block;
+    }
+    .wf-step-box {
+      margin-top: 16px;
+      background: var(--color-bg-primary);
+      border: 1px solid rgba(200, 255, 0, 0.15);
+      border-radius: 6px;
+      padding: 12px 16px;
+      min-height: 60px;
+    }
+    .wf-step-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--color-lime);
+      margin-bottom: 4px;
+      transition: color 0.3s;
+    }
+    .wf-step-text {
+      font-size: 0.9rem;
+      color: var(--color-text-subtle);
+      line-height: 1.55;
+    }
+    .wf-step-text strong { color: var(--color-text-primary); }
+    .wf-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .wf-dot {
+      width: 28px;
+      height: 3px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s, width 0.2s;
+    }
+    .wf-dot:hover { background: rgba(200, 255, 0, 0.3); }
+    .wf-dot--active {
+      background: var(--color-lime);
+      width: 40px;
+    }
+    .wf-dot--done { background: rgba(200, 255, 0, 0.35); }
+    .wf-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .wf-btn {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 16px;
+      background: rgba(200, 255, 0, 0.08);
+      color: var(--color-lime);
+      border: 1px solid rgba(200, 255, 0, 0.3);
+      border-radius: 2px;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      transition: background 0.2s;
+      line-height: 1.6;
+    }
+    .wf-btn:hover { background: rgba(200, 255, 0, 0.16); }
+    .wf-btn--ghost {
+      background: transparent;
+      color: var(--color-text-secondary);
+      border-color: var(--color-border);
+    }
+    .wf-btn--ghost:hover {
+      border-color: rgba(200, 255, 0, 0.4);
+      color: var(--color-lime);
+    }
+    .wf-speed-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.08em;
+    }
+    </style>
 
     <!-- =========================================================
          SECTION 2 — RADIO WAVES & FREQUENCIES
@@ -805,8 +982,11 @@
           ctx.fillStyle = wd.fill;
           ctx.fillRect(wallL, 16, wallHW * 2, H - 32);
 
-          /* material texture */
+          /* material texture — clipped so texture can't bleed outside wall rect */
           ctx.save();
+          ctx.beginPath();
+          ctx.rect(wallL, 16, wallHW * 2, H - 32);
+          ctx.clip();
           ctx.globalAlpha = 0.32;
           if (currentWall === 'brick') {
             ctx.fillStyle = wd.stripe;
