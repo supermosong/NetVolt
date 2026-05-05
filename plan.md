@@ -76,19 +76,35 @@ project-root/
 
 ---
 
-## Phase 5 — it-basics.html Background Improvements
+## Phase 5 — it-basics.html Background Improvements ✅
 
 > Goal: make the it-basics page background feel more polished, immersive, and visually cohesive — without touching layout, fonts, or colors.
 
-- [ ] 1. Audit current background layers — identify any visible seams, clashing glow blobs, or flat/empty areas between sections
-- [ ] 2. Improve section-to-section transitions — ensure adjacent sections flow smoothly without a hard split line
-- [ ] 3. Refine glow blob placement — reposition any atmospheric radial gradients so they feel intentional (anchored near section edges, not floating in the middle)
-- [ ] 4. Add subtle depth variation — alternate section backgrounds using existing CSS variables (`--color-bg-primary` / `--color-bg-secondary`) to create rhythm without borders
-- [ ] 5. Tune glow intensity — lower any glow opacity that feels too heavy or competes with content readability
-- [ ] 6. Verify noise texture renders correctly on the page and does not create a visible two-layer effect
-- [ ] 7. Final visual check — scroll full page and confirm background looks like one continuous, cohesive surface
+- [x] 1. Audit current background layers — identify any visible seams, clashing glow blobs, or flat/empty areas between sections
+- [x] 2. Improve section-to-section transitions — ensure adjacent sections flow smoothly without a hard split line
+- [x] 3. Refine glow blob placement — reposition any atmospheric radial gradients so they feel intentional (anchored near section edges, not floating in the middle)
+- [x] 4. Add subtle depth variation — alternate section backgrounds using existing CSS variables (`--color-bg-primary` / `--color-bg-secondary`) to create rhythm without borders
+- [x] 5. Tune glow intensity — lower any glow opacity that feels too heavy or competes with content readability
+- [x] 6. Verify noise texture renders correctly on the page and does not create a visible two-layer effect
+- [x] 7. Final visual check — scroll full page and confirm background looks like one continuous, cohesive surface
 
-*Files to touch: `css/global.css`, `css/layout.css`, `css/components.css` only. No HTML or JS changes.*
+*Files touched: `css/global.css`, `css/layout.css`, `css/components.css`, `css/hardware-explorer.css`.*
+
+---
+
+## Phase 6 — Wi-Fi Page Interactions & Theme Refresh ✅
+
+> Goal: add rich interactive elements to `wifi-networking.html` and apply a sitewide theme refresh.
+
+- [x] 1. Add frequency-band flip cards (2.4 GHz / 5 GHz / 6 GHz) — click to reveal key details
+- [x] 2. Add animated radio-wave wall-penetration simulator (Canvas) — toolbar lets user pick wall type and frequency band; signal attenuation shown in real time
+- [x] 3. Add animated Wi-Fi flow diagram — shows device → router → modem → internet path with pulsing arrows
+- [x] 4. Add accordion FAQ for router section (SSID, IP address, DHCP, WPA/WPA2/WPA3)
+- [x] 5. Add scroll-intro video (`assets/scroll-intro.mp4`) on the home page
+- [x] 6. Sitewide theme refresh — updated CSS variables in `css/global.css` and `css/layout.css`; new `css/hardware-explorer.css` for the 3D orbital explorer
+- [x] 7. Updated `index.html` — new hero layout, topic cards, and video integration
+
+*Files touched: `pages/wifi-networking.html`, `css/global.css`, `css/layout.css`, `css/components.css`, `css/hardware-explorer.css`, `js/interactions.js`, `index.html`, `assets/scroll-intro.mp4`.*
 
 ---
 
