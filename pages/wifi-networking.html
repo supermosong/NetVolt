@@ -586,7 +586,7 @@
           activeNodes: ['modem', 'router', 'device'],
           labelColor: '#00e5ff',
           label: 'STEP 7 OF 7 — DATA ARRIVES AT YOUR DEVICE',
-          text: 'The response travels modem → router → back to your device over <strong>Wi‑Fi</strong>. Your browser receives the packets and assembles the page — done, in under a second.',
+          text: 'The response arrives back at your device over <strong>Wi‑Fi</strong>. Your browser receives the packets and assembles the page — done, in under a second.',
           packetFill: '#00e5ff', glowFill: 'rgba(0,229,255,0.2)'
         }
       ];
@@ -783,6 +783,7 @@
       document.getElementById('wf-speed').addEventListener('click', function () {
         speedIdx = (speedIdx + 1) % speeds.length;
         speedBtn.textContent = speeds[speedIdx] + '×';
+        speedBtn.setAttribute('aria-label', 'Change animation speed — currently ' + speeds[speedIdx] + '×');
       });
 
       /* ── Progress dots ── */
