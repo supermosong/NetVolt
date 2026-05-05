@@ -24,6 +24,7 @@
       colorRgb: '88,166,255',
       tagline: 'The brain. It executes billions of instructions per second — calculations, logic, and decisions for every program.',
       demoLabel: 'Processing Instructions',
+      relatedIds: ['ram', 'gpu'],
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>'
     },
     {
@@ -34,6 +35,7 @@
       colorRgb: '210,153,34',
       tagline: 'Short-term memory. Holds programs currently in use for instant access — everything clears when the power goes off.',
       demoLabel: 'Storing Active Data',
+      relatedIds: ['cpu', 'hdd'],
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="10" y1="10" x2="10" y2="14"/><line x1="14" y1="10" x2="14" y2="14"/><line x1="18" y1="10" x2="18" y2="14"/></svg>'
     },
     {
@@ -44,6 +46,7 @@
       colorRgb: '240,136,62',
       tagline: 'Long-term storage. Spinning magnetic platters store all your files, photos, and programs — even with the power off.',
       demoLabel: 'Seeking Data at 7200 RPM',
+      relatedIds: ['ram'],
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="4"/></svg>'
     },
     {
@@ -54,6 +57,7 @@
       colorRgb: '63,185,80',
       tagline: 'Primary input device. Each key press sends an electrical signal the computer converts into a character or command.',
       demoLabel: 'Typing Input',
+      relatedIds: ['mouse'],
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg>'
     },
     {
@@ -64,6 +68,7 @@
       colorRgb: '188,140,255',
       tagline: 'Pointing device. Physical movement is translated into cursor position on screen — each click sends a digital event.',
       demoLabel: 'Moving & Clicking',
+      relatedIds: ['keyboard'],
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 2v8"/><path d="M5 10h14"/></svg>'
     },
     {
@@ -74,6 +79,7 @@
       colorRgb: '248,81,73',
       tagline: 'Output device. Converts a digital document into a physical paper copy by spraying ink or fusing toner onto the page.',
       demoLabel: 'Printing a Document',
+      relatedIds: ['cpu'],
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>'
     },
     {
@@ -84,6 +90,7 @@
       colorRgb: '57,208,216',
       tagline: 'Handles all graphics rendering. Thousands of tiny parallel cores draw every pixel on screen — from a simple desktop to complex 3D games and AI workloads.',
       demoLabel: 'Rendering Pixels',
+      relatedIds: ['cpu'],
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="17" height="13" rx="2"/><circle cx="9" cy="12" r="3"/><line x1="14" y1="9" x2="14" y2="15"/><line x1="16" y1="9" x2="16" y2="15"/><line x1="19" y1="9" x2="22" y2="9"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="19" y1="15" x2="22" y2="15"/></svg>'
     }
   ];
@@ -152,7 +159,8 @@
       item.tabIndex     = 0;
       item.setAttribute('role', 'listitem');
       item.setAttribute('aria-label', 'Explore ' + comp.fullName + '. Press Enter to open.');
-      item.dataset.idx  = idx;
+      item.dataset.idx    = idx;
+      item.dataset.compId = comp.id;
       item.style.setProperty('--hw-color',   comp.color);
       item.style.setProperty('--hw-color-t', 'rgba(' + comp.colorRgb + ',0.18)');
 
