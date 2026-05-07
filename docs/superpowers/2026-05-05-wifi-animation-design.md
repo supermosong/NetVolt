@@ -1,4 +1,4 @@
-# Design Spec: Wi-Fi Connection Animation
+omm# Design Spec: Wi-Fi Connection Animation
 
 **Date:** 2026-05-05
 **Status:** Approved
