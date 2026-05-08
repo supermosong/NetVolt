@@ -326,228 +326,282 @@
           router is the village gate: it controls traffic in and out.
         </p>
 
-        <!-- LAN vs WAN diagram -->
-        <h3 style="margin: var(--space-8) 0 var(--space-4);">Visual Overview</h3>
-        <div style="overflow-x: auto; margin-bottom: var(--space-6);">
-          <svg viewBox="0 0 700 300" role="img"
-               aria-label="Diagram showing two LANs (Home and Office) connected through the internet WAN"
-               style="width:100%; max-width:700px; display:block;">
-
-            <rect x="0" y="0" width="700" height="300" rx="12"
-                  fill="#161b22" stroke="#30363d" stroke-width="2"/>
-
-            <!-- HOME LAN bubble -->
-            <ellipse cx="150" cy="155" rx="128" ry="110"
-                     fill="rgba(88,166,255,0.05)" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="6,3"/>
-            <text x="150" y="32" text-anchor="middle" fill="#58a6ff"
-                  font-size="12" font-family="Inter,sans-serif" font-weight="700">HOME LAN</text>
-
-            <!-- Router (home) -->
-            <rect x="110" y="128" width="80" height="50" rx="6"
-                  fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
-            <line x1="125" y1="128" x2="125" y2="114" stroke="#58a6ff" stroke-width="1.5"/>
-            <line x1="150" y1="128" x2="150" y2="110" stroke="#58a6ff" stroke-width="1.5"/>
-            <line x1="175" y1="128" x2="175" y2="114" stroke="#58a6ff" stroke-width="1.5"/>
-            <text x="150" y="158" text-anchor="middle" fill="#58a6ff"
-                  font-size="9" font-family="Inter,sans-serif" font-weight="600">Router</text>
-            <text x="150" y="170" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">192.168.1.1</text>
-
-            <!-- Home devices -->
-            <rect x="42" y="195" width="55" height="38" rx="5"
-                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
-            <text x="69" y="218" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">Laptop</text>
-            <line x1="97" y1="207" x2="115" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
-
-            <rect x="105" y="210" width="55" height="38" rx="5"
-                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
-            <text x="132" y="233" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">Phone</text>
-            <line x1="150" y1="210" x2="150" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
-
-            <rect x="170" y="195" width="55" height="38" rx="5"
-                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
-            <text x="197" y="218" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">Smart TV</text>
-            <line x1="187" y1="195" x2="175" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
-
-            <!-- WAN / Internet cloud in the centre -->
-            <ellipse cx="350" cy="155" rx="72" ry="55"
-                     fill="rgba(188,140,255,0.08)" stroke="#bc8cff" stroke-width="1.5"/>
-            <text x="350" y="148" text-anchor="middle" fill="#bc8cff"
-                  font-size="13" font-family="Inter,sans-serif" font-weight="700">Internet</text>
-            <text x="350" y="164" text-anchor="middle" fill="#8b949e"
-                  font-size="9" font-family="Inter,sans-serif">(WAN)</text>
-
-            <!-- Connection lines: home router ↔ internet -->
-            <line x1="190" y1="155" x2="278" y2="155"
-                  stroke="#bc8cff" stroke-width="2"/>
-            <polygon points="278,151 288,155 278,159" fill="#bc8cff"/>
-
-            <!-- Connection lines: internet ↔ office router -->
-            <line x1="422" y1="155" x2="510" y2="155"
-                  stroke="#bc8cff" stroke-width="2"/>
-            <polygon points="510,151 520,155 510,159" fill="#bc8cff"/>
-
-            <!-- OFFICE LAN bubble -->
-            <ellipse cx="550" cy="155" rx="128" ry="110"
-                     fill="rgba(63,185,80,0.05)" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="6,3"/>
-            <text x="550" y="32" text-anchor="middle" fill="#3fb950"
-                  font-size="12" font-family="Inter,sans-serif" font-weight="700">OFFICE LAN</text>
-
-            <!-- Router (office) -->
-            <rect x="510" y="128" width="80" height="50" rx="6"
-                  fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
-            <line x1="525" y1="128" x2="525" y2="114" stroke="#3fb950" stroke-width="1.5"/>
-            <line x1="550" y1="128" x2="550" y2="110" stroke="#3fb950" stroke-width="1.5"/>
-            <line x1="575" y1="128" x2="575" y2="114" stroke="#3fb950" stroke-width="1.5"/>
-            <text x="550" y="158" text-anchor="middle" fill="#3fb950"
-                  font-size="9" font-family="Inter,sans-serif" font-weight="600">Router</text>
-            <text x="550" y="170" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">10.0.0.1</text>
-
-            <!-- Office devices -->
-            <rect x="482" y="195" width="55" height="38" rx="5"
-                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
-            <text x="509" y="218" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">PC 1</text>
-            <line x1="515" y1="195" x2="525" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
-
-            <rect x="545" y="210" width="55" height="38" rx="5"
-                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
-            <text x="572" y="233" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">PC 2</text>
-            <line x1="563" y1="210" x2="560" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
-
-            <rect x="608" y="195" width="55" height="38" rx="5"
-                  fill="#21262d" stroke="#30363d" stroke-width="1"/>
-            <text x="635" y="218" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">Server</text>
-            <line x1="620" y1="195" x2="588" y2="178" stroke="#30363d" stroke-width="1" stroke-dasharray="3,2"/>
-
-            <!-- Labels -->
-            <text x="235" y="145" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">ISP cable</text>
-            <text x="465" y="145" text-anchor="middle" fill="#8b949e"
-                  font-size="8" font-family="Inter,sans-serif">ISP cable</text>
-
-          </svg>
+        <!-- Tab bar -->
+        <div class="lan-wan-tabs" role="tablist" aria-label="Network type view"
+             style="margin-top: var(--space-8);">
+          <button class="lan-wan-tab"
+                  role="tab"
+                  id="tab-lan"
+                  aria-selected="true"
+                  aria-controls="lan-wan-diagram-region">
+            LAN
+          </button>
+          <button class="lan-wan-tab"
+                  role="tab"
+                  id="tab-wan"
+                  aria-selected="false"
+                  aria-controls="lan-wan-diagram-region">
+            WAN
+          </button>
         </div>
 
-        <!-- Flip cards: key concepts -->
-        <div class="callout callout-tip" role="note">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-               viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
-            <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
-            <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
-            <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
-          </svg>
-          <div class="callout__content">
-            <p class="callout__title">Try it!</p>
-            <p class="callout__body">Click each card to flip it and see the definition.</p>
-          </div>
-        </div>
+        <!-- Diagram + attribute panel region -->
+        <div id="lan-wan-diagram-region"
+             role="tabpanel"
+             aria-labelledby="tab-lan">
 
-        <div class="flip-grid" role="list" style="margin-top: var(--space-6);">
+          <div class="lan-wan-diagram-wrap">
 
-          <div class="flip-card" role="listitem" tabindex="0"
-               aria-label="LAN — click to flip and learn more">
-            <div class="flip-card__inner">
-              <div class="flip-card__front">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                  <polyline points="9 22 9 12 15 12 15 22"/>
-                </svg>
-                <p class="flip-card__front-title">LAN</p>
-                <p class="flip-card__hint">Click to flip</p>
-              </div>
-              <div class="flip-card__back">
-                <p class="flip-card__back-text">
-                  <strong>Local Area Network.</strong> A network limited to
-                  one building or site — your home Wi-Fi is a LAN. Devices
-                  share one internet connection and can directly send files to
-                  each other.
-                </p>
+            <svg id="lan-wan-svg"
+                 class="tab-lan"
+                 viewBox="0 0 720 300"
+                 role="img"
+                 aria-label="Interactive LAN and WAN network diagram. Click any node for details."
+                 style="width:100%; max-width:720px; display:block; overflow:visible;">
+
+              <!-- Background -->
+              <rect x="0" y="0" width="720" height="300" rx="12"
+                    fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+              <!-- ── LAN BOUNDARY ──────────────────────────────── -->
+              <g class="lan-boundary">
+                <ellipse cx="170" cy="155" rx="148" ry="122"
+                         fill="rgba(88,166,255,0.05)"
+                         stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="6,3"/>
+                <text x="170" y="24" text-anchor="middle"
+                      fill="#58a6ff" font-size="12"
+                      font-family="Inter,sans-serif" font-weight="700">LAN</text>
+              </g>
+
+              <!-- ── LAN DEVICE LINKS ───────────────────────────── -->
+              <line class="lan-device-link" x1="55" y1="88" x2="170" y2="153"
+                    stroke="#30363d" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line class="lan-device-link" x1="55" y1="223" x2="170" y2="153"
+                    stroke="#30363d" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line class="lan-device-link" x1="250" y1="238" x2="170" y2="153"
+                    stroke="#30363d" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+              <!-- ── LAN DEVICE NODES ───────────────────────────── -->
+
+              <!-- Laptop -->
+              <g class="lan-device" id="node-laptop"
+                 tabindex="0" role="button"
+                 aria-label="Laptop — click for details"
+                 aria-describedby="lan-wan-tooltip"
+                 style="cursor:pointer;">
+                <rect x="20" y="65" width="70" height="46" rx="6"
+                      fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
+                <text x="55" y="85" text-anchor="middle"
+                      fill="#e6edf3" font-size="9"
+                      font-family="Inter,sans-serif" font-weight="600">Laptop</text>
+                <text x="55" y="100" text-anchor="middle"
+                      fill="#8b949e" font-size="8"
+                      font-family="Inter,sans-serif">.101</text>
+              </g>
+
+              <!-- Phone -->
+              <g class="lan-device" id="node-phone"
+                 tabindex="0" role="button"
+                 aria-label="Phone — click for details"
+                 aria-describedby="lan-wan-tooltip"
+                 style="cursor:pointer;">
+                <rect x="20" y="200" width="70" height="46" rx="6"
+                      fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
+                <text x="55" y="220" text-anchor="middle"
+                      fill="#e6edf3" font-size="9"
+                      font-family="Inter,sans-serif" font-weight="600">Phone</text>
+                <text x="55" y="235" text-anchor="middle"
+                      fill="#8b949e" font-size="8"
+                      font-family="Inter,sans-serif">.102</text>
+              </g>
+
+              <!-- Smart TV -->
+              <g class="lan-device" id="node-smarttv"
+                 tabindex="0" role="button"
+                 aria-label="Smart TV — click for details"
+                 aria-describedby="lan-wan-tooltip"
+                 style="cursor:pointer;">
+                <rect x="215" y="215" width="70" height="46" rx="6"
+                      fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
+                <text x="250" y="235" text-anchor="middle"
+                      fill="#e6edf3" font-size="9"
+                      font-family="Inter,sans-serif" font-weight="600">Smart TV</text>
+                <text x="250" y="250" text-anchor="middle"
+                      fill="#8b949e" font-size="8"
+                      font-family="Inter,sans-serif">.103</text>
+              </g>
+
+              <!-- ── ROUTER (shared — always visible) ──────────── -->
+              <g id="node-router"
+                 tabindex="0" role="button"
+                 aria-label="Router — click for details"
+                 aria-describedby="lan-wan-tooltip"
+                 style="cursor:pointer;">
+                <rect x="135" y="130" width="70" height="46" rx="6"
+                      fill="#21262d" stroke="#58a6ff" stroke-width="2"/>
+                <text x="170" y="150" text-anchor="middle"
+                      fill="#58a6ff" font-size="9"
+                      font-family="Inter,sans-serif" font-weight="700">Router</text>
+                <text x="170" y="165" text-anchor="middle"
+                      fill="#8b949e" font-size="8"
+                      font-family="Inter,sans-serif">192.168.1.1</text>
+              </g>
+
+              <!-- ── WAN LINKS ──────────────────────────────────── -->
+              <line class="wan-link" x1="205" y1="153" x2="365" y2="153"
+                    stroke="#bc8cff" stroke-width="2"/>
+              <polygon class="wan-link" points="360,149 370,153 360,157" fill="#bc8cff"/>
+
+              <line class="wan-link" x1="435" y1="153" x2="455" y2="153"
+                    stroke="#bc8cff" stroke-width="2"/>
+              <polygon class="wan-link" points="450,149 460,153 450,157" fill="#bc8cff"/>
+
+              <line class="wan-link" x1="585" y1="153" x2="630" y2="153"
+                    stroke="#bc8cff" stroke-width="2"/>
+              <polygon class="wan-link" points="625,149 635,153 625,157" fill="#bc8cff"/>
+
+              <!-- ── WAN NODES ───────────────────────────────────── -->
+
+              <!-- ISP -->
+              <g class="wan-node" id="node-isp"
+                 tabindex="0" role="button"
+                 aria-label="ISP — click for details"
+                 aria-describedby="lan-wan-tooltip"
+                 style="cursor:pointer;">
+                <rect x="365" y="130" width="70" height="46" rx="6"
+                      fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
+                <text x="400" y="150" text-anchor="middle"
+                      fill="#bc8cff" font-size="9"
+                      font-family="Inter,sans-serif" font-weight="700">ISP</text>
+                <text x="400" y="165" text-anchor="middle"
+                      fill="#8b949e" font-size="8"
+                      font-family="Inter,sans-serif">Gateway</text>
+              </g>
+
+              <!-- Internet cloud -->
+              <g class="wan-node" id="node-internet"
+                 tabindex="0" role="button"
+                 aria-label="Internet (WAN) — click for details"
+                 aria-describedby="lan-wan-tooltip"
+                 style="cursor:pointer;">
+                <ellipse cx="520" cy="153" rx="65" ry="44"
+                         fill="rgba(188,140,255,0.08)"
+                         stroke="#bc8cff" stroke-width="1.5"/>
+                <text x="520" y="148" text-anchor="middle"
+                      fill="#bc8cff" font-size="11"
+                      font-family="Inter,sans-serif" font-weight="700">Internet</text>
+                <text x="520" y="163" text-anchor="middle"
+                      fill="#8b949e" font-size="9"
+                      font-family="Inter,sans-serif">(WAN)</text>
+              </g>
+
+              <!-- Remote Server -->
+              <g class="wan-node" id="node-server"
+                 tabindex="0" role="button"
+                 aria-label="Remote Server — click for details"
+                 aria-describedby="lan-wan-tooltip"
+                 style="cursor:pointer;">
+                <rect x="630" y="130" width="75" height="46" rx="6"
+                      fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
+                <text x="667" y="150" text-anchor="middle"
+                      fill="#bc8cff" font-size="9"
+                      font-family="Inter,sans-serif" font-weight="700">Server</text>
+                <text x="667" y="165" text-anchor="middle"
+                      fill="#8b949e" font-size="8"
+                      font-family="Inter,sans-serif">google.com</text>
+              </g>
+
+              <!-- ── HOP LABEL (updated by JS during animation) ── -->
+              <text id="hop-label" x="300" y="22" text-anchor="middle"
+                    fill="#3fb950" font-size="10"
+                    font-family="Inter,sans-serif" font-weight="600"
+                    opacity="0"></text>
+
+              <!-- ── PACKET DOT (animated by JS) ──────────────── -->
+              <circle id="packet-dot" cx="55" cy="88" r="6"
+                      fill="#58a6ff" opacity="0"
+                      style="filter:drop-shadow(0 0 6px #58a6ff);"></circle>
+
+            </svg>
+
+            <!-- Tooltip popup (absolutely positioned over the SVG) -->
+            <div id="lan-wan-tooltip"
+                 class="lan-wan-tooltip"
+                 role="tooltip"
+                 hidden>
+              <button class="lan-wan-tooltip__close"
+                      id="tooltip-close"
+                      aria-label="Close tooltip">&#215;</button>
+              <p class="lan-wan-tooltip__title" id="tooltip-title"></p>
+              <p class="lan-wan-tooltip__body"  id="tooltip-body"></p>
+            </div>
+
+          </div><!-- /.lan-wan-diagram-wrap -->
+
+          <!-- Attribute panel -->
+          <div class="lan-wan-panel" id="lan-wan-panel">
+
+            <div id="panel-lan">
+              <div class="lan-wan-panel__grid">
+                <div class="lan-wan-stat">
+                  <span class="lan-wan-stat__icon">&#9889;</span>
+                  <span class="lan-wan-stat__label">Speed</span>
+                  <span class="lan-wan-stat__value">Up to 1 Gbps</span>
+                </div>
+                <div class="lan-wan-stat">
+                  <span class="lan-wan-stat__icon">&#128207;</span>
+                  <span class="lan-wan-stat__label">Range</span>
+                  <span class="lan-wan-stat__value">Single building</span>
+                </div>
+                <div class="lan-wan-stat">
+                  <span class="lan-wan-stat__icon">&#127968;</span>
+                  <span class="lan-wan-stat__label">Ownership</span>
+                  <span class="lan-wan-stat__value">You own it</span>
+                </div>
+                <div class="lan-wan-stat">
+                  <span class="lan-wan-stat__icon">&#128176;</span>
+                  <span class="lan-wan-stat__label">Cost</span>
+                  <span class="lan-wan-stat__value">Low (hardware only)</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="flip-card" role="listitem" tabindex="0"
-               aria-label="WAN — click to flip and learn more">
-            <div class="flip-card__inner">
-              <div class="flip-card__front">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="2" y1="12" x2="22" y2="12"/>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                </svg>
-                <p class="flip-card__front-title">WAN</p>
-                <p class="flip-card__hint">Click to flip</p>
-              </div>
-              <div class="flip-card__back">
-                <p class="flip-card__back-text">
-                  <strong>Wide Area Network.</strong> A network that spans
-                  large geographical areas — cities, countries, or the globe.
-                  The internet is the largest WAN ever built.
-                </p>
+            <div id="panel-wan" hidden>
+              <div class="lan-wan-panel__grid">
+                <div class="lan-wan-stat">
+                  <span class="lan-wan-stat__icon">&#9889;</span>
+                  <span class="lan-wan-stat__label">Speed</span>
+                  <span class="lan-wan-stat__value">10 Mbps &ndash; 1 Gbps</span>
+                </div>
+                <div class="lan-wan-stat">
+                  <span class="lan-wan-stat__icon">&#128207;</span>
+                  <span class="lan-wan-stat__label">Range</span>
+                  <span class="lan-wan-stat__value">City, country, globe</span>
+                </div>
+                <div class="lan-wan-stat">
+                  <span class="lan-wan-stat__icon">&#127970;</span>
+                  <span class="lan-wan-stat__label">Ownership</span>
+                  <span class="lan-wan-stat__value">Managed by ISPs</span>
+                </div>
+                <div class="lan-wan-stat">
+                  <span class="lan-wan-stat__icon">&#128179;</span>
+                  <span class="lan-wan-stat__label">Cost</span>
+                  <span class="lan-wan-stat__value">Monthly subscription</span>
+                </div>
               </div>
             </div>
+
+          </div><!-- /.lan-wan-panel -->
+
+          <!-- Send Packet button -->
+          <div style="margin-bottom: var(--space-8);">
+            <button class="send-packet-btn" id="send-packet-btn">
+              Send Packet &#8594;
+            </button>
+            <div class="sr-only" id="packet-status" aria-live="polite"></div>
           </div>
 
-          <div class="flip-card" role="listitem" tabindex="0"
-               aria-label="Bandwidth — click to flip and learn more">
-            <div class="flip-card__inner">
-              <div class="flip-card__front">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                </svg>
-                <p class="flip-card__front-title">Bandwidth</p>
-                <p class="flip-card__hint">Click to flip</p>
-              </div>
-              <div class="flip-card__back">
-                <p class="flip-card__back-text">
-                  The maximum amount of data a connection can carry per second,
-                  measured in Mbps or Gbps. Think of it as the width of a
-                  pipe — wider means more water (data) at once.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flip-card" role="listitem" tabindex="0"
-               aria-label="Latency — click to flip and learn more">
-            <div class="flip-card__inner">
-              <div class="flip-card__front">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                <p class="flip-card__front-title">Latency</p>
-                <p class="flip-card__hint">Click to flip</p>
-              </div>
-              <div class="flip-card__back">
-                <p class="flip-card__back-text">
-                  The delay between sending data and receiving a response,
-                  measured in milliseconds (ms). Low latency is critical for
-                  gaming and video calls; bandwidth matters more for downloads.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        </div><!-- /#lan-wan-diagram-region -->
 
       </div>
     </section>
