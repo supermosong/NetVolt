@@ -475,6 +475,76 @@ function initLanWanDiagram() {
       if (e.key === 'ArrowLeft')  arr[(i - 1 + arr.length) % arr.length].focus();
     });
   });
+
+  /* ── Tooltip ─────────────────────────────────────── */
+  const TOOLTIP_DATA = {
+    'node-laptop':   { title: 'Laptop',            body: 'Your device. Sends requests and receives data within the LAN.' },
+    'node-phone':    { title: 'Phone',              body: 'Connects to the LAN wirelessly via Wi-Fi.' },
+    'node-smarttv':  { title: 'Smart TV',           body: 'A LAN device that streams from the internet through the router.' },
+    'node-router':   { title: 'Router',             body: 'The gateway between your LAN and the internet. Assigns local IP addresses via DHCP.' },
+    'node-isp':      { title: 'ISP',                body: 'Internet Service Provider. Carries your data from your home router to the wider internet.' },
+    'node-internet': { title: 'The Internet (WAN)', body: 'The WAN — millions of interconnected routers spanning the globe.' },
+    'node-server':   { title: 'Remote Server',      body: 'A computer somewhere in the world hosting the website or service you requested.' },
+  };
+
+  const tooltip      = document.getElementById('lan-wan-tooltip');
+  const tooltipTitle = document.getElementById('tooltip-title');
+  const tooltipBody  = document.getElementById('tooltip-body');
+  const tooltipClose = document.getElementById('tooltip-close');
+  const diagramWrap  = document.querySelector('.lan-wan-diagram-wrap');
+  let activeNode = null;
+
+  function showTooltip(nodeEl) {
+    const data = TOOLTIP_DATA[nodeEl.id];
+    if (!data) return;
+
+    tooltipTitle.textContent = data.title;
+    tooltipBody.textContent  = data.body;
+
+    const nodeRect = nodeEl.getBoundingClientRect();
+    const wrapRect = diagramWrap.getBoundingClientRect();
+    tooltip.style.left = (nodeRect.left - wrapRect.left + nodeRect.width / 2) + 'px';
+    tooltip.style.top  = (nodeRect.top  - wrapRect.top) + 'px';
+    tooltip.removeAttribute('hidden');
+    activeNode = nodeEl;
+  }
+
+  function hideTooltip() {
+    tooltip.setAttribute('hidden', '');
+    activeNode = null;
+  }
+
+  Object.keys(TOOLTIP_DATA).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      if (activeNode === el) { hideTooltip(); return; }
+      showTooltip(el);
+    });
+
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (activeNode === el) { hideTooltip(); return; }
+        showTooltip(el);
+      }
+      if (e.key === 'Escape') hideTooltip();
+    });
+  });
+
+  tooltipClose.addEventListener('click', hideTooltip);
+
+  document.addEventListener('click', e => {
+    if (!tooltip.hasAttribute('hidden') && !tooltip.contains(e.target)) {
+      hideTooltip();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') hideTooltip();
+  });
 }
 
 if (document.readyState === 'loading') {
