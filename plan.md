@@ -108,6 +108,21 @@ project-root/
 
 ---
 
+## Phase 7 — LAN vs WAN Interactive Redesign ✅
+
+> Goal: redesign the LAN vs WAN section in `pages/computer-networks.html` into an immersive, interactive "Up Close Visual Overview."
+
+- [x] 1. Audit current LAN vs WAN section — identify existing content, layout, and any interactivity already in place
+- [x] 2. Design the visual concept — side-by-side or layered diagram showing LAN and WAN topology with labeled nodes (devices, router, ISP, internet cloud)
+- [x] 3. Build interactive diagram — clickable nodes reveal tooltips or panels explaining each component's role
+- [x] 4. Add animated data-flow path — illustrate how a packet travels from a local device (LAN) out to the internet (WAN)
+- [x] 5. Add comparison toggle — switch between LAN view and WAN view to highlight differences (speed, range, ownership, cost)
+- [x] 6. Ensure mobile responsiveness and WCAG 2.1 AA accessibility on all new interactive elements
+
+*Files to touch: `pages/computer-networks.html`, `css/components.css`, `js/interactions.js`.*
+
+---
+
 ## Approved Decisions
 
 | Decision | Choice |
