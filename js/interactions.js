@@ -433,3 +433,52 @@ function initScrollVideo() {
     video.addEventListener('loadedmetadata', attach, { once: true });
   }
 }
+
+/* ============================================================
+   LAN vs WAN Interactive Diagram
+   ============================================================ */
+function initLanWanDiagram() {
+  const svg      = document.getElementById('lan-wan-svg');
+  const tabLan   = document.getElementById('tab-lan');
+  const tabWan   = document.getElementById('tab-wan');
+  const panel    = document.getElementById('lan-wan-panel');
+  const panelLan = document.getElementById('panel-lan');
+  const panelWan = document.getElementById('panel-wan');
+  const region   = document.getElementById('lan-wan-diagram-region');
+
+  if (!svg) return; /* not on this page */
+
+  function switchTab(active) {
+    /* active: 'lan' | 'wan' */
+    const isLan = active === 'lan';
+
+    tabLan.setAttribute('aria-selected', isLan ? 'true' : 'false');
+    tabWan.setAttribute('aria-selected', isLan ? 'false' : 'true');
+
+    svg.classList.toggle('tab-lan',  isLan);
+    svg.classList.toggle('tab-wan', !isLan);
+
+    panelLan.hidden = !isLan;
+    panelWan.hidden =  isLan;
+    panel.classList.toggle('tab-wan', !isLan);
+
+    region.setAttribute('aria-labelledby', isLan ? 'tab-lan' : 'tab-wan');
+  }
+
+  tabLan.addEventListener('click', () => switchTab('lan'));
+  tabWan.addEventListener('click', () => switchTab('wan'));
+
+  /* Arrow-key navigation between tabs */
+  [tabLan, tabWan].forEach((btn, i, arr) => {
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') arr[(i + 1) % arr.length].focus();
+      if (e.key === 'ArrowLeft')  arr[(i - 1 + arr.length) % arr.length].focus();
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLanWanDiagram);
+} else {
+  initLanWanDiagram();
+}
