@@ -545,6 +545,93 @@ function initLanWanDiagram() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') hideTooltip();
   });
+
+  /* ── Packet Animation ─────────────────────────────── */
+
+  const FULL_PATH = [
+    { x: 55,  y: 88  }, /* Laptop  */
+    { x: 170, y: 153 }, /* Router  */
+    { x: 400, y: 153 }, /* ISP     */
+    { x: 520, y: 153 }, /* Internet*/
+    { x: 667, y: 153 }, /* Server  */
+  ];
+
+  const LAN_PATH = [
+    { x: 55,  y: 88  }, /* Laptop  */
+    { x: 170, y: 153 }, /* Router  */
+  ];
+
+  const HOP_LABELS = [
+    'LAN',          /* Laptop  → Router   */
+    'Entering WAN', /* Router  → ISP      */
+    'WAN',          /* ISP     → Internet */
+    'WAN',          /* Internet→ Server   */
+  ];
+
+  const sendBtn      = document.getElementById('send-packet-btn');
+  const packetDot    = document.getElementById('packet-dot');
+  const hopLabel     = document.getElementById('hop-label');
+  const packetStatus = document.getElementById('packet-status');
+
+  const SEG_MS = 500; /* ms per hop */
+
+  function updateHopLabel(segIndex, waypoints) {
+    const from = waypoints[segIndex];
+    const to   = waypoints[segIndex + 1];
+    hopLabel.setAttribute('x', (from.x + to.x) / 2);
+    hopLabel.textContent = HOP_LABELS[segIndex] || '';
+    hopLabel.setAttribute('opacity', '1');
+  }
+
+  function animatePacket(waypoints, onComplete) {
+    let segment   = 0;
+    let startTime = null;
+
+    packetDot.setAttribute('cx', waypoints[0].x);
+    packetDot.setAttribute('cy', waypoints[0].y);
+    packetDot.setAttribute('opacity', '1');
+    updateHopLabel(0, waypoints);
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const elapsed    = timestamp - startTime;
+      const segElapsed = elapsed - segment * SEG_MS;
+      const t          = Math.min(segElapsed / SEG_MS, 1);
+
+      const from = waypoints[segment];
+      const to   = waypoints[segment + 1];
+
+      packetDot.setAttribute('cx', from.x + (to.x - from.x) * t);
+      packetDot.setAttribute('cy', from.y + (to.y - from.y) * t);
+
+      if (t >= 1) {
+        segment++;
+        if (segment >= waypoints.length - 1) {
+          packetDot.setAttribute('opacity', '0');
+          hopLabel.setAttribute('opacity', '0');
+          onComplete();
+          return;
+        }
+        updateHopLabel(segment, waypoints);
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  sendBtn.addEventListener('click', () => {
+    sendBtn.disabled    = true;
+    sendBtn.textContent = 'Sending…';
+
+    const path = svg.classList.contains('tab-wan') ? FULL_PATH : LAN_PATH;
+
+    animatePacket(path, () => {
+      sendBtn.disabled    = false;
+      sendBtn.textContent = 'Send Packet →';
+      packetStatus.textContent = 'Packet delivered!';
+      setTimeout(() => { packetStatus.textContent = ''; }, 3000);
+    });
+  });
 }
 
 if (document.readyState === 'loading') {
